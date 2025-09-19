@@ -8,6 +8,7 @@ var progression_path := "user://" + progression_file
 # Ressources
 var ressources_coins := 0
 
+# Load Progression
 func load_progression():
 	var config := ConfigFile.new()
 	var error = config.load(progression_path)
@@ -16,6 +17,7 @@ func load_progression():
 	else:
 		print("No save hve been found.")
 
+# Save Progression
 func save_progression():
 	var config = ConfigFile.new()
 	config.set_value("progress", "coins", ressources_coins)

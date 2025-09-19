@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://cq0st15no33wp"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_xxblq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oo1nr"]
+size = Vector2(196, 183)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oo1nr"]
+radius = 178.0702
+
+[node name="Player" type="Area2D"]
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(572, 332)
+scale = Vector2(186.5, 172.5)
+texture = SubResource("CanvasTexture_xxblq")
+
+[node name="CollisionArea" type="CollisionShape2D" parent="."]
+position = Vector2(574, 333)
+shape = SubResource("RectangleShape2D_oo1nr")
+
+[node name="Radius" type="Node" parent="."]
+
+[node name="RadiusArea" type="Area2D" parent="Radius"]
+
+[node name="CollisonArea" type="CollisionShape2D" parent="Radius/RadiusArea"]
+position = Vector2(571, 329)
+shape = SubResource("CircleShape2D_oo1nr")
