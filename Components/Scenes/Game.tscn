@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dw6snjba4llv7"]
+[gd_scene load_steps=6 format=3 uid="uid://dw6snjba4llv7"]
 
 [ext_resource type="Script" uid="uid://b8oj5t1y3uoql" path="res://Scripts/Scenes/Game.gd" id="1_iqgff"]
 [ext_resource type="PackedScene" uid="uid://cq0st15no33wp" path="res://Components/Entities/Player.tscn" id="2_jru4f"]
-[ext_resource type="PackedScene" uid="uid://ootpfvisx2mm" path="res://Components/Entities/Map.tscn" id="3_jru4f"]
 [ext_resource type="PackedScene" uid="uid://btw71upcpourg" path="res://Components/Interfaces/Game/player_statistics.tscn" id="4_h73p6"]
+[ext_resource type="PackedScene" uid="uid://7qrwl6nlntii" path="res://Components/Entities/Enemy_Type_1.tscn" id="4_m8cfy"]
+[ext_resource type="PackedScene" uid="uid://btpldchpopeg0" path="res://Components/Entities/Enemy_Type_2.tscn" id="5_m8cfy"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_iqgff")
@@ -17,9 +18,13 @@ position = Vector2(583, 310)
 
 [node name="Spawn" type="Node" parent="Components"]
 
-[node name="SpawnArea" parent="Components/Spawn" node_paths=PackedStringArray("player") instance=ExtResource("3_jru4f")]
-player = NodePath("../../Player/Player")
+[node name="ennemies_class" parent="Components/Spawn" node_paths=PackedStringArray("player_target") instance=ExtResource("4_m8cfy")]
+player_target = NodePath("../../Player/Player")
 
 [node name="UI" type="Node" parent="."]
 
 [node name="PlayerStatistics" parent="UI" instance=ExtResource("4_h73p6")]
+
+[node name="ennemies_class" parent="." node_paths=PackedStringArray("player_target") instance=ExtResource("5_m8cfy")]
+position = Vector2(49, 319)
+player_target = NodePath("../Components/Player/Player")

@@ -19,3 +19,7 @@ config/icon="res://icon.svg"
 
 Global="*res://Scripts/Global.gd"
 Game="*res://Scripts/Game.gd"
+
+[global_group]
+
+enemy="Global groupe for every enemies"

@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://7qrwl6nlntii"]
+
+[ext_resource type="Script" uid="uid://8p33dw64exbw" path="res://Scripts/Entities/EnemiesClass.gd" id="2_75cuc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yuiej"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_ayoq3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ayoq3"]
+
+[node name="ennemies_class" type="CharacterBody2D" node_paths=PackedStringArray("progress_bar", "hitbox") groups=["enemy"]]
+script = ExtResource("2_75cuc")
+health = 10
+speed = 10.0
+progress_bar = NodePath("ProgressBar")
+hitbox = NodePath("Area2D")
+metadata/_custom_type_script = "uid://8p33dw64exbw"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_yuiej")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = -14.0
+offset_top = -17.0
+offset_right = -10.0
+offset_bottom = 10.0
+scale = Vector2(6.942944, 0.19635125)
+show_percentage = false
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 0, 1)
+position = Vector2(9.536743e-07, 0)
+scale = Vector2(23.5, 20.5)
+texture = SubResource("CanvasTexture_ayoq3")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_ayoq3")
