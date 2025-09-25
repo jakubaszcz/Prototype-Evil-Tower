@@ -10,7 +10,7 @@ var ressources_coins := 0 # IG Coins Ressources
 
 
 # Abilities
-var abilities_attack := 10 # Global Abilities, That Affects IG
+var abilities_attack := 100 # Global Abilities, That Affects IG
 var abilities_radius := 0 # Global Abilities, That Affects IG
 var abilities_health := 0 # Global Abilities, That Affects IG
 
