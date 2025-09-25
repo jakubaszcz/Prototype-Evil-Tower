@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var enemy_speed := 200.0
+var enemy_speed := 20.0
 @export var player : CharacterBody2D
 
 

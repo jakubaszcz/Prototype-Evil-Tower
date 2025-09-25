@@ -6,10 +6,10 @@
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_o656c"]
 
-[node name="Enemy" type="CharacterBody2D"]
+[node name="Enemy" type="CharacterBody2D" groups=["enemies"]]
 script = ExtResource("1_nvv1h")
 
-[node name="CollisionArea" type="CollisionShape2D" parent="."]
+[node name="CollisionArea" type="CollisionShape2D" parent="." groups=["enemies"]]
 shape = SubResource("RectangleShape2D_o656c")
 
 [node name="Sprite" type="Sprite2D" parent="."]

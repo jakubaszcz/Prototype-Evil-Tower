@@ -1,4 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cq0st15no33wp"]
+[gd_scene load_steps=6 format=3 uid="uid://cq0st15no33wp"]
+
+[ext_resource type="Script" uid="uid://d0s43gd28ot0j" path="res://Scripts/Entities/Player.gd" id="1_gieyj"]
+[ext_resource type="PackedScene" uid="uid://dn6ekpgvqnjx2" path="res://Components/Utils/Projectiles.tscn" id="2_4tf3u"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_xxblq"]
 
@@ -9,13 +12,15 @@ size = Vector2(196, 183)
 radius = 178.0702
 
 [node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_gieyj")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 self_modulate = Color(0, 0.785777, 0, 1)
 scale = Vector2(108.108, 100)
 texture = SubResource("CanvasTexture_xxblq")
 
-[node name="CollisionArea" type="CollisionShape2D" parent="."]
+[node name="CollisionArea" type="CollisionShape2D" parent="." groups=["enemies"]]
+light_mask = 2
 shape = SubResource("RectangleShape2D_oo1nr")
 
 [node name="Radius" type="Node" parent="."]
@@ -24,3 +29,7 @@ shape = SubResource("RectangleShape2D_oo1nr")
 
 [node name="CollisonArea" type="CollisionShape2D" parent="RadiusArea"]
 shape = SubResource("CircleShape2D_oo1nr")
+
+[node name="Projectiles" parent="." instance=ExtResource("2_4tf3u")]
+
+[connection signal="body_entered" from="RadiusArea" to="." method="_on_radius_area_body_entered"]
