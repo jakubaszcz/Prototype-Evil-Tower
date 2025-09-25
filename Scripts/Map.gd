@@ -1,23 +1,26 @@
 extends Node2D
 
-@export var enemy_to_spawn : PackedScene
-@export var player : CharacterBody2D
-
-func _ready():
-	pass
-
-func _process(delta: float) -> void:
-	pass
+@export var enemies_to_spawn: Array[PackedScene] = []
+@export var player: CharacterBody2D
 
 func _on_spawn_timer_timeout() -> void:
-	var e = enemy_to_spawn.instantiate() # Create a new enemy
-	e.player = player
-	call_deferred("add_child", e) # Add the enemy to the scene
-	e.position = get_spawn_position()
+	if player:
+		print("Il est la")
+	else:
+		print("il est pas la")
+	if enemies_to_spawn.is_empty():
+		return
+		
+	var enemy_scene: PackedScene = enemies_to_spawn.pick_random()
+	var e = enemy_scene.instantiate()
+	e._set_target(player) # fonction publique
+	e.position = get_spawn_position() # position avant add_child
+	call_deferred("add_child", e)
+
 
 func get_spawn_position() -> Vector2:
 	var rect = get_viewport_rect()
-	var margin = 100
+	var margin = 5
 	var side = randi() % 4
 
 	match side:

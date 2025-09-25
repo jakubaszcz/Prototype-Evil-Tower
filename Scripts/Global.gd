@@ -10,7 +10,7 @@ var ressources_coins := 0 # IG Coins Ressources
 
 
 # Abilities
-var abilities_attack := 0 # Global Abilities, That Affects IG
+var abilities_attack := 10 # Global Abilities, That Affects IG
 var abilities_radius := 0 # Global Abilities, That Affects IG
 var abilities_health := 0 # Global Abilities, That Affects IG
 
@@ -26,7 +26,7 @@ func load_progression():
 		abilities_health = config.get_value("progress", "attack", 10)
 		abilities_radius = config.get_value("progress", "radius", 10)
 		abilities_health = config.get_value("progress", "health", 10)
-		start_coin = config.get_value("progress", "coint", 0)
+		start_coin = config.get_value("progress", "coin", 0)
 	else:
 		print("No save have been found.")
 
