@@ -6,7 +6,7 @@ extends CharacterBody2D
 @onready var projectile_scene = load("res://Components/Utils/Projectiles.tscn")
 @onready var detection_area: Area2D = $RadiusArea
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if not can_shoot: return
 	for overlaps in detection_area.get_overlapping_bodies():
 		if overlaps.is_in_group("enemy"):
@@ -22,7 +22,7 @@ func _shoot(body: Node2D) -> void:
 	can_shoot = false
 	projectile.global_position = global_position
 	projectile._set_target(body)
-	get_parent().add_child(projectile)
+	get_parent().call_deferred("add_child", projectile)
 	
 
 

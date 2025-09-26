@@ -16,7 +16,7 @@ func _ready() -> void:
 		progress_bar.max_value = health
 		progress_bar.value = health
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if player_target and is_instance_valid(player_target):
 		var direction = (player_target.global_position - global_position).normalized()
 		velocity = direction * speed

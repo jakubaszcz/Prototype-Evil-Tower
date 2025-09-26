@@ -33,6 +33,7 @@ shape = SubResource("CircleShape2D_oo1nr")
 [node name="Projectiles" parent="." instance=ExtResource("2_4tf3u")]
 
 [node name="ShootCooldown" type="Timer" parent="."]
+autostart = true
 
 [connection signal="body_entered" from="RadiusArea" to="." method="_on_radius_area_body_entered"]
 [connection signal="timeout" from="ShootCooldown" to="." method="_on_shoot_cooldown_timeout"]
