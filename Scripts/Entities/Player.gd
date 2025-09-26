@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 @onready var can_shoot : bool = true
-@onready var shoot_cooldown = $ShootCooldown 
+@onready var shoot_cooldown = $ShootCooldown
 
 @onready var projectile_scene = load("res://Components/Utils/Projectiles.tscn")
 @onready var detection_area: Area2D = $RadiusArea
@@ -10,7 +10,6 @@ func _physics_process(_delta: float) -> void:
 	if not can_shoot: return
 	for overlaps in detection_area.get_overlapping_bodies():
 		if overlaps.is_in_group("enemy"):
-			print("there is someone")
 			_shoot(overlaps)
 
 func _on_radius_area_body_entered(body: Node2D) -> void:
@@ -24,7 +23,10 @@ func _shoot(body: Node2D) -> void:
 	projectile._set_target(body)
 	get_parent().call_deferred("add_child", projectile)
 	
-
+func _take_damage(damage : float):
+	print("Took " + str(damage) + " damage, now at " + str(Game.game_health - damage))
+	if ((Game.game_health - damage) <= 0): queue_free()
+	else: Game.game_health -= damage
 
 func _on_shoot_cooldown_timeout() -> void:
 	can_shoot = true

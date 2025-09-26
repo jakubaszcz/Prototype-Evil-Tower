@@ -19,7 +19,7 @@ self_modulate = Color(0, 0.785777, 0, 1)
 scale = Vector2(108.108, 100)
 texture = SubResource("CanvasTexture_xxblq")
 
-[node name="CollisionArea" type="CollisionShape2D" parent="." groups=["enemies"]]
+[node name="CollisionArea" type="CollisionShape2D" parent="." groups=["player"]]
 light_mask = 2
 shape = SubResource("RectangleShape2D_oo1nr")
 

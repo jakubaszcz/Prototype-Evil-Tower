@@ -14,7 +14,7 @@ script = ExtResource("1_iqgff")
 
 [node name="Player" type="Node" parent="Components"]
 
-[node name="Player" parent="Components/Player" instance=ExtResource("2_jru4f")]
+[node name="Player" parent="Components/Player" groups=["player"] instance=ExtResource("2_jru4f")]
 position = Vector2(583, 310)
 
 [node name="Spawn" type="Node" parent="Components"]

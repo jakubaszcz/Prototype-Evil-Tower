@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://btw71upcpourg"]
+
+[ext_resource type="Script" uid="uid://dw81m4kikc2tl" path="res://Components/Interfaces/Game/PlayerStatistics.gd" id="1_mso56"]
+
+[node name="PlayerStatistics" type="CanvasLayer"]
+script = ExtResource("1_mso56")
+
+[node name="Health" type="Label" parent="."]
+offset_left = 17.0
+offset_top = 53.0
+offset_right = 107.0
+offset_bottom = 76.0
+text = "Coins : NaN"
+
+[node name="Coins" type="Label" parent="."]
+offset_left = 16.0
+offset_top = 15.0
+offset_right = 106.0
+offset_bottom = 38.0
+text = "Coins : NaN"

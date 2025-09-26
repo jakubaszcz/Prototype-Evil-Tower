@@ -4,17 +4,13 @@ extends Node2D
 @export var player: CharacterBody2D
 
 func _on_spawn_timer_timeout() -> void:
-	if player:
-		print("Il est la")
-	else:
-		print("il est pas la")
 	if enemies_to_spawn.is_empty():
 		return
 		
 	var enemy_scene: PackedScene = enemies_to_spawn.pick_random()
 	var e = enemy_scene.instantiate()
-	e._set_target(player) # fonction publique
-	e.position = get_spawn_position() # position avant add_child
+	e._set_target(player)
+	e.position = get_spawn_position()
 	call_deferred("add_child", e)
 
 
