@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 var _projectile_speed = 500
-var _projectile_attack = Global.abilities_attack
+var _projectile_attack = Game.game_damage
 var _projectile_turning : float = 5.0
 var _target : Node2D = null
 var _velocity: Vector2 = Vector2.ZERO

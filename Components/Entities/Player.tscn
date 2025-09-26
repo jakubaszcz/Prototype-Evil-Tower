@@ -11,8 +11,10 @@ size = Vector2(196, 183)
 [sub_resource type="CircleShape2D" id="CircleShape2D_oo1nr"]
 radius = 178.0702
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("cooldown", "trigger_collider")]
 script = ExtResource("1_gieyj")
+cooldown = NodePath("ShootCooldown")
+trigger_collider = NodePath("RadiusArea/CollisonArea")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 self_modulate = Color(0, 0.785777, 0, 1)

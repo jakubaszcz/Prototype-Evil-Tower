@@ -6,6 +6,15 @@ extends CharacterBody2D
 @onready var projectile_scene = load("res://Components/Utils/Projectiles.tscn")
 @onready var detection_area: Area2D = $RadiusArea
 
+# On Load
+@export var cooldown : Timer
+@export var trigger_collider : CollisionShape2D
+
+func _ready():
+	cooldown.wait_time = Game.game_cadence
+	trigger_collider.scale.x = Game.game_radius
+	trigger_collider.scale.y = Game.game_radius
+
 func _physics_process(_delta: float) -> void:
 	if not can_shoot: return
 	for overlaps in detection_area.get_overlapping_bodies():
@@ -24,7 +33,6 @@ func _shoot(body: Node2D) -> void:
 	get_parent().call_deferred("add_child", projectile)
 	
 func _take_damage(damage : float):
-	print("Took " + str(damage) + " damage, now at " + str(Game.game_health - damage))
 	if ((Game.game_health - damage) <= 0): queue_free()
 	else: Game.game_health -= damage
 

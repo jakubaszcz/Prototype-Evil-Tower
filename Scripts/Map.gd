@@ -4,6 +4,7 @@ extends Node2D
 @export var player: CharacterBody2D
 
 func _on_spawn_timer_timeout() -> void:
+	if not player: return
 	if enemies_to_spawn.is_empty():
 		return
 		

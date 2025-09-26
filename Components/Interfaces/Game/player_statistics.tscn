@@ -5,16 +5,7 @@
 [node name="PlayerStatistics" type="CanvasLayer"]
 script = ExtResource("1_mso56")
 
-[node name="Health" type="Label" parent="."]
-offset_left = 17.0
-offset_top = 53.0
-offset_right = 107.0
-offset_bottom = 76.0
-text = "Coins : NaN"
-
-[node name="Coins" type="Label" parent="."]
-offset_left = 16.0
-offset_top = 15.0
-offset_right = 106.0
-offset_bottom = 38.0
-text = "Coins : NaN"
+[node name="Infos" type="Label" parent="."]
+offset_right = 90.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 10
