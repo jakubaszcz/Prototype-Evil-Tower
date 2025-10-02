@@ -9,3 +9,37 @@ script = ExtResource("1_mso56")
 offset_right = 90.0
 offset_bottom = 23.0
 theme_override_font_sizes/font_size = 10
+
+[node name="Damagae" type="Button" parent="."]
+offset_left = 80.0
+offset_top = 613.0
+offset_right = 153.0
+offset_bottom = 644.0
+text = "Damage"
+
+[node name="Health" type="Button" parent="."]
+offset_left = 4.0
+offset_top = 613.0
+offset_right = 77.0
+offset_bottom = 644.0
+text = "Health"
+
+[node name="Radius" type="Button" parent="."]
+offset_left = 158.0
+offset_top = 613.0
+offset_right = 231.0
+offset_bottom = 644.0
+text = "Radius"
+
+[node name="Cadence" type="Button" parent="."]
+offset_left = 236.0
+offset_top = 613.0
+offset_right = 310.0
+offset_bottom = 644.0
+text = "Cadence"
+
+[connection signal="pressed" from="Damagae" to="." method="_on_damagae_pressed"]
+[connection signal="pressed" from="Health" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Health" to="." method="_on_health_pressed"]
+[connection signal="pressed" from="Radius" to="." method="_on_radius_pressed"]
+[connection signal="pressed" from="Cadence" to="." method="_on_cadence_pressed"]
