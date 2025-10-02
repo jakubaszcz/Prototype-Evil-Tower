@@ -26,6 +26,8 @@ func _draw() -> void:
 		draw_rect(Rect2(-ext, ext * 2.0), Color(0.0, 0.0, 0.0, 0.3), true)
 
 func _physics_process(_delta: float) -> void:
+	queue_redraw() # redraw the collision _draw
+	trigger_collider.scale = Vector2(Game.game_radius, Game.game_radius)
 	if not can_shoot: return
 	for overlaps in detection_area.get_overlapping_bodies():
 		if overlaps.is_in_group("enemy"):
