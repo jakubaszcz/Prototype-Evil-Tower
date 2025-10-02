@@ -1,45 +1,175 @@
-[gd_scene load_steps=2 format=3 uid="uid://btw71upcpourg"]
+[gd_scene load_steps=4 format=3 uid="uid://dkhftkgwmo5w3"]
 
 [ext_resource type="Script" uid="uid://dw81m4kikc2tl" path="res://Components/Interfaces/Game/PlayerStatistics.gd" id="1_mso56"]
+[ext_resource type="Texture2D" uid="uid://bn0uj0lbkfwc8" path="res://Assets/Coin.png" id="2_ikyie"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_ikyie"]
 
 [node name="PlayerStatistics" type="CanvasLayer"]
 script = ExtResource("1_mso56")
 
 [node name="Infos" type="Label" parent="."]
-offset_right = 90.0
-offset_bottom = 23.0
+offset_left = 53.0
+offset_top = 9.0
+offset_right = 144.04361
+offset_bottom = 32.0
+scale = Vector2(1.779367, 2.56028)
 theme_override_font_sizes/font_size = 10
 
-[node name="Damagae" type="Button" parent="."]
-offset_left = 80.0
-offset_top = 613.0
-offset_right = 153.0
-offset_bottom = 644.0
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(26, 27.000002)
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("2_ikyie")
+
+[node name="DamageContainer" type="Node" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="DamageContainer"]
+modulate = Color(0.20033002, 0.20033002, 0.20032999, 1)
+position = Vector2(365, 345.00003)
+scale = Vector2(250, 145)
+texture = SubResource("CanvasTexture_ikyie")
+
+[node name="Title" type="Label" parent="DamageContainer"]
+offset_left = 246.0
+offset_top = 280.0
+offset_right = 481.0
+offset_bottom = 303.0
 text = "Damage"
 
-[node name="Health" type="Button" parent="."]
-offset_left = 4.0
-offset_top = 613.0
-offset_right = 77.0
-offset_bottom = 644.0
+[node name="Price" type="Label" parent="DamageContainer"]
+offset_left = 246.0
+offset_top = 311.0
+offset_right = 483.0
+offset_bottom = 360.0
+text = "Price : NaN"
+
+[node name="Ability" type="Label" parent="DamageContainer"]
+offset_left = 246.0
+offset_top = 337.0
+offset_right = 480.0
+offset_bottom = 360.0
+text = "Damage : NaN"
+
+[node name="Damage" type="Button" parent="DamageContainer"]
+z_index = 1
+offset_left = 411.0
+offset_top = 381.0
+offset_right = 484.0
+offset_bottom = 412.0
+text = "Buy
+"
+
+[node name="HealthContainer" type="Node" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="HealthContainer"]
+modulate = Color(0.20033002, 0.20033002, 0.20032999, 1)
+position = Vector2(615, 345.5)
+scale = Vector2(250, 145)
+texture = SubResource("CanvasTexture_ikyie")
+
+[node name="Title" type="Label" parent="HealthContainer"]
+offset_left = 496.0
+offset_top = 280.5
+offset_right = 731.0
+offset_bottom = 303.5
 text = "Health"
 
-[node name="Radius" type="Button" parent="."]
-offset_left = 158.0
-offset_top = 613.0
-offset_right = 231.0
-offset_bottom = 644.0
+[node name="Price" type="Label" parent="HealthContainer"]
+offset_left = 496.0
+offset_top = 311.5
+offset_right = 733.0
+offset_bottom = 360.5
+text = "Price : NaN"
+
+[node name="Ability" type="Label" parent="HealthContainer"]
+offset_left = 496.0
+offset_top = 337.5
+offset_right = 730.0
+offset_bottom = 360.5
+text = "Damage : NaN"
+
+[node name="Health" type="Button" parent="HealthContainer"]
+offset_left = 662.0
+offset_top = 382.0
+offset_right = 735.0
+offset_bottom = 413.0
+text = "Buy"
+
+[node name="RadiusContainer" type="Node" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="RadiusContainer"]
+modulate = Color(0.20033002, 0.20033002, 0.20032999, 1)
+position = Vector2(714, 518.5)
+scale = Vector2(250, 145)
+texture = SubResource("CanvasTexture_ikyie")
+
+[node name="Title" type="Label" parent="RadiusContainer"]
+offset_left = 595.0
+offset_top = 453.5
+offset_right = 830.0
+offset_bottom = 476.5
 text = "Radius"
 
-[node name="Cadence" type="Button" parent="."]
-offset_left = 236.0
-offset_top = 613.0
-offset_right = 310.0
-offset_bottom = 644.0
+[node name="Price" type="Label" parent="RadiusContainer"]
+offset_left = 595.0
+offset_top = 484.5
+offset_right = 832.0
+offset_bottom = 533.5
+text = "Price : NaN"
+
+[node name="Ability" type="Label" parent="RadiusContainer"]
+offset_left = 595.0
+offset_top = 510.5
+offset_right = 829.0
+offset_bottom = 533.5
+text = "Radius : NaN"
+
+[node name="Radius" type="Button" parent="RadiusContainer"]
+offset_left = 761.0
+offset_top = 555.0
+offset_right = 834.0
+offset_bottom = 586.0
+text = "Buy"
+
+[node name="CadenceContainer" type="Node" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="CadenceContainer"]
+modulate = Color(0.20033002, 0.20033002, 0.20032999, 1)
+position = Vector2(385, 516.5)
+scale = Vector2(250, 145)
+texture = SubResource("CanvasTexture_ikyie")
+
+[node name="Title" type="Label" parent="CadenceContainer"]
+offset_left = 266.0
+offset_top = 451.5
+offset_right = 501.0
+offset_bottom = 474.5
 text = "Cadence"
 
-[connection signal="pressed" from="Damagae" to="." method="_on_damagae_pressed"]
-[connection signal="pressed" from="Health" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="Health" to="." method="_on_health_pressed"]
-[connection signal="pressed" from="Radius" to="." method="_on_radius_pressed"]
-[connection signal="pressed" from="Cadence" to="." method="_on_cadence_pressed"]
+[node name="Price" type="Label" parent="CadenceContainer"]
+offset_left = 266.0
+offset_top = 482.5
+offset_right = 503.0
+offset_bottom = 531.5
+text = "Price : NaN"
+
+[node name="Ability" type="Label" parent="CadenceContainer"]
+offset_left = 266.0
+offset_top = 508.5
+offset_right = 500.0
+offset_bottom = 531.5
+text = "Cadence : NaN"
+
+[node name="Cadence" type="Button" parent="CadenceContainer"]
+offset_left = 431.0
+offset_top = 552.0
+offset_right = 505.0
+offset_bottom = 583.0
+text = "Buy
+"
+
+[connection signal="pressed" from="DamageContainer/Damage" to="." method="_on_damagae_pressed"]
+[connection signal="pressed" from="HealthContainer/Health" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="HealthContainer/Health" to="." method="_on_health_pressed"]
+[connection signal="pressed" from="RadiusContainer/Radius" to="." method="_on_radius_pressed"]
+[connection signal="pressed" from="CadenceContainer/Cadence" to="." method="_on_cadence_pressed"]
