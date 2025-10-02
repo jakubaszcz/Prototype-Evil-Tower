@@ -21,26 +21,26 @@ func _physics_process(_delta: float) -> void:
 func _on_damage_pressed() -> void:
 	if ((Game.game_coin - Game.game_damage_price) >= 0):
 		Game.game_coin -= Game.game_damage_price
-		Game.game_damage *= Game.game_damage_buy
-		Game.game_damage_price *= Game.multiplier
+		Game.game_damage += Game.game_damage_buy
+		Game.game_damage_price *= Game.price_multiplier
 
 
 func _on_health_pressed() -> void:
 		if ((Game.game_coin - Game.game_health_price) >= 0):
 			Game.game_coin -= Game.game_health_price
-			Game.game_health *= Game.game_health_buy
-			Game.game_health_price *= Game.multiplier
+			Game.game_health += Game.game_health_buy
+			Game.game_health_price *= Game.price_multiplier
 
 
 func _on_radius_pressed() -> void:
 	if ((Game.game_coin - Game.game_radius_price) >= 0):
 		Game.game_coin -= Game.game_radius_price
-		Game.game_radius *= Game.game_radius_buy
-		Game.game_radius_price *= Game.multiplier
+		Game.game_radius += Game.game_radius_buy
+		Game.game_radius_price *= Game.price_multiplier
 
 
 func _on_cadence_pressed() -> void:
 	if ((Game.game_coin - Game.game_cadence_price) >= 0):
 		Game.game_coin -= Game.game_cadence_price
-		Game.game_cadence *= Game.game_cadence_buy
-		Game.game_cadence_price *= Game.multiplier
+		Game.game_cadence -= Game.game_cadence_buy
+		Game.game_cadence_price *= Game.price_multiplier

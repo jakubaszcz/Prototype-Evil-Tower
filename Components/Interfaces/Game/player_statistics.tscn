@@ -25,37 +25,37 @@ texture = ExtResource("2_ikyie")
 
 [node name="Sprite2D" type="Sprite2D" parent="DamageContainer"]
 modulate = Color(0.20033002, 0.20033002, 0.20032999, 1)
-position = Vector2(365, 345.00003)
+position = Vector2(130, 570.5)
 scale = Vector2(250, 145)
 texture = SubResource("CanvasTexture_ikyie")
 
 [node name="Title" type="Label" parent="DamageContainer"]
-offset_left = 246.0
-offset_top = 280.0
-offset_right = 481.0
-offset_bottom = 303.0
+offset_left = 11.0
+offset_top = 505.5
+offset_right = 246.0
+offset_bottom = 528.5
 text = "Damage"
 
 [node name="Price" type="Label" parent="DamageContainer"]
-offset_left = 246.0
-offset_top = 311.0
-offset_right = 483.0
-offset_bottom = 360.0
+offset_left = 11.0
+offset_top = 536.5
+offset_right = 248.0
+offset_bottom = 585.5
 text = "Price : NaN"
 
 [node name="Ability" type="Label" parent="DamageContainer"]
-offset_left = 246.0
-offset_top = 337.0
-offset_right = 480.0
-offset_bottom = 360.0
+offset_left = 11.0
+offset_top = 562.5
+offset_right = 245.0
+offset_bottom = 585.5
 text = "Damage : NaN"
 
 [node name="Damage" type="Button" parent="DamageContainer"]
 z_index = 1
-offset_left = 411.0
-offset_top = 381.0
-offset_right = 484.0
-offset_bottom = 412.0
+offset_left = 176.0
+offset_top = 606.5
+offset_right = 249.0
+offset_bottom = 637.5
 text = "Buy
 "
 
@@ -63,108 +63,108 @@ text = "Buy
 
 [node name="Sprite2D" type="Sprite2D" parent="HealthContainer"]
 modulate = Color(0.20033002, 0.20033002, 0.20032999, 1)
-position = Vector2(615, 345.5)
+position = Vector2(385, 570.5)
 scale = Vector2(250, 145)
 texture = SubResource("CanvasTexture_ikyie")
 
 [node name="Title" type="Label" parent="HealthContainer"]
-offset_left = 496.0
-offset_top = 280.5
-offset_right = 731.0
-offset_bottom = 303.5
+offset_left = 266.0
+offset_top = 505.5
+offset_right = 501.0
+offset_bottom = 528.5
 text = "Health"
 
 [node name="Price" type="Label" parent="HealthContainer"]
-offset_left = 496.0
-offset_top = 311.5
-offset_right = 733.0
-offset_bottom = 360.5
+offset_left = 266.0
+offset_top = 536.5
+offset_right = 503.0
+offset_bottom = 585.5
 text = "Price : NaN"
 
 [node name="Ability" type="Label" parent="HealthContainer"]
-offset_left = 496.0
-offset_top = 337.5
-offset_right = 730.0
-offset_bottom = 360.5
+offset_left = 266.0
+offset_top = 562.5
+offset_right = 500.0
+offset_bottom = 585.5
 text = "Damage : NaN"
 
 [node name="Health" type="Button" parent="HealthContainer"]
-offset_left = 662.0
-offset_top = 382.0
-offset_right = 735.0
-offset_bottom = 413.0
+offset_left = 432.0
+offset_top = 607.0
+offset_right = 505.0
+offset_bottom = 638.0
 text = "Buy"
 
 [node name="RadiusContainer" type="Node" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="RadiusContainer"]
 modulate = Color(0.20033002, 0.20033002, 0.20032999, 1)
-position = Vector2(714, 518.5)
+position = Vector2(640, 570.5)
 scale = Vector2(250, 145)
 texture = SubResource("CanvasTexture_ikyie")
 
 [node name="Title" type="Label" parent="RadiusContainer"]
-offset_left = 595.0
-offset_top = 453.5
-offset_right = 830.0
-offset_bottom = 476.5
+offset_left = 521.0
+offset_top = 505.5
+offset_right = 756.0
+offset_bottom = 528.5
 text = "Radius"
 
 [node name="Price" type="Label" parent="RadiusContainer"]
-offset_left = 595.0
-offset_top = 484.5
-offset_right = 832.0
-offset_bottom = 533.5
+offset_left = 521.0
+offset_top = 536.5
+offset_right = 758.0
+offset_bottom = 585.5
 text = "Price : NaN"
 
 [node name="Ability" type="Label" parent="RadiusContainer"]
-offset_left = 595.0
-offset_top = 510.5
-offset_right = 829.0
-offset_bottom = 533.5
+offset_left = 521.0
+offset_top = 562.5
+offset_right = 755.0
+offset_bottom = 585.5
 text = "Radius : NaN"
 
 [node name="Radius" type="Button" parent="RadiusContainer"]
-offset_left = 761.0
-offset_top = 555.0
-offset_right = 834.0
-offset_bottom = 586.0
+offset_left = 687.0
+offset_top = 607.0
+offset_right = 760.0
+offset_bottom = 638.0
 text = "Buy"
 
 [node name="CadenceContainer" type="Node" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="CadenceContainer"]
 modulate = Color(0.20033002, 0.20033002, 0.20032999, 1)
-position = Vector2(385, 516.5)
+position = Vector2(895, 570.5)
 scale = Vector2(250, 145)
 texture = SubResource("CanvasTexture_ikyie")
 
 [node name="Title" type="Label" parent="CadenceContainer"]
-offset_left = 266.0
-offset_top = 451.5
-offset_right = 501.0
-offset_bottom = 474.5
+offset_left = 776.0
+offset_top = 505.5
+offset_right = 1011.0
+offset_bottom = 528.5
 text = "Cadence"
 
 [node name="Price" type="Label" parent="CadenceContainer"]
-offset_left = 266.0
-offset_top = 482.5
-offset_right = 503.0
-offset_bottom = 531.5
+offset_left = 776.0
+offset_top = 536.5
+offset_right = 1013.0
+offset_bottom = 585.5
 text = "Price : NaN"
 
 [node name="Ability" type="Label" parent="CadenceContainer"]
-offset_left = 266.0
-offset_top = 508.5
-offset_right = 500.0
-offset_bottom = 531.5
+offset_left = 776.0
+offset_top = 562.5
+offset_right = 1010.0
+offset_bottom = 585.5
 text = "Cadence : NaN"
 
 [node name="Cadence" type="Button" parent="CadenceContainer"]
-offset_left = 431.0
-offset_top = 552.0
-offset_right = 505.0
-offset_bottom = 583.0
+offset_left = 941.0
+offset_top = 606.0
+offset_right = 1015.0
+offset_bottom = 637.0
 text = "Buy
 "
 

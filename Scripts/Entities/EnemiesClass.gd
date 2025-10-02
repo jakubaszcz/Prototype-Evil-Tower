@@ -28,9 +28,7 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	for players in detection_area.get_overlapping_bodies():
 		if players.is_in_group("player") and can_attack:
-			print("Enemy attacks player!")
 			if cooldown:
-				print("Cooldown started")
 				cooldown.start()
 				can_attack = false
 				_attack(players, attack)
@@ -56,6 +54,7 @@ func _take_damage(amount: int) -> void:
 	if health <= 0:
 		Game.game_coin += recompense
 		is_dead = true
+		Game.enemies_killed_count += 1
 		queue_free()
 
 func get_health() -> int:

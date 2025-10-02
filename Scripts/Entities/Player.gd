@@ -20,10 +20,10 @@ func _ready() -> void:
 func _draw() -> void:
 	if shape.shape is CircleShape2D:
 		var r = shape.shape.radius * trigger_collider.scale.x
-		draw_circle(Vector2.ZERO, r, Color(0.0, 0.0, 0.0, 0.3))
+		draw_circle(Vector2.ZERO, r, Color(0.0, 0.0, 0.0, 0.1))
 	elif shape.shape is RectangleShape2D:
 		var ext = shape.shape.extents * trigger_collider.scale
-		draw_rect(Rect2(-ext, ext * 2.0), Color(0.0, 0.0, 0.0, 0.3), true)
+		draw_rect(Rect2(-ext, ext * 2.0), Color(0.0, 0.0, 0.0, 0.1), true)
 
 func _physics_process(_delta: float) -> void:
 	queue_redraw() # redraw the collision _draw
@@ -45,7 +45,10 @@ func _shoot(body: Node2D) -> void:
 	get_parent().call_deferred("add_child", projectile)
 	
 func _take_damage(damage : float):
-	if ((Game.game_health - damage) <= 0): queue_free()
+	if ((Game.game_health - damage) <= 0):
+		Game.is_game_over = true
+		Game._game_over()
+		queue_free()
 	else: Game.game_health -= damage
 
 func _on_shoot_cooldown_timeout() -> void:
