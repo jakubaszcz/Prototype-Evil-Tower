@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://b4r1qtgxqrucc" path="res://Assets/Tower/Main_Tower.png" id="3_465md"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oo1nr"]
-radius = 178.0702
+radius = 98.4124
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_465md"]
 radius = 54.451813

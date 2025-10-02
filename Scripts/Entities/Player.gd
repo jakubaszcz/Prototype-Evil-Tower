@@ -10,10 +10,20 @@ extends CharacterBody2D
 @export var cooldown : Timer
 @export var trigger_collider : CollisionShape2D
 
-func _ready():
+@onready var shape: CollisionShape2D = $RadiusArea/CollisonArea
+
+func _ready() -> void:
 	cooldown.wait_time = Game.game_cadence
-	trigger_collider.scale.x = Game.game_radius
-	trigger_collider.scale.y = Game.game_radius
+	
+	trigger_collider.scale = Vector2(Game.game_radius, Game.game_radius)
+
+func _draw() -> void:
+	if shape.shape is CircleShape2D:
+		var r = shape.shape.radius * trigger_collider.scale.x
+		draw_circle(Vector2.ZERO, r, Color(0.0, 0.0, 0.0, 0.3))
+	elif shape.shape is RectangleShape2D:
+		var ext = shape.shape.extents * trigger_collider.scale
+		draw_rect(Rect2(-ext, ext * 2.0), Color(0.0, 0.0, 0.0, 0.3), true)
 
 func _physics_process(_delta: float) -> void:
 	if not can_shoot: return
