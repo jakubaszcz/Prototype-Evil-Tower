@@ -1,13 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://penchdojg3ck"]
+[gd_scene load_steps=3 format=3 uid="uid://penchdojg3ck"]
 
 [ext_resource type="Script" uid="uid://cs42blsbj68yg" path="res://Scripts/Scenes/Menu.gd" id="1_06sn7"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_06sn7"]
 
 [node name="Menu" type="Node2D"]
 script = ExtResource("1_06sn7")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Button" type="Button" parent="CanvasLayer"]
+[node name="Play" type="Button" parent="CanvasLayer"]
 offset_left = 16.0
 offset_top = 587.0
 offset_right = 316.0
@@ -19,4 +21,160 @@ offset_right = 40.0
 offset_bottom = 23.0
 text = "Gems : 0"
 
-[connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_button_pressed"]
+[node name="Shop" type="Node" parent="CanvasLayer"]
+
+[node name="Damage" type="Node" parent="CanvasLayer/Shop"]
+
+[node name="Box" type="Sprite2D" parent="CanvasLayer/Shop/Damage"]
+modulate = Color(0.18120003, 0.18120006, 0.18120003, 1)
+position = Vector2(119.00001, 112)
+scale = Vector2(200.14655, 125.755264)
+texture = SubResource("CanvasTexture_06sn7")
+
+[node name="Damage" type="Button" parent="CanvasLayer/Shop/Damage"]
+offset_left = 112.0
+offset_top = 117.0
+offset_right = 212.0
+offset_bottom = 167.0
+scale = Vector2(1.0096859, 1.0076926)
+text = "Buy"
+
+[node name="Price" type="Label" parent="CanvasLayer/Shop/Damage"]
+offset_left = 26.0
+offset_top = 145.0
+offset_right = 66.0
+offset_bottom = 168.0
+scale = Vector2(1.0096859, 1.0076926)
+text = "Price : 0"
+
+[node name="Title" type="Label" parent="CanvasLayer/Shop/Damage"]
+offset_left = 23.0
+offset_top = 51.0
+offset_right = 87.0
+offset_bottom = 74.0
+scale = Vector2(1.0096859, 1.0076926)
+text = "Damage"
+
+[node name="Bonus" type="Label" parent="CanvasLayer/Shop/Damage"]
+offset_left = 25.0
+offset_top = 89.0
+offset_right = 164.0
+offset_bottom = 112.0
+scale = Vector2(1.0096859, 1.0076926)
+text = "Bonus Damage : 0"
+
+[node name="Health" type="Node" parent="CanvasLayer/Shop"]
+
+[node name="Box" type="Sprite2D" parent="CanvasLayer/Shop/Health"]
+modulate = Color(0.18120003, 0.18120006, 0.18120003, 1)
+position = Vector2(354.11328, 112.39763)
+scale = Vector2(198.22655, 124.795265)
+texture = SubResource("CanvasTexture_06sn7")
+
+[node name="Health" type="Button" parent="CanvasLayer/Shop/Health"]
+offset_left = 347.11328
+offset_top = 117.39763
+offset_right = 447.11328
+offset_bottom = 167.39763
+text = "Buy"
+
+[node name="Price" type="Label" parent="CanvasLayer/Shop/Health"]
+offset_left = 261.11328
+offset_top = 145.39763
+offset_right = 322.11328
+offset_bottom = 168.39763
+text = "Price : 0"
+
+[node name="Title" type="Label" parent="CanvasLayer/Shop/Health"]
+offset_left = 258.11328
+offset_top = 51.397633
+offset_right = 322.11328
+offset_bottom = 74.39763
+text = "Health"
+
+[node name="Bonus" type="Label" parent="CanvasLayer/Shop/Health"]
+offset_left = 260.11328
+offset_top = 89.39763
+offset_right = 399.11328
+offset_bottom = 112.39763
+text = "Bonus Health : 0"
+
+[node name="Radius" type="Node" parent="CanvasLayer/Shop"]
+
+[node name="Box" type="Sprite2D" parent="CanvasLayer/Shop/Radius"]
+modulate = Color(0.18120003, 0.18120006, 0.18120003, 1)
+position = Vector2(118.11327, 254.39763)
+scale = Vector2(198.22655, 124.795265)
+texture = SubResource("CanvasTexture_06sn7")
+
+[node name="Radius" type="Button" parent="CanvasLayer/Shop/Radius"]
+offset_left = 111.113266
+offset_top = 259.39764
+offset_right = 211.11327
+offset_bottom = 309.39764
+text = "Buy"
+
+[node name="Price" type="Label" parent="CanvasLayer/Shop/Radius"]
+offset_left = 25.113266
+offset_top = 287.39764
+offset_right = 86.113266
+offset_bottom = 310.39764
+text = "Price : 0"
+
+[node name="Title" type="Label" parent="CanvasLayer/Shop/Radius"]
+offset_left = 22.113266
+offset_top = 193.39763
+offset_right = 86.113266
+offset_bottom = 216.39763
+text = "Radius"
+
+[node name="Bonus" type="Label" parent="CanvasLayer/Shop/Radius"]
+offset_left = 24.113266
+offset_top = 231.39763
+offset_right = 163.11327
+offset_bottom = 254.39763
+text = "Bonus Radius : 0"
+
+[node name="Cadence" type="Node" parent="CanvasLayer/Shop"]
+
+[node name="Box" type="Sprite2D" parent="CanvasLayer/Shop/Cadence"]
+modulate = Color(0.18120003, 0.18120006, 0.18120003, 1)
+position = Vector2(359.11328, 258.39764)
+scale = Vector2(198.22655, 124.795265)
+texture = SubResource("CanvasTexture_06sn7")
+
+[node name="Cadence" type="Button" parent="CanvasLayer/Shop/Cadence"]
+offset_left = 352.11328
+offset_top = 263.39764
+offset_right = 452.11328
+offset_bottom = 313.39764
+text = "Buy"
+
+[node name="Price" type="Label" parent="CanvasLayer/Shop/Cadence"]
+offset_left = 266.11328
+offset_top = 291.39764
+offset_right = 327.11328
+offset_bottom = 314.39764
+text = "Price : 0"
+
+[node name="Title" type="Label" parent="CanvasLayer/Shop/Cadence"]
+offset_left = 263.11328
+offset_top = 197.39763
+offset_right = 327.11328
+offset_bottom = 220.39763
+text = "Cadence"
+
+[node name="Bonus" type="Label" parent="CanvasLayer/Shop/Cadence"]
+offset_left = 265.11328
+offset_top = 235.39763
+offset_right = 404.11328
+offset_bottom = 258.39764
+text = "Bonus Cadence : 0"
+
+[connection signal="pressed" from="CanvasLayer/Play" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="CanvasLayer/Shop/Damage/Damage" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Shop/Damage/Damage" to="." method="_on_damage_pressed"]
+[connection signal="pressed" from="CanvasLayer/Shop/Health/Health" to="." method="_on_health_pressed"]
+[connection signal="pressed" from="CanvasLayer/Shop/Radius/Radius" to="." method="_on_radius_pressed"]
+[connection signal="pressed" from="CanvasLayer/Shop/Cadence/Cadence" to="." method="_on_cadence_pressed"]
