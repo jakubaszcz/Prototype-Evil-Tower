@@ -1,0 +1,37 @@
+[gd_scene load_steps=2 format=3 uid="uid://6bx4vjucv7wm"]
+
+[ext_resource type="Script" uid="uid://bfux5y05okue0" path="res://Scripts/Interfaces/game_over_ui.gd" id="1_oedhc"]
+
+[node name="GameOverUI" type="CanvasLayer"]
+script = ExtResource("1_oedhc")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = 506.0
+offset_top = 214.0
+offset_right = 706.0
+offset_bottom = 414.0
+alignment = 1
+
+[node name="Gems" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Won gems : 0"
+
+[node name="Total Gems" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Total Gems : 0"
+
+[node name="Restart" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Restart"
+
+[node name="Menu" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Menu"
+
+[node name="Quit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Quit
+"
+
+[connection signal="pressed" from="VBoxContainer/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]
