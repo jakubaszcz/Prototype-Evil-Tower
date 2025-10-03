@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://penchdojg3ck"]
+
+[ext_resource type="Script" uid="uid://cs42blsbj68yg" path="res://Scripts/Scenes/Menu.gd" id="1_06sn7"]
+
+[node name="Menu" type="Node2D"]
+script = ExtResource("1_06sn7")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+offset_left = 16.0
+offset_top = 587.0
+offset_right = 316.0
+offset_bottom = 627.0
+text = "Play"
+
+[node name="Gems" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Gems : 0"
+
+[connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_button_pressed"]

@@ -30,6 +30,5 @@ func _game_over():
 	if (is_game_over):
 		game_gems = (survival_time + enemies_killed_count)/(survival_time/enemies_killed_count)
 		Global.ressources_gems += game_gems
-		print("You won "+str(game_gems))
-		print(str(survival_time))
+		print(str(Global.ressources_gems))
 	
