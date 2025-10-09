@@ -2,7 +2,10 @@ extends Node2D
 
 func _ready() -> void:
 	Global.load_progression()
-	
+	Global.abilities_attack_price = 12 * pow(Global.abilities_attack_price_multiplier, Global.abilities_attack_shop_level)
+	Global.abilities_health_price = 13 * pow(Global.abilities_health_price_multiplier, Global.abilities_health_shop_level)
+	Global.abilities_radius_price = 15 * pow(Global.abilities_radius_price_multiplier, Global.abilities_radius_shop_level)
+	Global.abilities_cadence_price = 17 * pow(Global.abilities_cadence_price_multiplier, Global.abilities_cadence_shop_level)
 	
 
 
@@ -31,6 +34,7 @@ func _on_damage_pressed() -> void:
 		Global.abilities_attack_price = 12 * pow(Global.abilities_attack_price_multiplier, Global.abilities_attack_shop_level)
 		Global.abilities_attack += Global.abilities_attack_reward
 		Global.abilities_attack_shop_level += 1
+		print(str(Global.abilities_attack))
 		
 		# Save
 		Global.save_progression()

@@ -19,6 +19,7 @@ func _on_quit_pressed() -> void:
 
 func _on_restart_pressed() -> void:
 	Global.save_progression()
+	get_tree().reload_current_scene()
 
 
 func _on_menu_pressed() -> void:

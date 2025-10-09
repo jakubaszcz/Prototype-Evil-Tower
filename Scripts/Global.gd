@@ -4,9 +4,9 @@ extends Node
 var progression_path := "user://progression.cfg"
 
 var ressources_gems : int = 0
-var abilities_attack : float = 0.0
+var abilities_attack : int = 0.0
 var abilities_radius : float = 0.0
-var abilities_health : float = 0.0
+var abilities_health : int = 0.0
 var abilities_cadence : float = 0.0
 
 var abilities_attack_price : int = 12
@@ -45,6 +45,7 @@ func load_progression():
 		abilities_radius_shop_level = config.get_value("shop", "radius_shop_level", 1)
 		abilities_health_shop_level = config.get_value("shop", "health_shop_level", 1)
 		abilities_cadence_shop_level = config.get_value("shop", "cadence_shop_level", 1)
+	print("After Load " + str(abilities_attack))
 
 func save_progression():
 	var config = ConfigFile.new()

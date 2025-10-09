@@ -3,6 +3,7 @@ extends Node
 @onready var infos_label = $Infos
 
 func _physics_process(_delta: float) -> void:
+	print(str(Game.game_damage))
 	$DamageContainer/Price.text = "Price : " + str(Game.game_damage_price)
 	$DamageContainer/Ability.text = "Damage : " + str(Game.game_damage)
 	
