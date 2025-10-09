@@ -26,6 +26,9 @@ func _physics_process(delta: float) -> void:
 	# Cadence
 	$CanvasLayer/Shop/Cadence/Price.text = "Price : " +str(Global.abilities_cadence_price)
 	$CanvasLayer/Shop/Cadence/Bonus.text = "Bonus Cadence : " + str(Global.abilities_cadence)
+	
+	$CanvasLayer/Shop/Coins/Price.text = "Price : " +str(Global.bonus_coin_price)
+	$CanvasLayer/Shop/Coins/Bonus.text = "Bonus Cadence : " + str(Global.bonus_coin)
 
 
 func _on_damage_pressed() -> void:
@@ -69,6 +72,18 @@ func _on_cadence_pressed() -> void:
 		
 		# Save
 		Global.save_progression()
+
+func _on_coins_pressed() -> void:
+		if Global.ressources_gems >= Global.bonus_coin_price:
+			Global.ressources_gems -= Global.bonus_coin_price
+			Global.bonus_coin_price = 17 * pow(Global.bonus_coin_multiplier, Global.bonus_coin_shop_level)
+			Global.bonus_coin += Global.bonus_coin_reward
+			Global.bonus_coin_shop_level += 1
+			
+			# Save
+			Global.save_progression()
+
+
 
 
 func _on_play_pressed() -> void:

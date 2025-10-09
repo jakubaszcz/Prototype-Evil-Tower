@@ -12,7 +12,7 @@ static var game_coin : float = 0
 static var game_health : float = 10
 static var game_radius : float = 1.0
 static var game_cadence : float = 5.0
-static var game_damage : float = 5.
+static var game_damage : float = 5.0
 
 # Base Shop Prices
 
@@ -50,7 +50,7 @@ func _reset_data():
 	game_radius_price = 9
 	game_cadence_price = 10
 	
-	game_coin = game_coin + Global.start_coin
+	game_coin = game_coin + Global.bonus_coin
 	game_health = game_health + Global.abilities_health
 	game_radius = game_radius + Global.abilities_radius
 	game_cadence = game_cadence - Global.abilities_cadence

@@ -9,17 +9,17 @@ script = ExtResource("1_06sn7")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Play" type="Button" parent="CanvasLayer"]
-offset_left = 16.0
-offset_top = 587.0
-offset_right = 316.0
-offset_bottom = 627.0
-text = "Play"
-
 [node name="Gems" type="Label" parent="CanvasLayer"]
-offset_right = 40.0
+offset_right = 66.0
 offset_bottom = 23.0
 text = "Gems : 0"
+
+[node name="Play" type="Button" parent="CanvasLayer"]
+offset_left = 982.0
+offset_top = 10.0
+offset_right = 1140.0
+offset_bottom = 638.0
+text = "Play"
 
 [node name="Shop" type="Node" parent="CanvasLayer"]
 
@@ -170,6 +170,47 @@ offset_top = 235.39763
 offset_right = 404.11328
 offset_bottom = 258.39764
 text = "Bonus Cadence : 0"
+metadata/_edit_use_anchors_ = true
+
+[node name="Coins" type="Node" parent="CanvasLayer/Shop"]
+
+[node name="Box" type="Sprite2D" parent="CanvasLayer/Shop/Coins"]
+modulate = Color(0.18120003, 0.18120006, 0.18120003, 1)
+position = Vector2(118.11328, 386.39764)
+scale = Vector2(198.22655, 124.795265)
+texture = SubResource("CanvasTexture_06sn7")
+
+[node name="Coins" type="Button" parent="CanvasLayer/Shop/Coins"]
+offset_left = 111.11328
+offset_top = 391.39764
+offset_right = 211.11328
+offset_bottom = 441.39764
+text = "Buy"
+metadata/_edit_use_anchors_ = true
+
+[node name="Price" type="Label" parent="CanvasLayer/Shop/Coins"]
+offset_left = 25.113281
+offset_top = 419.39764
+offset_right = 86.11328
+offset_bottom = 442.39764
+text = "Price : 0"
+metadata/_edit_use_anchors_ = true
+
+[node name="Title" type="Label" parent="CanvasLayer/Shop/Coins"]
+offset_left = 22.113281
+offset_top = 325.3976
+offset_right = 88.11328
+offset_bottom = 348.3976
+text = "Cadence"
+metadata/_edit_use_anchors_ = true
+
+[node name="Bonus" type="Label" parent="CanvasLayer/Shop/Coins"]
+offset_left = 24.113281
+offset_top = 363.3976
+offset_right = 165.11328
+offset_bottom = 386.39764
+text = "Bonus Coins : 0"
+metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="CanvasLayer/Play" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Play" to="." method="_on_play_pressed"]
@@ -178,3 +219,4 @@ text = "Bonus Cadence : 0"
 [connection signal="pressed" from="CanvasLayer/Shop/Health/Health" to="." method="_on_health_pressed"]
 [connection signal="pressed" from="CanvasLayer/Shop/Radius/Radius" to="." method="_on_radius_pressed"]
 [connection signal="pressed" from="CanvasLayer/Shop/Cadence/Cadence" to="." method="_on_cadence_pressed"]
+[connection signal="pressed" from="CanvasLayer/Shop/Coins/Coins" to="." method="_on_coins_pressed"]
