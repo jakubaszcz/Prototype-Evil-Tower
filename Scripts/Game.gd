@@ -33,11 +33,31 @@ static func _game_over():
 		game_gems = (survival_time + enemies_killed_count)/(survival_time/enemies_killed_count)
 		Global.ressources_gems += game_gems
 
-func _ready() -> void:
-	Global.load_progression()
+func _reset_data():
+	is_game_over = false
+	survival_time = 0.0
+	enemies_killed_count = 0
+	game_gems = 0
+	
+	game_coin = 0
+	game_health = 10
+	game_radius = 1.0
+	game_cadence = 5.0
+	game_damage = 5.0
+	
+	game_damage_price = 7
+	game_health_price = 8
+	game_radius_price = 9
+	game_cadence_price = 10
+	
 	game_coin = game_coin + Global.start_coin
 	game_health = game_health + Global.abilities_health
 	game_radius = game_radius + Global.abilities_radius
 	game_cadence = game_cadence - Global.abilities_cadence
 	game_damage = game_damage + Global.abilities_attack
+
+func _ready() -> void:
+	Global.load_progression()
+	_reset_data()
+	print("game_coin : " + str(game_coin))
 	print(str(game_damage) + "+" + str(Global.abilities_attack) + "=" + str(game_damage))
