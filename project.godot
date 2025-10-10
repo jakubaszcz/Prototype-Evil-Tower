@@ -19,10 +19,6 @@ config/icon="res://icon.svg"
 
 Global="*res://Scripts/Global.gd"
 
-[display]
-
-window/stretch/mode="viewport"
-
 [global_group]
 
 enemy="Global groupe for every enemies"

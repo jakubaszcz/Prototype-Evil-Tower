@@ -1,6 +1,8 @@
 extends CharacterBody2D
 class_name Enemy
 
+signal enemy_died
+
 @export var health: int = 100
 @export var speed: float = 50.0
 @export var attack: float = 1.0
@@ -54,6 +56,7 @@ func _take_damage(amount: int) -> void:
 	if health <= 0:
 		Game.game_coin += recompense
 		is_dead = true
+		emit_signal("enemy_died")
 		Game.enemies_killed_count += 1
 		queue_free()
 

@@ -1,0 +1,19 @@
+[
+  {
+	"wave": 1,
+	"reward": 15,
+	"spawn_cadence": 1.0,
+	"enemies": [
+	  { "type": "res://Components/Entities/Enemy_Type_2.tscn", "count": 5 }
+	]
+  },
+  {
+	"wave": 2,
+	"reward": 25,
+	"spawn_cadence": 1.2,
+	"enemies": [
+	  { "type": "res://Components/Entities/Enemy_Type_1.tscn", "count": 8 },
+	  { "type": "res://Components/Entities/Enemy_Type_2.tscn", "count": 2 }
+	]
+  }
+]

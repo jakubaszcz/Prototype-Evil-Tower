@@ -14,7 +14,6 @@ extends CharacterBody2D
 
 func _ready() -> void:
 	cooldown.wait_time = Game.game_cadence
-	
 	trigger_collider.scale = Vector2(Game.game_radius, Game.game_radius)
 
 func _draw() -> void:

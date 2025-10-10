@@ -7,6 +7,8 @@ static var is_game_over = false
 static var survival_time : float = 0.0
 static var enemies_killed_count : int = 0
 static var game_gems : int = 0
+static var current_wave : int = 1
+
 # Start Coin
 static var game_coin : float = 0
 static var game_health : float = 10
@@ -33,6 +35,9 @@ static func _game_over():
 		game_gems = (survival_time + enemies_killed_count)/(survival_time/enemies_killed_count)
 		Global.ressources_gems += game_gems
 
+func _add_coins(amount : int): 
+	game_coin += amount
+
 func _reset_data():
 	is_game_over = false
 	survival_time = 0.0
@@ -58,6 +63,9 @@ func _reset_data():
 
 func _ready() -> void:
 	Global.load_progression()
+	var wave_manager = get_node("/root/Game/Components/Spawn/WaveManager")
+	wave_manager.connect("wave_reward", Callable(self, "_on_wave_reward"))
 	_reset_data()
-	print("game_coin : " + str(game_coin))
-	print(str(game_damage) + "+" + str(Global.abilities_attack) + "=" + str(game_damage))
+	
+func _on_wave_reward(reward):
+	_add_coins(reward)
