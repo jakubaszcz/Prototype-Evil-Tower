@@ -32,7 +32,10 @@ static var price_multiplier : float = 1.2
 
 static func _game_over():
 	if (is_game_over):
-		game_gems = (survival_time + enemies_killed_count)/(survival_time/enemies_killed_count)
+		var efficiency = enemies_killed_count / max(survival_time, 1.0)
+		var wave_bonus = (current_wave + 1) * 0.2
+		var game_gems = round(((efficiency * 100) + (enemies_killed_count * 1.5)) * wave_bonus)
+
 		Global.ressources_gems += game_gems
 
 func _add_coins(amount : int): 
