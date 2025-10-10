@@ -168,8 +168,29 @@ offset_bottom = 637.0
 text = "Buy
 "
 
+[node name="WaveUI" type="Node" parent="."]
+
+[node name="Reward" type="CanvasLayer" parent="WaveUI"]
+
+[node name="WaveCompleted" type="Label" parent="WaveUI/Reward"]
+offset_left = 423.0
+offset_top = 187.0
+offset_right = 554.0
+offset_bottom = 210.0
+text = "Wave Completed"
+
+[node name="Reward" type="Label" parent="WaveUI/Reward"]
+offset_left = 430.0
+offset_top = 209.0
+offset_right = 559.0
+offset_bottom = 232.0
+text = "You get : 0 coins "
+
+[node name="ShowTime" type="Timer" parent="WaveUI/Reward"]
+
 [connection signal="pressed" from="DamageContainer/Damage" to="." method="_on_damagae_pressed"]
-[connection signal="pressed" from="HealthContainer/Health" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="HealthContainer/Health" to="." method="_on_health_pressed"]
+[connection signal="pressed" from="HealthContainer/Health" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="RadiusContainer/Radius" to="." method="_on_radius_pressed"]
 [connection signal="pressed" from="CadenceContainer/Cadence" to="." method="_on_cadence_pressed"]
+[connection signal="timeout" from="WaveUI/Reward/ShowTime" to="." method="_on_show_time_timeout"]

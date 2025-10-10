@@ -1,6 +1,26 @@
 extends Node
 
+@onready var wave_reward_canvas : CanvasLayer = $WaveUI/Reward
+@onready var wave_reward_showtime : Timer = $WaveUI/Reward/ShowTime
+@onready var wave_reward_text : Label = $WaveUI/Reward/Reward
+
 @onready var infos_label = $Infos
+
+func _ready():
+	wave_reward_canvas.visible = false
+	var wave_manager = get_node("/root/Game/Components/Spawn/WaveManager")
+	wave_manager.connect("wave_reward", Callable(self, "_on_wave_reward"))
+	
+func _on_wave_reward(reward):
+	wave_reward_canvas.visible = true
+	wave_reward_showtime.start()
+	wave_reward_text.text = "You get : " + str(reward) + " coins."
+	
+func _on_show_time_timeout() -> void:
+	wave_reward_canvas.visible = false
+
+	
+	
 
 func _physics_process(_delta: float) -> void:
 	$DamageContainer/Price.text = "Price : " + str(Game.game_damage_price)
