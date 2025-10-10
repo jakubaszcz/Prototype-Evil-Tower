@@ -17,7 +17,7 @@ var shop_cadence_level : int = 0
 # Multipliers (temporary, in-game effects)
 var shop_damage_multiplier : float = 1.05
 var shop_health_multiplier : float = 1.20
-var shop_radius_multiplier : float = 1.05
+var shop_radius_multiplier : float = 1.03
 var shop_cadence_multiplier : float = 0.97
 
 # Price multipliers
@@ -65,7 +65,6 @@ func _on_wave_reward(reward):
 
 func _on_show_time_timeout() -> void:
 	wave_reward_canvas.visible = false
-	infos_label.text = str(Game.game_coin)
 
 func _on_damage_pressed() -> void:
 	if Game.game_coin >= shop_damage_price:

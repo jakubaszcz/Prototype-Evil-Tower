@@ -16,20 +16,17 @@ static var game_radius : float = 1.0
 static var game_cadence : float = 5.0
 static var game_damage : float = 5.0
 
-# Base Shop Prices
-
-static var game_damage_buy : float = 0.7
-static var game_health_buy : float = 2.0
-static var game_radius_buy : float = 0.4
-static var game_cadence_buy : float = 0.3
-
-static var price_multiplier : float = 1.2
-
 static func _game_over():
-	if (is_game_over):
-		var efficiency = enemies_killed_count / max(survival_time, 1.0)
-		var wave_bonus = (current_wave + 1) * 0.2
-		var game_gems = round(((efficiency * 100) + (enemies_killed_count * 1.5)) * wave_bonus)
+	if is_game_over:
+		var efficiency = enemies_killed_count / max(survival_time, 1.0)   # kills per second
+		var wave_bonus = (current_wave + 1) * 2.5                         # scaling plus visible
+		var base_reward = enemies_killed_count * 1.5                      # core reward
+		var time_bonus = efficiency * 15                                  # speed reward
+		var total_reward = int(round((base_reward + time_bonus) * wave_bonus))
+		
+		Game.game_gems += total_reward
+		print("🏆 Final reward:", total_reward, "gems")
+
 
 		Global.ressources_gems += game_gems
 
