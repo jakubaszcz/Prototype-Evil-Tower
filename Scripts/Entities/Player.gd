@@ -7,13 +7,11 @@ extends CharacterBody2D
 @onready var detection_area: Area2D = $RadiusArea
 
 # On Load
-@export var cooldown : Timer
 @export var trigger_collider : CollisionShape2D
 
 @onready var shape: CollisionShape2D = $RadiusArea/CollisonArea
 
 func _ready() -> void:
-	cooldown.wait_time = Game.game_cadence
 	trigger_collider.scale = Vector2(Game.game_radius, Game.game_radius)
 
 func _draw() -> void:
@@ -26,6 +24,7 @@ func _draw() -> void:
 
 func _physics_process(_delta: float) -> void:
 	queue_redraw() # redraw the collision _draw
+	shoot_cooldown.wait_time = Game.game_cadence
 	trigger_collider.scale = Vector2(Game.game_radius, Game.game_radius)
 	if not can_shoot: return
 	for overlaps in detection_area.get_overlapping_bodies():
@@ -37,6 +36,7 @@ func _on_radius_area_body_entered(body: Node2D) -> void:
 		_shoot(body)
 
 func _shoot(body: Node2D) -> void:
+	shoot_cooldown.start()
 	var projectile = projectile_scene.instantiate()
 	can_shoot = false
 	projectile.global_position = global_position

@@ -10,9 +10,8 @@ radius = 98.4124
 [sub_resource type="CircleShape2D" id="CircleShape2D_465md"]
 radius = 54.451813
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("cooldown", "trigger_collider")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("trigger_collider")]
 script = ExtResource("1_gieyj")
-cooldown = NodePath("ShootCooldown")
 trigger_collider = NodePath("RadiusArea/CollisonArea")
 
 [node name="Radius" type="Node" parent="."]
