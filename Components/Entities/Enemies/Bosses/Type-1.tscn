@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://bdcgo48f1mtjh"]
+
+[ext_resource type="Texture2D" uid="uid://cvsnxc7xwdbg5" path="res://Assets/Enemies/Bosses/Type-1.png" id="2_34jcc"]
+[ext_resource type="Script" uid="uid://8p33dw64exbw" path="res://Scripts/Entities/EnemiesClass.gd" id="2_75cuc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ayoq3"]
+size = Vector2(35, 37)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ayoq3"]
+radius = 1.7652817
+
+[node name="ennemies_class" type="CharacterBody2D" node_paths=PackedStringArray("cooldown", "hitbox") groups=["enemy"]]
+script = ExtResource("2_75cuc")
+health = 58
+speed = 22.0
+attack = 6.0
+recompense = 45
+cooldown = NodePath("AttackCooldown")
+hitbox = NodePath("Area2D")
+metadata/_custom_type_script = "uid://8p33dw64exbw"
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_ayoq3")
+
+[node name="AttackCooldown" type="Timer" parent="."]
+
+[node name="Sprite" type="Sprite2D" parent="."]
+scale = Vector2(0.024648437, 0.024648437)
+texture = ExtResource("2_34jcc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(6.2566514, 6.2991443)
+shape = SubResource("CircleShape2D_ayoq3")

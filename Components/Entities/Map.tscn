@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://ootpfvisx2mm"]
-
-[ext_resource type="Script" uid="uid://h3a4yjuu0mj0" path="res://Scripts/WaveManager.gd" id="1_w1asb"]
-
-[node name="WaveManager" type="Node2D"]
-script = ExtResource("1_w1asb")
-wave_file_path = "res://Data/Wave.json"
-
-[node name="WaveTimer" type="Timer" parent="."]
