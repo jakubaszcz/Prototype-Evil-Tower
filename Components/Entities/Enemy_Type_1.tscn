@@ -9,12 +9,11 @@ size = Vector2(35, 37)
 [sub_resource type="CircleShape2D" id="CircleShape2D_ayoq3"]
 radius = 1.7652817
 
-[node name="ennemies_class" type="CharacterBody2D" node_paths=PackedStringArray("progress_bar", "cooldown", "hitbox") groups=["enemy"]]
+[node name="ennemies_class" type="CharacterBody2D" node_paths=PackedStringArray("cooldown", "hitbox") groups=["enemy"]]
 script = ExtResource("2_75cuc")
-health = 10
-speed = 100.0
-recompense = 10
-progress_bar = NodePath("")
+health = 7
+speed = 22.0
+recompense = 4
 cooldown = NodePath("AttackCooldown")
 hitbox = NodePath("Area2D")
 metadata/_custom_type_script = "uid://8p33dw64exbw"

@@ -7,7 +7,7 @@ static var is_game_over = false
 static var survival_time : float = 0.0
 static var enemies_killed_count : int = 0
 static var game_gems : int = 0
-static var current_wave : int = 1
+static var current_wave : int = -1
 
 # Start Coin
 static var game_coin : float = 0
@@ -46,6 +46,7 @@ func _reset_data():
 	survival_time = 0.0
 	enemies_killed_count = 0
 	game_gems = 0
+	current_wave = -1
 	
 	game_coin = 0
 	game_health = 10

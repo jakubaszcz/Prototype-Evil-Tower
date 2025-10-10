@@ -11,9 +11,11 @@ radius = 1.7652817
 
 [node name="Enemy_Type_2" type="CharacterBody2D" node_paths=PackedStringArray("cooldown", "hitbox") groups=["enemy"]]
 script = ExtResource("1_r3toq")
-health = 10
-speed = 100.0
-recompense = 10
+health = 9
+speed = 20.0
+attack = 2.0
+attack_speed = 6.0
+recompense = 9
 cooldown = NodePath("AttackCooldown")
 hitbox = NodePath("Area2D")
 metadata/_custom_type_script = "uid://8p33dw64exbw"
