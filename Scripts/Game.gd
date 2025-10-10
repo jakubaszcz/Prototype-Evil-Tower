@@ -10,18 +10,13 @@ static var game_gems : int = 0
 static var current_wave : int = -1
 
 # Start Coin
-static var game_coin : float = 0
+static var game_coin : int = 0
 static var game_health : float = 10
 static var game_radius : float = 1.0
 static var game_cadence : float = 5.0
 static var game_damage : float = 5.0
 
 # Base Shop Prices
-
-static var game_damage_price : int = 7
-static var game_health_price : int = 8
-static var game_radius_price : int = 9
-static var game_cadence_price : int = 10
 
 static var game_damage_buy : float = 0.7
 static var game_health_buy : float = 2.0
@@ -53,11 +48,6 @@ func _reset_data():
 	game_radius = 1.0
 	game_cadence = 5.0
 	game_damage = 5.0
-	
-	game_damage_price = 7
-	game_health_price = 8
-	game_radius_price = 9
-	game_cadence_price = 10
 	
 	game_coin = game_coin + Global.bonus_coin
 	game_health = game_health + Global.abilities_health

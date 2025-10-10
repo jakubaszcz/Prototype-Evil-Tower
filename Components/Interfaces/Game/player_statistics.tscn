@@ -8,7 +8,7 @@
 [node name="PlayerStatistics" type="CanvasLayer"]
 script = ExtResource("1_mso56")
 
-[node name="Infos" type="Label" parent="."]
+[node name="Coins" type="Label" parent="."]
 offset_left = 53.0
 offset_top = 9.0
 offset_right = 144.04361
@@ -188,7 +188,7 @@ text = "You get : 0 coins "
 
 [node name="ShowTime" type="Timer" parent="WaveUI/Reward"]
 
-[connection signal="pressed" from="DamageContainer/Damage" to="." method="_on_damagae_pressed"]
+[connection signal="pressed" from="DamageContainer/Damage" to="." method="_on_damage_pressed"]
 [connection signal="pressed" from="HealthContainer/Health" to="." method="_on_health_pressed"]
 [connection signal="pressed" from="HealthContainer/Health" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="RadiusContainer/Radius" to="." method="_on_radius_pressed"]
