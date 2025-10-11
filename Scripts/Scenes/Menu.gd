@@ -36,6 +36,7 @@ extends Node2D
 
 @onready var attack_price_label : Label = $CanvasLayer/Shop/Damage/Price
 @onready var attack_bonus_label : Label = $CanvasLayer/Shop/Damage/Bonus
+@onready var attack_level_labe : Label = $CanvasLayer/Shop/Damage/Level
 
 @onready var health_price_label : Label = $CanvasLayer/Shop/Health/Price
 @onready var health_bonus_label : Label = $CanvasLayer/Shop/Health/Bonus
