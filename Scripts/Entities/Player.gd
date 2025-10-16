@@ -11,7 +11,6 @@ extends CharacterBody2D
 
 @onready var shape: CollisionShape2D = $RadiusArea/CollisonArea
 
-var ammo_per_shoot : int = 1
 var ammo_shoot : int = 0
 
 func _ready() -> void:
@@ -39,7 +38,7 @@ func _on_radius_area_body_entered(body: Node2D) -> void:
 		_shoot(body)
 
 func _shoot(body: Node2D) -> void:
-	if ammo_shoot >= ammo_per_shoot:
+	if ammo_shoot >= Game.game_shoot_per_shot:
 		return
 	ammo_shoot += 1
 	shoot_cooldown.start()

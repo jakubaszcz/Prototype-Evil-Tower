@@ -212,6 +212,46 @@ offset_bottom = 386.39764
 text = "Bonus Coins : 0"
 metadata/_edit_use_anchors_ = true
 
+[node name="Ammo" type="Node" parent="CanvasLayer/Shop"]
+
+[node name="Box" type="Sprite2D" parent="CanvasLayer/Shop/Ammo"]
+modulate = Color(0.18120003, 0.18120006, 0.18120003, 1)
+position = Vector2(362.11328, 390.39764)
+scale = Vector2(198.22655, 124.795265)
+texture = SubResource("CanvasTexture_06sn7")
+
+[node name="Ammo" type="Button" parent="CanvasLayer/Shop/Ammo"]
+offset_left = 355.11328
+offset_top = 395.39764
+offset_right = 455.11328
+offset_bottom = 445.39764
+text = "Buy"
+metadata/_edit_use_anchors_ = true
+
+[node name="Price" type="Label" parent="CanvasLayer/Shop/Ammo"]
+offset_left = 269.11328
+offset_top = 423.39764
+offset_right = 330.11328
+offset_bottom = 446.39764
+text = "Price : 0"
+metadata/_edit_use_anchors_ = true
+
+[node name="Title" type="Label" parent="CanvasLayer/Shop/Ammo"]
+offset_left = 266.11328
+offset_top = 329.3976
+offset_right = 332.11328
+offset_bottom = 352.3976
+text = "Shoot per shot"
+metadata/_edit_use_anchors_ = true
+
+[node name="Bonus" type="Label" parent="CanvasLayer/Shop/Ammo"]
+offset_left = 268.11328
+offset_top = 367.3976
+offset_right = 409.11328
+offset_bottom = 390.39764
+text = "Bonus Ammo : 0"
+metadata/_edit_use_anchors_ = true
+
 [connection signal="pressed" from="CanvasLayer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="CanvasLayer/Play" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Shop/Damage/Damage" to="." method="_on_button_pressed"]
@@ -220,3 +260,4 @@ metadata/_edit_use_anchors_ = true
 [connection signal="pressed" from="CanvasLayer/Shop/Radius/Radius" to="." method="_on_radius_pressed"]
 [connection signal="pressed" from="CanvasLayer/Shop/Cadence/Cadence" to="." method="_on_cadence_pressed"]
 [connection signal="pressed" from="CanvasLayer/Shop/Coins/Coins" to="." method="_on_coins_pressed"]
+[connection signal="pressed" from="CanvasLayer/Shop/Ammo/Ammo" to="." method="_on_ammo_pressed"]

@@ -24,6 +24,7 @@ static var game_health : float = 22
 static var game_radius : float = 1.0
 static var game_cadence : float = 5.0
 static var game_damage : float = 5.0
+static var game_shoot_per_shot : int = 1
 
 static func _game_over(reason: GameOverReason):
 	if is_game_over:
@@ -52,12 +53,14 @@ func _reset_data():
 	game_radius = 1.0
 	game_cadence = 5.0
 	game_damage = 5.0
+	game_shoot_per_shot = 1
 	
 	game_coin = game_coin + Global.bonus_coin
 	game_health = game_health + Global.abilities_health
 	game_radius = game_radius + Global.abilities_radius
 	game_cadence = game_cadence - Global.abilities_cadence
 	game_damage = game_damage + Global.abilities_attack
+	game_shoot_per_shot = game_shoot_per_shot + Global.shoot_per_shot 
 
 func _ready() -> void:
 	Global.load_progression()

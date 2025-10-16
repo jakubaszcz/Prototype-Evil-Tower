@@ -10,6 +10,7 @@ extends Node2D
 @onready var base_radius_price : int = 15
 @onready var base_cadence_price : int = 17
 @onready var base_bonus_coin_price : int = 19
+@onready var base_bonus_ammo : int = 123
 
 # 📈 Multiplicateurs de prix
 @onready var attack_price_multiplier : float = 1.25
@@ -17,6 +18,7 @@ extends Node2D
 @onready var radius_price_multiplier : float = 1.35
 @onready var cadence_price_multiplier : float = 1.40
 @onready var bonus_coin_price_multiplier : float = 1.30
+@onready var bonus_ammo_price_multiplier : float = 1.55
 
 # 🎁 Récompenses par upgrade
 @onready var attack_reward : int = 2
@@ -24,6 +26,7 @@ extends Node2D
 @onready var radius_reward : float = 0.15
 @onready var cadence_reward : float = 0.10
 @onready var bonus_coin_reward : int = 3
+@onready var bonus_ammo_reward : int = 1
 
 # ⏱️ Limites (anti cheat)
 @onready var cadence_min : float = 0.8
@@ -49,6 +52,9 @@ extends Node2D
 
 @onready var coin_price_label : Label = $CanvasLayer/Shop/Coins/Price
 @onready var coin_bonus_label : Label = $CanvasLayer/Shop/Coins/Bonus
+
+@onready var ammo_price_label : Label =	$CanvasLayer/Shop/Ammo/Price
+@onready var ammo_bonus_label : Label = $CanvasLayer/Shop/Ammo/Bonus
 
 # ───────────────────────────────
 # 🚀 READY
@@ -82,6 +88,9 @@ func _update_ui():
 
 	coin_price_label.text = "Price : " + str(Global.bonus_coin_price)
 	coin_bonus_label.text = "Bonus Coin : " + str(Global.bonus_coin)
+	
+	ammo_price_label.text = "Price : " + str(Global.bonus_ammo_price)
+	ammo_bonus_label.text = "Ammo Coin : " + str(Global.shoot_per_shot)
 
 # ───────────────────────────────
 # 🏪 SHOP BUTTONS
@@ -123,8 +132,8 @@ func _on_coins_pressed() -> void:
 	if Global.ressources_gems >= Global.bonus_coin_price:
 		Global.ressources_gems -= Global.bonus_coin_price
 		Global.bonus_coin += bonus_coin_reward
-		Global.bonus_coin_price = int(round(Global.bonus_coin_price * bonus_coin_price_multiplier))
-		Global.bonus_coin_shop_level += 1
+		Global.bonus_coin_price = int(round(Global.bonus_coin_price * bonus_ammo_price_multiplier))
+		Global.bonus_ammo_shop_level += 1
 		Global.save_progression()
 
 # ───────────────────────────────
@@ -133,3 +142,12 @@ func _on_coins_pressed() -> void:
 
 func _on_play_pressed() -> void:
 	get_tree().change_scene_to_file("res://Components/Scenes/Game.tscn")
+
+
+func _on_ammo_pressed() -> void:
+	if Global.ressources_gems >= Global.bonus_ammo_price:
+		Global.ressources_gems -= Global.bonus_ammo_price
+		Global.shoot_per_shot += bonus_ammo_reward
+		Global.bonus_ammo_price = int(round(Global.bonus_ammo_price * bonus_ammo_price_multiplier))
+		Global.shoot_per_shot_shop_level += 1
+		Global.save_progression()
