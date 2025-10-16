@@ -27,12 +27,12 @@ static var game_damage : float = 5.0
 
 static func _game_over(reason: GameOverReason):
 	if is_game_over:
-		Game.game_gems = (int(survival_time) / 10) + ((enemies_killed_count + current_wave) / 2)
+		Game.game_gems = (int(survival_time) / 10) + ((enemies_killed_count + (current_wave + 1)) / 2)
 		print("Survival Time: " + str(int(survival_time)))
 		print("Enemi Killed: " + str(enemies_killed_count))
 		print("Current Wave: " + str(current_wave))
 		if reason == GameOverReason.ALL_WAVES_COMPLETED:
-			Game.game_gems *= 0.25
+			Game.game_gems *= 1.25
 		Global.ressources_gems += game_gems
 		Global.save_progression()
 
@@ -45,7 +45,7 @@ func _reset_data():
 	survival_time = 0.0
 	enemies_killed_count = 0
 	game_gems = 0
-	current_wave = -1
+	current_wave = 0
 	
 	game_coin = 0
 	game_health = 22

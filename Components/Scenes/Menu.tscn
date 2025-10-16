@@ -212,8 +212,8 @@ offset_bottom = 386.39764
 text = "Bonus Coins : 0"
 metadata/_edit_use_anchors_ = true
 
-[connection signal="pressed" from="CanvasLayer/Play" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="CanvasLayer/Play" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Shop/Damage/Damage" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Shop/Damage/Damage" to="." method="_on_damage_pressed"]
 [connection signal="pressed" from="CanvasLayer/Shop/Health/Health" to="." method="_on_health_pressed"]
