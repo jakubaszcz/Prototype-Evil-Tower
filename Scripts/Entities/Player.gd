@@ -11,6 +11,9 @@ extends CharacterBody2D
 
 @onready var shape: CollisionShape2D = $RadiusArea/CollisonArea
 
+var ammo_per_shoot : int = 1
+var ammo_shoot : int = 0
+
 func _ready() -> void:
 	trigger_collider.scale = Vector2(Game.game_radius, Game.game_radius)
 
@@ -36,6 +39,9 @@ func _on_radius_area_body_entered(body: Node2D) -> void:
 		_shoot(body)
 
 func _shoot(body: Node2D) -> void:
+	if ammo_shoot >= ammo_per_shoot:
+		return
+	ammo_shoot += 1
 	shoot_cooldown.start()
 	var projectile = projectile_scene.instantiate()
 	can_shoot = false
@@ -51,4 +57,5 @@ func _take_damage(damage : float):
 	else: Game.game_health -= damage
 
 func _on_shoot_cooldown_timeout() -> void:
+	ammo_shoot = 0
 	can_shoot = true
