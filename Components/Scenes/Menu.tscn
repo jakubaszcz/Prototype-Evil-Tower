@@ -252,6 +252,46 @@ offset_bottom = 390.39764
 text = "Bonus Ammo : 0"
 metadata/_edit_use_anchors_ = true
 
+[node name="Regeneration" type="Node" parent="CanvasLayer/Shop"]
+
+[node name="Box" type="Sprite2D" parent="CanvasLayer/Shop/Regeneration"]
+modulate = Color(0.18120003, 0.18120006, 0.18120003, 1)
+position = Vector2(113.11328, 529.39764)
+scale = Vector2(198.22655, 124.795265)
+texture = SubResource("CanvasTexture_06sn7")
+
+[node name="Regeneration" type="Button" parent="CanvasLayer/Shop/Regeneration"]
+offset_left = 106.11328
+offset_top = 534.39764
+offset_right = 206.11328
+offset_bottom = 584.39764
+text = "Buy"
+metadata/_edit_use_anchors_ = true
+
+[node name="Price" type="Label" parent="CanvasLayer/Shop/Regeneration"]
+offset_left = 20.113281
+offset_top = 562.39764
+offset_right = 81.11328
+offset_bottom = 585.39764
+text = "Price : 0"
+metadata/_edit_use_anchors_ = true
+
+[node name="Title" type="Label" parent="CanvasLayer/Shop/Regeneration"]
+offset_left = 17.113281
+offset_top = 468.3976
+offset_right = 131.11328
+offset_bottom = 491.3976
+text = "Regeneration"
+metadata/_edit_use_anchors_ = true
+
+[node name="Bonus" type="Label" parent="CanvasLayer/Shop/Regeneration"]
+offset_left = 19.113281
+offset_top = 506.3976
+offset_right = 160.11328
+offset_bottom = 529.39764
+text = "Bonus Regen : 0"
+metadata/_edit_use_anchors_ = true
+
 [connection signal="pressed" from="CanvasLayer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="CanvasLayer/Play" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Shop/Damage/Damage" to="." method="_on_button_pressed"]
@@ -261,3 +301,4 @@ metadata/_edit_use_anchors_ = true
 [connection signal="pressed" from="CanvasLayer/Shop/Cadence/Cadence" to="." method="_on_cadence_pressed"]
 [connection signal="pressed" from="CanvasLayer/Shop/Coins/Coins" to="." method="_on_coins_pressed"]
 [connection signal="pressed" from="CanvasLayer/Shop/Ammo/Ammo" to="." method="_on_ammo_pressed"]
+[connection signal="pressed" from="CanvasLayer/Shop/Regeneration/Regeneration" to="." method="_on_regeneration_pressed"]

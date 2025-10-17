@@ -36,7 +36,7 @@ func _physics_process(delta: float) -> void:
 			is_regen = false
 			return
 		regen_time += delta
-		if regen_time >= 5.0:
+		if regen_time >= Game.regeneration:
 			regen_time = 0.0
 			Game.game_current_health += 1
 

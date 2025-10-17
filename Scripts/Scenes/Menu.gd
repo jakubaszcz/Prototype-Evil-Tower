@@ -11,6 +11,7 @@ extends Node2D
 @onready var base_cadence_price : int = 17
 @onready var base_bonus_coin_price : int = 19
 @onready var base_bonus_ammo : int = 123
+@onready var base_bonus_regeneration_price : int = 24 
 
 # 📈 Multiplicateurs de prix
 @onready var attack_price_multiplier : float = 1.25
@@ -19,6 +20,7 @@ extends Node2D
 @onready var cadence_price_multiplier : float = 1.40
 @onready var bonus_coin_price_multiplier : float = 1.30
 @onready var bonus_ammo_price_multiplier : float = 1.55
+@onready var bonus_regeneration_price_multiplier : float = 1.60
 
 # 🎁 Récompenses par upgrade
 @onready var attack_reward : int = 2
@@ -27,6 +29,7 @@ extends Node2D
 @onready var cadence_reward : float = 0.10
 @onready var bonus_coin_reward : int = 3
 @onready var bonus_ammo_reward : int = 1
+@onready var bonus_regeneration_reward : float = 0.2
 
 # ⏱️ Limites (anti cheat)
 @onready var cadence_min : float = 0.8
@@ -55,6 +58,9 @@ extends Node2D
 
 @onready var ammo_price_label : Label =	$CanvasLayer/Shop/Ammo/Price
 @onready var ammo_bonus_label : Label = $CanvasLayer/Shop/Ammo/Bonus
+
+@onready var regeneration_price_label : Label = $CanvasLayer/Shop/Regeneration/Price
+@onready var regeneration_bonus_label : Label = $CanvasLayer/Shop/Regeneration/Bonus
 
 # ───────────────────────────────
 # 🚀 READY
@@ -91,6 +97,9 @@ func _update_ui():
 	
 	ammo_price_label.text = "Price : " + str(Global.bonus_ammo_price)
 	ammo_bonus_label.text = "Ammo Coin : " + str(Global.shoot_per_shot)
+	
+	regeneration_price_label.text = "Price : " + str(base_bonus_regeneration_price)
+	regeneration_bonus_label.text = "Regeneration :" + str(Global.regeneration)
 
 # ───────────────────────────────
 # 🏪 SHOP BUTTONS
@@ -150,4 +159,13 @@ func _on_ammo_pressed() -> void:
 		Global.shoot_per_shot += bonus_ammo_reward
 		Global.bonus_ammo_price = int(round(Global.bonus_ammo_price * bonus_ammo_price_multiplier))
 		Global.shoot_per_shot_shop_level += 1
+		Global.save_progression()
+
+
+func _on_regeneration_pressed() -> void:
+	if Global.ressources_gems >= Global.base_bonus_regeneration_price:
+		Global.ressources_gems -= Global.base_bonus_regeneration_price
+		Global.regeneration -= bonus_regeneration_reward
+		base_bonus_regeneration_price = int(round(Global.base_bonus_regeneration_price * bonus_regeneration_price_multiplier))
+		Global.regeneration_level += 1
 		Global.save_progression()
