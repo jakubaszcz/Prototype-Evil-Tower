@@ -3,7 +3,6 @@ extends Node
 @onready var wave_reward_canvas : CanvasLayer = $WaveUI/Reward
 @onready var wave_reward_showtime : Timer = $WaveUI/Reward/ShowTime
 @onready var wave_reward_text : Label = $WaveUI/Reward/Reward
-@onready var infos_label = $Infos
 
 @onready var coins_label : Label = $Coins
 
@@ -67,11 +66,17 @@ func _physics_process(_delta: float) -> void:
 # -------------------
 
 func _on_wave_reward(reward):
+	if not is_inside_tree():
+		return
+		
 	wave_reward_canvas.visible = true
 	wave_reward_showtime.start()
 	wave_reward_text.text = "You get : " + str(reward) + " coins."
 
 func _on_show_time_timeout() -> void:
+	if not is_inside_tree():
+		return
+		
 	wave_reward_canvas.visible = false
 
 func _on_damage_pressed() -> void:
