@@ -13,6 +13,10 @@ extends CharacterBody2D
 
 var ammo_shoot : int = 0
 
+var is_regen : bool = false
+var regen_time : float = 0.0
+
+
 func _ready() -> void:
 	trigger_collider.scale = Vector2(Game.game_radius, Game.game_radius)
 
@@ -24,8 +28,18 @@ func _draw() -> void:
 		var ext = shape.shape.extents * trigger_collider.scale
 		draw_rect(Rect2(-ext, ext * 2.0), Color(0.0, 0.0, 0.0, 0.1), true)
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	queue_redraw() # redraw the collision _draw
+	if is_regen:
+		if Game.game_current_health >= Game.game_health:
+			Game.game_current_health = Game.game_health
+			is_regen = false
+			return
+		regen_time += delta
+		if regen_time >= 5.0:
+			regen_time = 0.0
+			Game.game_current_health += 1
+
 	shoot_cooldown.wait_time = Game.game_cadence
 	trigger_collider.scale = Vector2(Game.game_radius, Game.game_radius)
 	if not can_shoot: return
@@ -49,11 +63,13 @@ func _shoot(body: Node2D) -> void:
 	get_parent().call_deferred("add_child", projectile)
 	
 func _take_damage(damage : float):
-	if ((Game.game_health - damage) <= 0):
+	if ((Game.game_current_health - damage) <= 0):
 		Game.is_game_over = true
 		Game.end_game(Game.GameOverReason.PLAYER_DEAD)
 		queue_free()
-	else: Game.game_health -= damage
+	else:
+		Game.game_current_health -= damage
+		is_regen = true
 
 func _on_shoot_cooldown_timeout() -> void:
 	ammo_shoot = 0

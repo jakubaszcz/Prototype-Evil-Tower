@@ -25,7 +25,7 @@ var abilities_radius_price : int = 13
 var abilities_health_price : int = 15
 var abilities_cadence_price : int = 17
 
-var abilities_attack_price_multiplier : float = 1.2
+var abilities_attack_price_multiplier : float = 2.2
 var abilities_radius_price_multiplier : float = 1.4
 var abilities_health_price_multiplier : float = 1.6
 var abilities_cadence_price_multiplier : float = 1.8

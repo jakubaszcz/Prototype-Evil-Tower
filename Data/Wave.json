@@ -1,48 +1,48 @@
 [
   {
 	"wave": 1,
-	"reward": 15,
+	"reward": 7,
 	"spawn_cadence": 1.0,
 	"enemies": [
-	  { "type": "res://Components/Entities/Enemies/Type-1.tscn", "count": 5 }
+	  { "type": "res://Components/Entities/Enemies/Type-1.tscn", "count": 3 }
 	]
   },
   {
 	"wave": 2,
-	"reward": 25,
+	"reward": 12,
 	"spawn_cadence": 1.2,
 	"enemies": [
-	  { "type": "res://Components/Entities/Enemies/Type-1.tscn", "count": 8 },
+	  { "type": "res://Components/Entities/Enemies/Type-1.tscn", "count": 3 },
 	  { "type": "res://Components/Entities/Enemies/Type-2.tscn", "count": 2 }
 	]
   },
 	{
 		"wave": 3,
-		"reward": 36,
+		"reward": 19,
 		"spawn_cadence": 1.6,
 		"enemies": [
 			{ "type": "res://Components/Entities/Enemies/Type-2.tscn", "count": 4 },
-			{ "type": "res://Components/Entities/Enemies/Type-3.tscn", "count": 4 }
+			{ "type": "res://Components/Entities/Enemies/Type-3.tscn", "count": 2 }
 		]
 	},
 	{
 		"wave": 4,
-		"reward": 50,
+		"reward": 27,
 		"spawn_cadence": 1.4,
 		"enemies": [
 			{ "type": "res://Components/Entities/Enemies/Type-3.tscn", "count": 3 },
-			{ "type": "res://Components/Entities/Enemies/Type-4.tscn", "count": 5 }
+			{ "type": "res://Components/Entities/Enemies/Type-4.tscn", "count": 4 }
 		]
 	},
 	{
 		"wave": 5,
-		"reward": 150,
+		"reward": 45,
 		"spawn_cadence": 1.8,
 		"enemies": [
-			{ "type": "res://Components/Entities/Enemies/Type-1.tscn", "count": 8 },
-			{ "type": "res://Components/Entities/Enemies/Type-2.tscn", "count": 4 },
+			{ "type": "res://Components/Entities/Enemies/Type-1.tscn", "count": 7 },
+			{ "type": "res://Components/Entities/Enemies/Type-2.tscn", "count": 5 },
 			{ "type": "res://Components/Entities/Enemies/Type-3.tscn", "count": 4 },
-			{ "type": "res://Components/Entities/Enemies/Type-4.tscn", "count": 6 },
+			{ "type": "res://Components/Entities/Enemies/Type-4.tscn", "count": 3 },
 			{ "type": "res://Components/Entities/Enemies/Type-5.tscn", "count": 5 },
 			{ "type": "res://Components/Entities/Enemies/Bosses/Type-1.tscn", "count": 1 }
 		]
