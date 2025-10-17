@@ -163,9 +163,9 @@ func _on_ammo_pressed() -> void:
 
 
 func _on_regeneration_pressed() -> void:
-	if Global.ressources_gems >= Global.base_bonus_regeneration_price:
-		Global.ressources_gems -= Global.base_bonus_regeneration_price
-		Global.regeneration -= bonus_regeneration_reward
-		base_bonus_regeneration_price = int(round(Global.base_bonus_regeneration_price * bonus_regeneration_price_multiplier))
+	if Global.ressources_gems >= base_bonus_regeneration_price:
+		Global.ressources_gems -= base_bonus_regeneration_price
+		Global.regeneration += bonus_regeneration_reward
+		base_bonus_regeneration_price = int(round(base_bonus_regeneration_price * bonus_regeneration_price_multiplier))
 		Global.regeneration_level += 1
 		Global.save_progression()

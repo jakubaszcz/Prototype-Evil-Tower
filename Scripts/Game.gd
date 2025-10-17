@@ -56,7 +56,7 @@ func _reset_data():
 	game_cadence = 3.5
 	game_damage = 5.0
 	game_shoot_per_shot = 1
-	regeneration = 3.0
+	regeneration = 5.0
 	
 	game_coin = game_coin + Global.bonus_coin
 	game_health = game_health + Global.abilities_health

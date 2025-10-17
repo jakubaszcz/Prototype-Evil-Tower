@@ -1,0 +1,268 @@
+[gd_scene format=3 uid="uid://cyj0vc7vtyr5w"]
+
+[node name="Test" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 24
+
+[node name="MarginContainerPanel" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/MarginContainerPanel"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainerPanel/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainerPanel/PanelContainer/MarginContainer"]
+layout_mode = 2
+text = "000"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 400)
+layout_mode = 2
+size_flags_horizontal = 4
+horizontal_scroll_mode = 0
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
+theme_override_constants/h_separation = 5
+theme_override_constants/v_separation = 5
+columns = 3
+
+[node name="Shop#1" type="PanelContainer" parent="VBoxContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/ScrollContainer/GridContainer/Shop#1"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/GridContainer/Shop#1/MarginContainer"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/ScrollContainer/GridContainer/Shop#1/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 100
+columns = 2
+
+[node name="TitleText" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/Shop#1/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Title"
+
+[node name="Level" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/Shop#1/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "LV.0"
+horizontal_alignment = 2
+
+[node name="PriceText" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/Shop#1/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Price"
+
+[node name="Price" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/Shop#1/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "000"
+horizontal_alignment = 2
+
+[node name="BonusText" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/Shop#1/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Bonus"
+
+[node name="Bonus" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/Shop#1/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "000"
+horizontal_alignment = 2
+
+[node name="Button" type="Button" parent="VBoxContainer/ScrollContainer/GridContainer/Shop#1/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Click here"
+
+[node name="Shop#2" type="PanelContainer" parent="VBoxContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/ScrollContainer/GridContainer/Shop#2"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/GridContainer/Shop#2/MarginContainer"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/ScrollContainer/GridContainer/Shop#2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 100
+columns = 2
+
+[node name="TitleText" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/Shop#2/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Title"
+
+[node name="Level" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/Shop#2/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "LV.0"
+horizontal_alignment = 2
+
+[node name="PriceText" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/Shop#2/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Price"
+
+[node name="Price" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/Shop#2/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "000"
+horizontal_alignment = 2
+
+[node name="BonusText" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/Shop#2/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Bonus"
+
+[node name="Bonus" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/Shop#2/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "000"
+horizontal_alignment = 2
+
+[node name="Button" type="Button" parent="VBoxContainer/ScrollContainer/GridContainer/Shop#2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Click here"
+
+[node name="Shop#3" type="PanelContainer" parent="VBoxContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/ScrollContainer/GridContainer/Shop#3"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/GridContainer/Shop#3/MarginContainer"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/ScrollContainer/GridContainer/Shop#3/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 100
+columns = 2
+
+[node name="TitleText" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/Shop#3/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Title"
+
+[node name="Level" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/Shop#3/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "LV.0"
+horizontal_alignment = 2
+
+[node name="PriceText" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/Shop#3/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Price"
+
+[node name="Price" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/Shop#3/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "000"
+horizontal_alignment = 2
+
+[node name="BonusText" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/Shop#3/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Bonus"
+
+[node name="Bonus" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/Shop#3/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "000"
+horizontal_alignment = 2
+
+[node name="Button" type="Button" parent="VBoxContainer/ScrollContainer/GridContainer/Shop#3/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Click here"
+
+[node name="Shop#4" type="PanelContainer" parent="VBoxContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/ScrollContainer/GridContainer/Shop#4"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/GridContainer/Shop#4/MarginContainer"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/ScrollContainer/GridContainer/Shop#4/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 100
+columns = 2
+
+[node name="TitleText" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/Shop#4/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Title"
+
+[node name="Level" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/Shop#4/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "LV.0"
+horizontal_alignment = 2
+
+[node name="PriceText" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/Shop#4/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Price"
+
+[node name="Price" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/Shop#4/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "000"
+horizontal_alignment = 2
+
+[node name="BonusText" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/Shop#4/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Bonus"
+
+[node name="Bonus" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/Shop#4/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "000"
+horizontal_alignment = 2
+
+[node name="Button" type="Button" parent="VBoxContainer/ScrollContainer/GridContainer/Shop#4/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Click here"
+
+[node name="Control" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainerButton" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Button" type="Button" parent="VBoxContainer/MarginContainerButton"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Play"
