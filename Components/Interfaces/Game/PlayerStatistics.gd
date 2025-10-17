@@ -7,6 +7,8 @@ extends Node
 
 @onready var coins_label : Label = $Coins
 
+@onready var health_bar : Label = $HealthBar
+
 # --- SHOP CONFIGURATION ---
 
 var shop_damage_level : int = 0
@@ -14,23 +16,28 @@ var shop_health_level : int = 0
 var shop_radius_level : int = 0
 var shop_cadence_level : int = 0
 
+const shop_damage : int = 5
+const shop_health : int = 22
+const shop_radius : float = 1.0
+const shop_cadence : float = 5.0
+
 # Multipliers (temporary, in-game effects)
-var shop_damage_multiplier : float = 1.05
-var shop_health_multiplier : float = 1.20
+var shop_damage_multiplier : float = 1.35
+var shop_health_multiplier : float = 1.15
 var shop_radius_multiplier : float = 1.03
 var shop_cadence_multiplier : float = 0.97
 
 # Price multipliers
-var shop_damage_price_multiplier : float = 1.15
-var shop_health_price_multiplier : float = 1.15
-var shop_radius_price_multiplier : float = 1.18
-var shop_cadence_price_multiplier : float = 1.20
+var shop_damage_price_multiplier : float = 1.25
+var shop_health_price_multiplier : float = 1.35
+var shop_radius_price_multiplier : float = 1.48
+var shop_cadence_price_multiplier : float = 1.40
 
 # Base prices
-var shop_damage_price : int = 7
-var shop_health_price : int = 9
-var shop_radius_price : int = 11
-var shop_cadence_price : int = 13
+var shop_damage_price : int = 9
+var shop_health_price : int = 10
+var shop_radius_price : int = 12
+var shop_cadence_price : int = 15
 
 # UI References
 @onready var shop_damage_price_label : Label = $DamageContainer/Price
@@ -53,6 +60,7 @@ func _physics_process(_delta: float) -> void:
 	_update_radius()
 	_update_cadence()
 	_update_coins()
+	_update_current_health()
 
 # -------------------
 # --- SHOP LOGIC ---
@@ -68,16 +76,19 @@ func _on_show_time_timeout() -> void:
 
 func _on_damage_pressed() -> void:
 	if Game.game_coin >= shop_damage_price:
+		var additional_value = (shop_damage * shop_damage_multiplier) - shop_damage
+		
 		Game.game_coin -= shop_damage_price
-		Game.game_damage *= shop_damage_multiplier
+		Game.game_damage += additional_value
 		shop_damage_price = int(round(shop_damage_price * shop_damage_price_multiplier))
 		shop_damage_level += 1
 		_update_damage()
 
 func _on_health_pressed() -> void:
 	if Game.game_coin >= shop_health_price:
+		var additional_value = (shop_health * shop_health_multiplier) - shop_health
 		Game.game_coin -= shop_health_price
-		Game.game_health *= shop_health_multiplier
+		Game.game_health += additional_value
 		shop_health_price = int(round(shop_health_price * shop_health_price_multiplier))
 		shop_health_level += 1
 		_update_health()
@@ -120,6 +131,8 @@ func _update_cadence():
 	shop_cadence_price_label.text = "Price : " + str(shop_cadence_price)
 	shop_cadence_ability_label.text = "Cadence : " + str(round(Game.game_cadence * 100) / 100.0)
 
+func _update_current_health():
+	health_bar.text = "Your health : " + str(Game.game_current_health) + "/" + str(Game.game_health)
 
 func _update_coins():
 	coins_label.text = "Coins : " + str(Game.game_coin)
