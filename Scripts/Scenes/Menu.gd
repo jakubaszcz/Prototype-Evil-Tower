@@ -132,7 +132,7 @@ func _on_radius_pressed() -> void:
 func _on_cadence_pressed() -> void:
 	if Global.ressources_gems >= Global.abilities_cadence_price:
 		Global.ressources_gems -= Global.abilities_cadence_price
-		Global.abilities_cadence = max(cadence_min, Global.abilities_cadence - cadence_reward)
+		Global.abilities_cadence += cadence_reward
 		Global.abilities_cadence_price = int(round(Global.abilities_cadence_price * cadence_price_multiplier))
 		Global.abilities_cadence_shop_level += 1
 		Global.save_progression()

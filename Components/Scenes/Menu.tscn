@@ -201,7 +201,7 @@ offset_left = 22.113281
 offset_top = 325.3976
 offset_right = 88.11328
 offset_bottom = 348.3976
-text = "Cadence"
+text = "Coins"
 metadata/_edit_use_anchors_ = true
 
 [node name="Bonus" type="Label" parent="CanvasLayer/Shop/Coins"]
