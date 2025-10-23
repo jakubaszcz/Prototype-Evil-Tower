@@ -36,7 +36,7 @@ func _physics_process(delta: float) -> void:
 			is_regen = false
 			return
 		regen_time += delta
-		if regen_time >= Game.regeneration:
+		if regen_time >= Game.bonus_regeneration:
 			regen_time = 0.0
 			Game.game_current_health += 1
 
@@ -52,7 +52,7 @@ func _on_radius_area_body_entered(body: Node2D) -> void:
 		_shoot(body)
 
 func _shoot(body: Node2D) -> void:
-	if ammo_shoot >= Game.game_shoot_per_shot:
+	if ammo_shoot >= Game.game_bonus_bullet:
 		return
 	ammo_shoot += 1
 	shoot_cooldown.start()

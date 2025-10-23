@@ -80,14 +80,14 @@ func _physics_process(_delta: float) -> void:
 func _update_ui():
 	gems_label.text = "Gems : " + str(Global.ressources_gems)
 
-	attack_price_label.text = "Price : " + str(Global.abilities_attack_price)
-	attack_bonus_label.text = "Bonus Damage : " + str(Global.abilities_attack)
+	attack_price_label.text = "Price : " + str(Global.abilities_damage_price)
+	attack_bonus_label.text = "Bonus Damage : " + str(Global.abilities_damage)
 
 	health_price_label.text = "Price : " + str(Global.abilities_health_price)
 	health_bonus_label.text = "Bonus Health : " + str(Global.abilities_health)
 
-	radius_price_label.text = "Price : " + str(Global.abilities_radius_price)
-	radius_bonus_label.text = "Bonus Radius : " + str(Global.abilities_radius)
+	radius_price_label.text = "Price : " + str(Global.bonus_radius_price)
+	radius_bonus_label.text = "Bonus Radius : " + str(Global.bonus_radius)
 
 	cadence_price_label.text = "Price : " + str(Global.abilities_cadence_price)
 	cadence_bonus_label.text = "Bonus Cadence : " + str(round(Global.abilities_cadence * 100) / 100.0)
@@ -96,7 +96,7 @@ func _update_ui():
 	coin_bonus_label.text = "Bonus Coin : " + str(Global.bonus_coin)
 	
 	ammo_price_label.text = "Price : " + str(Global.bonus_ammo_price)
-	ammo_bonus_label.text = "Ammo Coin : " + str(Global.shoot_per_shot)
+	ammo_bonus_label.text = "Ammo Coin : " + str(Global.bonus_bullet)
 	
 	regeneration_price_label.text = "Price : " + str(base_bonus_regeneration_price)
 	regeneration_bonus_label.text = "Regeneration :" + str(Global.regeneration)
@@ -106,11 +106,11 @@ func _update_ui():
 # ───────────────────────────────
 
 func _on_damage_pressed() -> void:
-	if Global.ressources_gems >= Global.abilities_attack_price:
-		Global.ressources_gems -= Global.abilities_attack_price
-		Global.abilities_attack += attack_reward
-		Global.abilities_attack_price = int(round(Global.abilities_attack_price * attack_price_multiplier))
-		Global.abilities_attack_shop_level += 1
+	if Global.ressources_gems >= Global.abilities_damage_price:
+		Global.ressources_gems -= Global.abilities_damage_price
+		Global.abilities_damage += attack_reward
+		Global.abilities_damage_price = int(round(Global.abilities_damage_price * attack_price_multiplier))
+		Global.abilities_damage_shop_level += 1
 		Global.save_progression()
 
 func _on_health_pressed() -> void:
@@ -156,9 +156,9 @@ func _on_play_pressed() -> void:
 func _on_ammo_pressed() -> void:
 	if Global.ressources_gems >= Global.bonus_ammo_price:
 		Global.ressources_gems -= Global.bonus_ammo_price
-		Global.shoot_per_shot += bonus_ammo_reward
+		Global.bonus_bullet += bonus_ammo_reward
 		Global.bonus_ammo_price = int(round(Global.bonus_ammo_price * bonus_ammo_price_multiplier))
-		Global.shoot_per_shot_shop_level += 1
+		Global.bonus_bullet_level += 1
 		Global.save_progression()
 
 

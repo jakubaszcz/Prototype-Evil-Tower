@@ -11,6 +11,8 @@ enum GameOverReason {
 	MANUAL_EXIT
 }
 
+static var speed_multiplier : float = 1.0
+
 # Game stats
 static var is_game_over = false
 static var survival_time : float = 0.0
@@ -25,8 +27,8 @@ static var game_current_health : float = 0
 static var game_radius : float = 1.0
 static var game_cadence : float = 5.0
 static var game_damage : float = 5.0
-static var game_shoot_per_shot : int = 1
-static var regeneration : float = 3.0
+static var game_bonus_bullet : int = 1
+static var bonus_regeneration : float = 3.0
 
 static func _game_over(reason: GameOverReason):
 	if is_game_over:
@@ -36,7 +38,7 @@ static func _game_over(reason: GameOverReason):
 		print("Current Wave: " + str(current_wave))
 		if reason == GameOverReason.ALL_WAVES_COMPLETED:
 			Game.game_gems *= 1.25
-		Global.ressources_gems += game_gems
+		Global.sapphire += game_gems
 		Global.save_progression()
 
 
@@ -50,22 +52,23 @@ func _reset_data():
 	game_gems = 0
 	current_wave = 0
 	
+	
 	game_coin = 0
-	game_health = 18
+	game_health = 22
 	game_radius = 1.2
 	game_cadence = 3.5
 	game_damage = 5.0
-	game_shoot_per_shot = 1
-	regeneration = 5.0
+	game_bonus_bullet = 1
+	bonus_regeneration = 5.0
 	
 	game_coin = game_coin + Global.bonus_coin
-	game_health = game_health + Global.abilities_health
+	game_health = game_health + Global.bonus_health
 	game_current_health = game_health
-	game_radius = game_radius + Global.abilities_radius
-	game_cadence = game_cadence - Global.abilities_cadence
+	game_radius = game_radius + Global.bonus_radius
+	game_cadence = game_cadence - Global.bonus_cadence
 	game_damage = game_damage + Global.abilities_attack
-	game_shoot_per_shot = game_shoot_per_shot + Global.shoot_per_shot
-	regeneration = regeneration - Global.regeneration 
+	game_bonus_bullet = game_bonus_bullet + Global.bonus_bullet
+	bonus_regeneration = bonus_regeneration - Global.bonus_regeneration
 
 func _ready() -> void:
 	Global.load_progression()

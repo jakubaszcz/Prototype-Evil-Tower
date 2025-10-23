@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Hexattack"
-run/main_scene="uid://penchdojg3ck"
+run/main_scene="uid://cyj0vc7vtyr5w"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
