@@ -195,9 +195,17 @@ offset_right = 128.0
 offset_bottom = 70.0
 text = "0/0"
 
+[node name="ScaleButton" type="Button" parent="."]
+offset_left = 1039.0
+offset_top = 608.0
+offset_right = 1139.0
+offset_bottom = 639.0
+text = "1x"
+
 [connection signal="pressed" from="DamageContainer/Damage" to="." method="_on_damage_pressed"]
-[connection signal="pressed" from="HealthContainer/Health" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="HealthContainer/Health" to="." method="_on_health_pressed"]
+[connection signal="pressed" from="HealthContainer/Health" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="RadiusContainer/Radius" to="." method="_on_radius_pressed"]
 [connection signal="pressed" from="CadenceContainer/Cadence" to="." method="_on_cadence_pressed"]
 [connection signal="timeout" from="WaveUI/Reward/ShowTime" to="." method="_on_show_time_timeout"]
+[connection signal="pressed" from="ScaleButton" to="." method="_on_scale_button_pressed"]

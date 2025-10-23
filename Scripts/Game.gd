@@ -54,7 +54,7 @@ func _reset_data():
 	
 	
 	game_coin = 0
-	game_health = 2
+	game_health = 22
 	game_radius = 1.2
 	game_cadence = 3.5
 	game_damage = 5.0

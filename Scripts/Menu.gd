@@ -80,7 +80,7 @@ func _ready() -> void:
 	
 	load_damage_shop()
 	load_health_shop()
-	load_radius_shop()
+	load_radius_shop()	
 	load_cadence_shop()
 	load_coin_shop()
 	load_bullet_shop()
@@ -90,7 +90,7 @@ func save_progression():
 	Global.save_progression()
 
 func load_gems():
-	gems_shop_label.text = str(Global.sapphire)
+	gems_shop_label.text = str(Global.sapphire) + " Sapphire"
 
 func default_damage_shop():
 	base_damage_price = 12
