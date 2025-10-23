@@ -57,7 +57,7 @@ func _take_damage(amount: int) -> void:
 		Game.game_coin += recompense
 		is_dead = true
 		emit_signal("enemy_died")
-		Game.enemies_killed_count += 1
+		Game.killed_enemy += 1
 		queue_free()
 
 func get_health() -> int:

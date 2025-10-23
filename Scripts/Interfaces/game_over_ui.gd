@@ -6,8 +6,8 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if Game.is_game_over:
 		visible = true
-		$VBoxContainer/Gems.text = "Won gems : " + str(Game.game_gems)
-		$"VBoxContainer/Total Gems".text = "Total gems : " + str(Global.sapphire - Game.game_gems) + " + " + str(Game.game_gems)
+		$VBoxContainer/Gems.text = "Won gems : " + str(Game.sapphire)
+		$"VBoxContainer/Total Gems".text = "Total gems : " + str(Global.sapphire - Game.sapphire) + " + " + str(Game.sapphire)
 
 
 

@@ -51,7 +51,7 @@ func save_progression():
 	config.set_value("bonus", "bullet", bonus_bullet)
 	config.set_value("bonus", "regeneration", bonus_regeneration)
 	config.set_value("shop", "sapphire", sapphire)
-	config.set_value("shop", "attack_level", bonus_damage_level)
+	config.set_value("shop", "damage_level", bonus_damage_level)
 	config.set_value("shop", "radius_level", bonus_radius_level)
 	config.set_value("shop", "health_level", bonus_health_level)
 	config.set_value("shop", "cadence_level", bonus_cadence_level)

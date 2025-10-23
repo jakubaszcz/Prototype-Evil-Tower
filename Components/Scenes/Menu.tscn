@@ -1,304 +1,430 @@
-[gd_scene load_steps=3 format=3 uid="uid://cyj0vc7vtyr5w"]
+[gd_scene load_steps=2 format=3 uid="uid://cyj0vc7vtyr5w"]
 
-[ext_resource type="Script" uid="uid://cs42blsbj68yg" path="res://Scripts/Scenes/Menu.gd" id="1_06sn7"]
+[ext_resource type="Script" uid="uid://d1eulovbhxjx5" path="res://Scripts/Menu.gd" id="1_06sn7"]
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_06sn7"]
-
-[node name="Menu" type="Node2D"]
+[node name="Test" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_06sn7")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 24
 
-[node name="Gems" type="Label" parent="CanvasLayer"]
-offset_right = 66.0
-offset_bottom = 23.0
-text = "Gems : 0"
+[node name="MarginContainerPanel" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 0
 
-[node name="Play" type="Button" parent="CanvasLayer"]
-offset_left = 982.0
-offset_top = 10.0
-offset_right = 1140.0
-offset_bottom = 638.0
-text = "Play"
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/MarginContainerPanel"]
+layout_mode = 2
 
-[node name="Shop" type="Node" parent="CanvasLayer"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainerPanel/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
 
-[node name="Damage" type="Node" parent="CanvasLayer/Shop"]
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainerPanel/PanelContainer/MarginContainer"]
+layout_mode = 2
+text = "000"
 
-[node name="Box" type="Sprite2D" parent="CanvasLayer/Shop/Damage"]
-modulate = Color(0.18120003, 0.18120006, 0.18120003, 1)
-position = Vector2(119.00001, 112)
-scale = Vector2(200.14655, 125.755264)
-texture = SubResource("CanvasTexture_06sn7")
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 400)
+layout_mode = 2
+size_flags_horizontal = 4
+horizontal_scroll_mode = 0
 
-[node name="Damage" type="Button" parent="CanvasLayer/Shop/Damage"]
-offset_left = 112.0
-offset_top = 117.0
-offset_right = 212.0
-offset_bottom = 167.0
-scale = Vector2(1.0096859, 1.0076926)
-text = "Buy"
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
+theme_override_constants/h_separation = 5
+theme_override_constants/v_separation = 5
+columns = 3
 
-[node name="Price" type="Label" parent="CanvasLayer/Shop/Damage"]
-offset_left = 26.0
-offset_top = 145.0
-offset_right = 66.0
-offset_bottom = 168.0
-scale = Vector2(1.0096859, 1.0076926)
-text = "Price : 0"
+[node name="DamageShop" type="PanelContainer" parent="VBoxContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
 
-[node name="Title" type="Label" parent="CanvasLayer/Shop/Damage"]
-offset_left = 23.0
-offset_top = 51.0
-offset_right = 87.0
-offset_bottom = 74.0
-scale = Vector2(1.0096859, 1.0076926)
-text = "Damage"
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/ScrollContainer/GridContainer/DamageShop"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
-[node name="Bonus" type="Label" parent="CanvasLayer/Shop/Damage"]
-offset_left = 25.0
-offset_top = 89.0
-offset_right = 164.0
-offset_bottom = 112.0
-scale = Vector2(1.0096859, 1.0076926)
-text = "Bonus Damage : 0"
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/GridContainer/DamageShop/MarginContainer"]
+layout_mode = 2
 
-[node name="Health" type="Node" parent="CanvasLayer/Shop"]
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/ScrollContainer/GridContainer/DamageShop/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 100
+columns = 2
 
-[node name="Box" type="Sprite2D" parent="CanvasLayer/Shop/Health"]
-modulate = Color(0.18120003, 0.18120006, 0.18120003, 1)
-position = Vector2(354.11328, 112.39763)
-scale = Vector2(198.22655, 124.795265)
-texture = SubResource("CanvasTexture_06sn7")
+[node name="TitleText" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/DamageShop/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Title"
 
-[node name="Health" type="Button" parent="CanvasLayer/Shop/Health"]
-offset_left = 347.11328
-offset_top = 117.39763
-offset_right = 447.11328
-offset_bottom = 167.39763
-text = "Buy"
+[node name="Level" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/DamageShop/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "LV.0"
+horizontal_alignment = 2
 
-[node name="Price" type="Label" parent="CanvasLayer/Shop/Health"]
-offset_left = 261.11328
-offset_top = 145.39763
-offset_right = 322.11328
-offset_bottom = 168.39763
-text = "Price : 0"
+[node name="PriceText" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/DamageShop/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Price"
 
-[node name="Title" type="Label" parent="CanvasLayer/Shop/Health"]
-offset_left = 258.11328
-offset_top = 51.397633
-offset_right = 322.11328
-offset_bottom = 74.39763
+[node name="Price" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/DamageShop/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "000"
+horizontal_alignment = 2
+
+[node name="BonusText" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/DamageShop/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Bonus"
+
+[node name="Bonus" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/DamageShop/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "000"
+horizontal_alignment = 2
+
+[node name="DamageButton" type="Button" parent="VBoxContainer/ScrollContainer/GridContainer/DamageShop/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Click here"
+
+[node name="HealthShop" type="PanelContainer" parent="VBoxContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/ScrollContainer/GridContainer/HealthShop"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/GridContainer/HealthShop/MarginContainer"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/ScrollContainer/GridContainer/HealthShop/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 100
+columns = 2
+
+[node name="TitleText" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/HealthShop/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
 text = "Health"
 
-[node name="Bonus" type="Label" parent="CanvasLayer/Shop/Health"]
-offset_left = 260.11328
-offset_top = 89.39763
-offset_right = 399.11328
-offset_bottom = 112.39763
-text = "Bonus Health : 0"
+[node name="Level" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/HealthShop/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "LV.0"
+horizontal_alignment = 2
 
-[node name="Radius" type="Node" parent="CanvasLayer/Shop"]
+[node name="PriceText" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/HealthShop/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Price"
 
-[node name="Box" type="Sprite2D" parent="CanvasLayer/Shop/Radius"]
-modulate = Color(0.18120003, 0.18120006, 0.18120003, 1)
-position = Vector2(118.11327, 254.39763)
-scale = Vector2(198.22655, 124.795265)
-texture = SubResource("CanvasTexture_06sn7")
+[node name="Price" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/HealthShop/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "000"
+horizontal_alignment = 2
 
-[node name="Radius" type="Button" parent="CanvasLayer/Shop/Radius"]
-offset_left = 111.113266
-offset_top = 259.39764
-offset_right = 211.11327
-offset_bottom = 309.39764
-text = "Buy"
+[node name="BonusText" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/HealthShop/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Bonus"
 
-[node name="Price" type="Label" parent="CanvasLayer/Shop/Radius"]
-offset_left = 25.113266
-offset_top = 287.39764
-offset_right = 86.113266
-offset_bottom = 310.39764
-text = "Price : 0"
+[node name="Bonus" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/HealthShop/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "000"
+horizontal_alignment = 2
 
-[node name="Title" type="Label" parent="CanvasLayer/Shop/Radius"]
-offset_left = 22.113266
-offset_top = 193.39763
-offset_right = 86.113266
-offset_bottom = 216.39763
+[node name="HealthButton" type="Button" parent="VBoxContainer/ScrollContainer/GridContainer/HealthShop/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Click here"
+
+[node name="RadiusShop" type="PanelContainer" parent="VBoxContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/ScrollContainer/GridContainer/RadiusShop"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/GridContainer/RadiusShop/MarginContainer"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/ScrollContainer/GridContainer/RadiusShop/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 100
+columns = 2
+
+[node name="TitleText" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/RadiusShop/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
 text = "Radius"
 
-[node name="Bonus" type="Label" parent="CanvasLayer/Shop/Radius"]
-offset_left = 24.113266
-offset_top = 231.39763
-offset_right = 163.11327
-offset_bottom = 254.39763
-text = "Bonus Radius : 0"
+[node name="Level" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/RadiusShop/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "LV.0"
+horizontal_alignment = 2
 
-[node name="Cadence" type="Node" parent="CanvasLayer/Shop"]
+[node name="PriceText" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/RadiusShop/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Price"
 
-[node name="Box" type="Sprite2D" parent="CanvasLayer/Shop/Cadence"]
-modulate = Color(0.18120003, 0.18120006, 0.18120003, 1)
-position = Vector2(359.11328, 258.39764)
-scale = Vector2(198.22655, 124.795265)
-texture = SubResource("CanvasTexture_06sn7")
+[node name="Price" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/RadiusShop/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "000"
+horizontal_alignment = 2
 
-[node name="Cadence" type="Button" parent="CanvasLayer/Shop/Cadence"]
-offset_left = 352.11328
-offset_top = 263.39764
-offset_right = 452.11328
-offset_bottom = 313.39764
-text = "Buy"
+[node name="BonusText" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/RadiusShop/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Bonus"
 
-[node name="Price" type="Label" parent="CanvasLayer/Shop/Cadence"]
-offset_left = 266.11328
-offset_top = 291.39764
-offset_right = 327.11328
-offset_bottom = 314.39764
-text = "Price : 0"
+[node name="Bonus" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/RadiusShop/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "000"
+horizontal_alignment = 2
 
-[node name="Title" type="Label" parent="CanvasLayer/Shop/Cadence"]
-offset_left = 263.11328
-offset_top = 197.39763
-offset_right = 327.11328
-offset_bottom = 220.39763
+[node name="RadiusButton" type="Button" parent="VBoxContainer/ScrollContainer/GridContainer/RadiusShop/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Click here"
+
+[node name="CadenceShop" type="PanelContainer" parent="VBoxContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/ScrollContainer/GridContainer/CadenceShop"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/GridContainer/CadenceShop/MarginContainer"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/ScrollContainer/GridContainer/CadenceShop/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 100
+columns = 2
+
+[node name="TitleText" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/CadenceShop/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
 text = "Cadence"
 
-[node name="Bonus" type="Label" parent="CanvasLayer/Shop/Cadence"]
-offset_left = 265.11328
-offset_top = 235.39763
-offset_right = 404.11328
-offset_bottom = 258.39764
-text = "Bonus Cadence : 0"
-metadata/_edit_use_anchors_ = true
+[node name="Level" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/CadenceShop/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "LV.0"
+horizontal_alignment = 2
 
-[node name="Coins" type="Node" parent="CanvasLayer/Shop"]
+[node name="PriceText" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/CadenceShop/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Price"
 
-[node name="Box" type="Sprite2D" parent="CanvasLayer/Shop/Coins"]
-modulate = Color(0.18120003, 0.18120006, 0.18120003, 1)
-position = Vector2(118.11328, 386.39764)
-scale = Vector2(198.22655, 124.795265)
-texture = SubResource("CanvasTexture_06sn7")
+[node name="Price" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/CadenceShop/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "000"
+horizontal_alignment = 2
 
-[node name="Coins" type="Button" parent="CanvasLayer/Shop/Coins"]
-offset_left = 111.11328
-offset_top = 391.39764
-offset_right = 211.11328
-offset_bottom = 441.39764
-text = "Buy"
-metadata/_edit_use_anchors_ = true
+[node name="BonusText" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/CadenceShop/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Bonus"
 
-[node name="Price" type="Label" parent="CanvasLayer/Shop/Coins"]
-offset_left = 25.113281
-offset_top = 419.39764
-offset_right = 86.11328
-offset_bottom = 442.39764
-text = "Price : 0"
-metadata/_edit_use_anchors_ = true
+[node name="Bonus" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/CadenceShop/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "000"
+horizontal_alignment = 2
 
-[node name="Title" type="Label" parent="CanvasLayer/Shop/Coins"]
-offset_left = 22.113281
-offset_top = 325.3976
-offset_right = 88.11328
-offset_bottom = 348.3976
-text = "Coins"
-metadata/_edit_use_anchors_ = true
+[node name="CadenceButton" type="Button" parent="VBoxContainer/ScrollContainer/GridContainer/CadenceShop/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Click here"
 
-[node name="Bonus" type="Label" parent="CanvasLayer/Shop/Coins"]
-offset_left = 24.113281
-offset_top = 363.3976
-offset_right = 165.11328
-offset_bottom = 386.39764
-text = "Bonus Coins : 0"
-metadata/_edit_use_anchors_ = true
+[node name="CoinShop" type="PanelContainer" parent="VBoxContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
 
-[node name="Ammo" type="Node" parent="CanvasLayer/Shop"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/ScrollContainer/GridContainer/CoinShop"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
-[node name="Box" type="Sprite2D" parent="CanvasLayer/Shop/Ammo"]
-modulate = Color(0.18120003, 0.18120006, 0.18120003, 1)
-position = Vector2(362.11328, 390.39764)
-scale = Vector2(198.22655, 124.795265)
-texture = SubResource("CanvasTexture_06sn7")
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/GridContainer/CoinShop/MarginContainer"]
+layout_mode = 2
 
-[node name="Ammo" type="Button" parent="CanvasLayer/Shop/Ammo"]
-offset_left = 355.11328
-offset_top = 395.39764
-offset_right = 455.11328
-offset_bottom = 445.39764
-text = "Buy"
-metadata/_edit_use_anchors_ = true
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/ScrollContainer/GridContainer/CoinShop/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 100
+columns = 2
 
-[node name="Price" type="Label" parent="CanvasLayer/Shop/Ammo"]
-offset_left = 269.11328
-offset_top = 423.39764
-offset_right = 330.11328
-offset_bottom = 446.39764
-text = "Price : 0"
-metadata/_edit_use_anchors_ = true
+[node name="TitleText" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/CoinShop/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Coin"
 
-[node name="Title" type="Label" parent="CanvasLayer/Shop/Ammo"]
-offset_left = 266.11328
-offset_top = 329.3976
-offset_right = 332.11328
-offset_bottom = 352.3976
-text = "Shoot per shot"
-metadata/_edit_use_anchors_ = true
+[node name="Level" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/CoinShop/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "LV.0"
+horizontal_alignment = 2
 
-[node name="Bonus" type="Label" parent="CanvasLayer/Shop/Ammo"]
-offset_left = 268.11328
-offset_top = 367.3976
-offset_right = 409.11328
-offset_bottom = 390.39764
-text = "Bonus Ammo : 0"
-metadata/_edit_use_anchors_ = true
+[node name="PriceText" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/CoinShop/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Price"
 
-[node name="Regeneration" type="Node" parent="CanvasLayer/Shop"]
+[node name="Price" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/CoinShop/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "000"
+horizontal_alignment = 2
 
-[node name="Box" type="Sprite2D" parent="CanvasLayer/Shop/Regeneration"]
-modulate = Color(0.18120003, 0.18120006, 0.18120003, 1)
-position = Vector2(113.11328, 529.39764)
-scale = Vector2(198.22655, 124.795265)
-texture = SubResource("CanvasTexture_06sn7")
+[node name="BonusText" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/CoinShop/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Bonus"
 
-[node name="Regeneration" type="Button" parent="CanvasLayer/Shop/Regeneration"]
-offset_left = 106.11328
-offset_top = 534.39764
-offset_right = 206.11328
-offset_bottom = 584.39764
-text = "Buy"
-metadata/_edit_use_anchors_ = true
+[node name="Bonus" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/CoinShop/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "000"
+horizontal_alignment = 2
 
-[node name="Price" type="Label" parent="CanvasLayer/Shop/Regeneration"]
-offset_left = 20.113281
-offset_top = 562.39764
-offset_right = 81.11328
-offset_bottom = 585.39764
-text = "Price : 0"
-metadata/_edit_use_anchors_ = true
+[node name="CoinButton" type="Button" parent="VBoxContainer/ScrollContainer/GridContainer/CoinShop/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Click here"
 
-[node name="Title" type="Label" parent="CanvasLayer/Shop/Regeneration"]
-offset_left = 17.113281
-offset_top = 468.3976
-offset_right = 131.11328
-offset_bottom = 491.3976
+[node name="BulletShop" type="PanelContainer" parent="VBoxContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/ScrollContainer/GridContainer/BulletShop"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/GridContainer/BulletShop/MarginContainer"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/ScrollContainer/GridContainer/BulletShop/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 100
+columns = 2
+
+[node name="TitleText" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/BulletShop/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Bullet"
+
+[node name="Level" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/BulletShop/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "LV.0"
+horizontal_alignment = 2
+
+[node name="PriceText" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/BulletShop/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Price"
+
+[node name="Price" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/BulletShop/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "000"
+horizontal_alignment = 2
+
+[node name="BonusText" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/BulletShop/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Bonus"
+
+[node name="Bonus" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/BulletShop/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "000"
+horizontal_alignment = 2
+
+[node name="BulletButton" type="Button" parent="VBoxContainer/ScrollContainer/GridContainer/BulletShop/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Click here"
+
+[node name="RegenerationShop" type="PanelContainer" parent="VBoxContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/ScrollContainer/GridContainer/RegenerationShop"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/GridContainer/RegenerationShop/MarginContainer"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/ScrollContainer/GridContainer/RegenerationShop/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 100
+columns = 2
+
+[node name="TitleText" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/RegenerationShop/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
 text = "Regeneration"
-metadata/_edit_use_anchors_ = true
 
-[node name="Bonus" type="Label" parent="CanvasLayer/Shop/Regeneration"]
-offset_left = 19.113281
-offset_top = 506.3976
-offset_right = 160.11328
-offset_bottom = 529.39764
-text = "Bonus Regen : 0"
-metadata/_edit_use_anchors_ = true
+[node name="Level" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/RegenerationShop/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "LV.0"
+horizontal_alignment = 2
 
-[connection signal="pressed" from="CanvasLayer/Play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="CanvasLayer/Play" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/Shop/Damage/Damage" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/Shop/Damage/Damage" to="." method="_on_damage_pressed"]
-[connection signal="pressed" from="CanvasLayer/Shop/Health/Health" to="." method="_on_health_pressed"]
-[connection signal="pressed" from="CanvasLayer/Shop/Radius/Radius" to="." method="_on_radius_pressed"]
-[connection signal="pressed" from="CanvasLayer/Shop/Cadence/Cadence" to="." method="_on_cadence_pressed"]
-[connection signal="pressed" from="CanvasLayer/Shop/Coins/Coins" to="." method="_on_coins_pressed"]
-[connection signal="pressed" from="CanvasLayer/Shop/Ammo/Ammo" to="." method="_on_ammo_pressed"]
-[connection signal="pressed" from="CanvasLayer/Shop/Regeneration/Regeneration" to="." method="_on_regeneration_pressed"]
+[node name="PriceText" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/RegenerationShop/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Price"
+
+[node name="Price" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/RegenerationShop/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "000"
+horizontal_alignment = 2
+
+[node name="BonusText" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/RegenerationShop/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Bonus"
+
+[node name="Bonus" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/RegenerationShop/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "000"
+horizontal_alignment = 2
+
+[node name="RegenerationButton" type="Button" parent="VBoxContainer/ScrollContainer/GridContainer/RegenerationShop/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Click here"
+
+[node name="Control" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainerButton" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="PlayButton" type="Button" parent="VBoxContainer/MarginContainerButton"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Play"
+
+[connection signal="pressed" from="VBoxContainer/ScrollContainer/GridContainer/DamageShop/MarginContainer/VBoxContainer/DamageButton" to="." method="_on_damage_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ScrollContainer/GridContainer/HealthShop/MarginContainer/VBoxContainer/HealthButton" to="." method="_on_health_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ScrollContainer/GridContainer/RadiusShop/MarginContainer/VBoxContainer/RadiusButton" to="." method="_on_radius_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ScrollContainer/GridContainer/CadenceShop/MarginContainer/VBoxContainer/CadenceButton" to="." method="_on_cadence_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ScrollContainer/GridContainer/CoinShop/MarginContainer/VBoxContainer/CoinButton" to="." method="_on_coin_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ScrollContainer/GridContainer/BulletShop/MarginContainer/VBoxContainer/BulletButton" to="." method="_on_bullet_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ScrollContainer/GridContainer/RegenerationShop/MarginContainer/VBoxContainer/RegenerationButton" to="." method="_on_regeneration_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/MarginContainerButton/PlayButton" to="." method="_on_play_button_pressed"]
