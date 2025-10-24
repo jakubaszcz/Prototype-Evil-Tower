@@ -9,14 +9,8 @@ extends Node
 @onready var health_bar : Label = $HealthBar
 
 @onready var scale_button: Button = $ScaleButton
-@onready var speed_scale: Array[float] = [
-	1.0,
-	1.5,
-	2.5,
-	3.5
-]
 
-var current_speed_index : int = 1
+var current_speed_index : int = Global.gameplay_time
 
 # --- SHOP CONFIGURATION ---
 
@@ -59,8 +53,10 @@ var shop_cadence_price : int = 15
 @onready var shop_cadence_ability_label : Label = $CadenceContainer/Ability
 
 func _ready():
+	
 	wave_reward_canvas.visible = false
-	scale_button.text = "x" + str(speed_scale[current_speed_index])
+	scale_button.text = "x" + str(Global.gameplay_times_array[Global.gameplay_time])
+	Engine.time_scale = Global.gameplay_times_array[Global.gameplay_time]
 	var wave_manager = get_node("/root/Game/Components/Spawn/WaveManager")
 	wave_manager.connect("wave_reward", Callable(self, "_on_wave_reward"))
 
@@ -156,13 +152,13 @@ func _update_coins():
 
 func _on_scale_button_pressed() -> void:
 	current_speed_index += 1
-	if current_speed_index >= speed_scale.size():
+	if current_speed_index >= Global.gameplay_times_array.size():
 		current_speed_index = 0  # revient à la première vitesse
 
 	# applique la nouvelle vitesse
-	Engine.time_scale = speed_scale[current_speed_index]
+	Engine.time_scale = Global.gameplay_times_array[current_speed_index]
 
 	# met à jour le texte du bouton
-	scale_button.text = "x" + str(speed_scale[current_speed_index])
+	scale_button.text = "x" + str(Global.gameplay_times_array[current_speed_index])
 
 	print("⏩ Vitesse du jeu :", Engine.time_scale)

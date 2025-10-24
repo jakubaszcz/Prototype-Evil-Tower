@@ -41,6 +41,9 @@ theme_override_constants/margin_bottom = 5
 layout_mode = 2
 text = "000"
 
+[node name="Control" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+
 [node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 400)
 layout_mode = 2
@@ -75,7 +78,7 @@ columns = 2
 
 [node name="TitleText" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/DamageShop/MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
-text = "Title"
+text = "Damage"
 
 [node name="Level" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/DamageShop/MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
@@ -405,9 +408,6 @@ horizontal_alignment = 2
 layout_mode = 2
 text = "Click here"
 
-[node name="Control" type="Control" parent="VBoxContainer"]
-layout_mode = 2
-
 [node name="MarginContainerButton" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -415,7 +415,17 @@ theme_override_constants/margin_left = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="PlayButton" type="Button" parent="VBoxContainer/MarginContainerButton"]
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/MarginContainerButton"]
+layout_mode = 2
+columns = 2
+
+[node name="TimeButton" type="Button" parent="VBoxContainer/MarginContainerButton/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "x0.0"
+
+[node name="PlayButton" type="Button" parent="VBoxContainer/MarginContainerButton/GridContainer"]
+custom_minimum_size = Vector2(1000, 0)
 layout_mode = 2
 size_flags_vertical = 3
 text = "Play"
@@ -427,4 +437,5 @@ text = "Play"
 [connection signal="pressed" from="VBoxContainer/ScrollContainer/GridContainer/CoinShop/MarginContainer/VBoxContainer/CoinButton" to="." method="_on_coin_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/ScrollContainer/GridContainer/BulletShop/MarginContainer/VBoxContainer/BulletButton" to="." method="_on_bullet_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/ScrollContainer/GridContainer/RegenerationShop/MarginContainer/VBoxContainer/RegenerationButton" to="." method="_on_regeneration_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/MarginContainerButton/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/MarginContainerButton/GridContainer/TimeButton" to="." method="_on_time_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/MarginContainerButton/GridContainer/PlayButton" to="." method="_on_play_button_pressed"]

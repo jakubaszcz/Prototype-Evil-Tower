@@ -73,10 +73,14 @@ extends Control
 @onready var regeneration_shop_price_label : Label = $VBoxContainer/ScrollContainer/GridContainer/RegenerationShop/MarginContainer/VBoxContainer/GridContainer/Price
 @onready var regeneration_shop_bonus_label : Label = $VBoxContainer/ScrollContainer/GridContainer/RegenerationShop/MarginContainer/VBoxContainer/GridContainer/Bonus
 
+@onready var gameplay_time_button = $VBoxContainer/MarginContainerButton/GridContainer/TimeButton
+
 func _ready() -> void:
 	Global.load_progression()
 	
 	load_gems()
+	
+	load_time()
 	
 	load_damage_shop()
 	load_health_shop()
@@ -88,6 +92,9 @@ func _ready() -> void:
 
 func save_progression():
 	Global.save_progression()
+
+func load_time():
+	gameplay_time_button.text = "x" + str(Global.gameplay_times_array[Global.gameplay_time])
 
 func load_gems():
 	gems_shop_label.text = str(Global.sapphire) + " Sapphire"
@@ -263,3 +270,14 @@ func _on_regeneration_button_pressed() -> void:
 
 func _on_play_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://Components/Scenes/Game.tscn")
+
+
+func _on_time_button_pressed() -> void:
+	
+	Global.gameplay_time += 1
+	if Global.gameplay_time >= Global.gameplay_times_array.size():
+		Global.gameplay_time = 0
+
+	load_time()
+	
+	save_progression()

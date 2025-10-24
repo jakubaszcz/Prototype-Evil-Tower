@@ -12,6 +12,15 @@ var bonus_coin : int = 0
 var bonus_bullet : int = 0
 var bonus_regeneration : float = 0.0
 
+var gameplay_time : int = 0
+
+@onready var gameplay_times_array : Array[float] = [
+	1.0,
+	1.5,
+	2.5,
+	3.5
+]
+
 
 var bonus_damage_level : int = 1
 var bonus_health_level : int = 1
@@ -32,6 +41,7 @@ func load_progression():
 		bonus_coin        = config.get_value("bonus", "coin", 0)
 		bonus_bullet = config.get_value("bonus", "bullet", 0)
 		bonus_regeneration = config.get_value("bonus", "regeneration", 0)
+		
 		sapphire   = config.get_value("shop", "sapphire", 0)
 		bonus_damage_level = config.get_value("shop", "damage_level", 1)
 		bonus_health_level = config.get_value("shop", "health_level", 1)
@@ -39,7 +49,9 @@ func load_progression():
 		bonus_cadence_level = config.get_value("shop", "cadence_level", 1)
 		bonus_coin_level = config.get_value("shop", "coin_level", 1)
 		bonus_bullet_level = config.get_value("shop", "bullet_level", 1)
-		bonus_regeneration_level = config.get_value("shop", "regeneration_level", 1)
+		bonus_regeneration_level = config.get_value("shop", "regeneration_level", 0)
+		
+		gameplay_time = config.get_value("gameplay", "time", 1.0)
 
 func save_progression():
 	var config = ConfigFile.new()
@@ -50,6 +62,7 @@ func save_progression():
 	config.set_value("bonus", "coin", bonus_coin)
 	config.set_value("bonus", "bullet", bonus_bullet)
 	config.set_value("bonus", "regeneration", bonus_regeneration)
+	
 	config.set_value("shop", "sapphire", sapphire)
 	config.set_value("shop", "damage_level", bonus_damage_level)
 	config.set_value("shop", "radius_level", bonus_radius_level)
@@ -58,4 +71,7 @@ func save_progression():
 	config.set_value("shop", "coin_level", bonus_coin_level)
 	config.set_value("shop", "bullet_level", bonus_bullet_level)
 	config.set_value("shop", "regeneration_level", bonus_regeneration_level)
+	
+	config.set_value("gameplay", "time", gameplay_time)
+	
 	config.save(progression_path)
