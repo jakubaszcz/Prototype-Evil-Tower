@@ -39,27 +39,22 @@ func _load_waves_from_file(path: String) -> Array:
 		var text = file.get_as_text()
 		var data = JSON.parse_string(text)
 		if typeof(data) == TYPE_ARRAY:
-			print("✅ Loaded", data.size(), "waves.")
 			return data
-	print("❌ Failed to load wave data from", path)
 	return []
 
 
 func _on_wave_timer_timeout() -> void:
 	if should_stop or wave_in_progress or waves_completed:
 		return
-	print("⏰ Wave timer timeout (wave:", Game.current_wave, ")")
 	_start_next_wave()
 
 
 func _start_next_wave() -> void:
 	if wave_in_progress or waves_completed or should_stop:
-		print("🚫 Wave start blocked: already in progress, completed, or stopped.")
 		return
 
 	wave_timer.stop()
 	enemies_alive = 0
-	print("🚀 Starting Wave:", Game.current_wave)
 
 	if Game.current_wave >= waves.size():
 		_finish_game()
@@ -111,7 +106,6 @@ func _on_enemy_died(enemy) -> void:
 		return
 
 	enemies_alive = max(enemies_alive - 1, 0)
-	print("💀 Enemy died. Remaining:", enemies_alive)
 
 
 func wait_until_wave_cleared() -> void:
@@ -122,7 +116,6 @@ func _on_wave_cleared() -> void:
 	if not is_inside_tree():
 		return
 		
-	print("🎉 Wave", Game.current_wave, "cleared!")
 	wave_in_progress = false
 	emit_signal("wave_reward", current_reward)
 	Game.current_wave += 1
@@ -137,9 +130,7 @@ func _finish_game() -> void:
 		return
 	waves_completed = true
 	should_stop = true
-	Game.is_game_over = true
-	print("🏁 All waves completed! Game Over: WIN")
-	Game.end_game(Game.GameOverReason.ALL_WAVES_COMPLETED)
+	GameSignal.emit_signal("s_game_over", "waves_completed")
 	_cleanup_enemies()
 
 

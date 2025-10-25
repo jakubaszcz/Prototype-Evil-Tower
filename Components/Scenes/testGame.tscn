@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://m02mixgtc48i"]
+[gd_scene load_steps=7 format=3 uid="uid://m02mixgtc48i"]
 
 [ext_resource type="PackedScene" uid="uid://cq0st15no33wp" path="res://Components/Entities/Player.tscn" id="1_x0ksp"]
 [ext_resource type="Script" uid="uid://dmeqx8maga4oo" path="res://Scripts/Scenes/TestGame.gd" id="1_xw4yt"]
 [ext_resource type="Script" uid="uid://bj8em8c3wqlc6" path="res://Scripts/Game.gd" id="2_8kjg6"]
+[ext_resource type="Script" uid="uid://tpmyxku1ufhx" path="res://Scripts/GameContainerInterface.gd" id="2_ormr1"]
 [ext_resource type="PackedScene" uid="uid://ootpfvisx2mm" path="res://Components/Entities/WaveManager.tscn" id="3_xw4yt"]
+[ext_resource type="Script" uid="uid://ddlwasrvo5lfi" path="res://Scripts/GameShopInterface.gd" id="5_3wt4h"]
 
 [node name="TestGame" type="Control"]
 layout_mode = 3
@@ -35,7 +37,7 @@ layout_mode = 2
 [node name="Container" type="Control" parent="MarginContainer/VBoxContainer/GridContainer"]
 custom_minimum_size = Vector2(500, 500)
 layout_mode = 2
-script = ExtResource("2_8kjg6")
+script = ExtResource("2_ormr1")
 
 [node name="Player" parent="MarginContainer/VBoxContainer/GridContainer/Container" groups=["player"] instance=ExtResource("1_x0ksp")]
 position = Vector2(250, 250)
@@ -43,14 +45,75 @@ position = Vector2(250, 250)
 [node name="WaveManager" parent="MarginContainer/VBoxContainer/GridContainer/Container" node_paths=PackedStringArray("player") instance=ExtResource("3_xw4yt")]
 player = NodePath("../Player")
 
+[node name="GameContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/GridContainer/Container"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/GridContainer/Container/GameContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/GridContainer/Container/GameContainer/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="GameOverLabel" type="Label" parent="MarginContainer/VBoxContainer/GridContainer/Container/GameContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "Game Over Message"
+horizontal_alignment = 1
+
+[node name="RewardLabel" type="Label" parent="MarginContainer/VBoxContainer/GridContainer/Container/GameContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Reward Message"
+horizontal_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/GridContainer/Container/GameContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="RestartButton" type="Button" parent="MarginContainer/VBoxContainer/GridContainer/Container/GameContainer/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Restart"
+
+[node name="MenuButton" type="Button" parent="MarginContainer/VBoxContainer/GridContainer/Container/GameContainer/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Menu"
+
+[node name="QuitButton" type="Button" parent="MarginContainer/VBoxContainer/GridContainer/Container/GameContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Quit"
+
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="CoinsPanel" type="PanelContainer" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/CoinsPanel"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "00000 Coins"
+horizontal_alignment = 1
 
 [node name="ShopPanel" type="PanelContainer" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 450)
 layout_mode = 2
 size_flags_vertical = 3
+script = ExtResource("5_3wt4h")
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel"]
 layout_mode = 2
@@ -121,153 +184,153 @@ horizontal_alignment = 2
 layout_mode = 2
 text = "Click here"
 
-[node name="DamageShop2" type="PanelContainer" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer"]
+[node name="HealthShop" type="PanelContainer" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer"]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/DamageShop2"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/HealthShop"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/DamageShop2/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/HealthShop/MarginContainer"]
 layout_mode = 2
 
-[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/DamageShop2/MarginContainer/VBoxContainer"]
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/HealthShop/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/h_separation = 75
 columns = 2
 
-[node name="TitleText" type="Label" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/DamageShop2/MarginContainer/VBoxContainer/GridContainer"]
+[node name="TitleText" type="Label" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/HealthShop/MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
-text = "Damage"
+text = "Health"
 
-[node name="Level" type="Label" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/DamageShop2/MarginContainer/VBoxContainer/GridContainer"]
+[node name="Level" type="Label" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/HealthShop/MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 10
 text = "LV.0"
 horizontal_alignment = 2
 
-[node name="PriceText" type="Label" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/DamageShop2/MarginContainer/VBoxContainer/GridContainer"]
+[node name="PriceText" type="Label" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/HealthShop/MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 text = "Price"
 
-[node name="Price" type="Label" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/DamageShop2/MarginContainer/VBoxContainer/GridContainer"]
+[node name="Price" type="Label" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/HealthShop/MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 text = "000"
 horizontal_alignment = 2
 
-[node name="BonusText" type="Label" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/DamageShop2/MarginContainer/VBoxContainer/GridContainer"]
+[node name="BonusText" type="Label" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/HealthShop/MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 text = "Bonus"
 
-[node name="Bonus" type="Label" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/DamageShop2/MarginContainer/VBoxContainer/GridContainer"]
+[node name="Bonus" type="Label" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/HealthShop/MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 text = "000"
 horizontal_alignment = 2
 
-[node name="DamageButton" type="Button" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/DamageShop2/MarginContainer/VBoxContainer"]
+[node name="HealthButton" type="Button" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/HealthShop/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Click here"
 
-[node name="DamageShop3" type="PanelContainer" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer"]
+[node name="RadiusShop" type="PanelContainer" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer"]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/DamageShop3"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/RadiusShop"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/DamageShop3/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/RadiusShop/MarginContainer"]
 layout_mode = 2
 
-[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/DamageShop3/MarginContainer/VBoxContainer"]
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/RadiusShop/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/h_separation = 75
 columns = 2
 
-[node name="TitleText" type="Label" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/DamageShop3/MarginContainer/VBoxContainer/GridContainer"]
+[node name="TitleText" type="Label" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/RadiusShop/MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
-text = "Damage"
+text = "Radius"
 
-[node name="Level" type="Label" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/DamageShop3/MarginContainer/VBoxContainer/GridContainer"]
+[node name="Level" type="Label" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/RadiusShop/MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 10
 text = "LV.0"
 horizontal_alignment = 2
 
-[node name="PriceText" type="Label" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/DamageShop3/MarginContainer/VBoxContainer/GridContainer"]
+[node name="PriceText" type="Label" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/RadiusShop/MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 text = "Price"
 
-[node name="Price" type="Label" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/DamageShop3/MarginContainer/VBoxContainer/GridContainer"]
+[node name="Price" type="Label" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/RadiusShop/MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 text = "000"
 horizontal_alignment = 2
 
-[node name="BonusText" type="Label" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/DamageShop3/MarginContainer/VBoxContainer/GridContainer"]
+[node name="BonusText" type="Label" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/RadiusShop/MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 text = "Bonus"
 
-[node name="Bonus" type="Label" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/DamageShop3/MarginContainer/VBoxContainer/GridContainer"]
+[node name="Bonus" type="Label" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/RadiusShop/MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 text = "000"
 horizontal_alignment = 2
 
-[node name="DamageButton" type="Button" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/DamageShop3/MarginContainer/VBoxContainer"]
+[node name="RadiusButton" type="Button" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/RadiusShop/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Click here"
 
-[node name="DamageShop4" type="PanelContainer" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer"]
+[node name="CadenceShop" type="PanelContainer" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer"]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/DamageShop4"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/CadenceShop"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/DamageShop4/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/CadenceShop/MarginContainer"]
 layout_mode = 2
 
-[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/DamageShop4/MarginContainer/VBoxContainer"]
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/CadenceShop/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/h_separation = 75
 columns = 2
 
-[node name="TitleText" type="Label" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/DamageShop4/MarginContainer/VBoxContainer/GridContainer"]
+[node name="TitleText" type="Label" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/CadenceShop/MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
-text = "Damage"
+text = "Cadence"
 
-[node name="Level" type="Label" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/DamageShop4/MarginContainer/VBoxContainer/GridContainer"]
+[node name="Level" type="Label" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/CadenceShop/MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 10
 text = "LV.0"
 horizontal_alignment = 2
 
-[node name="PriceText" type="Label" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/DamageShop4/MarginContainer/VBoxContainer/GridContainer"]
+[node name="PriceText" type="Label" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/CadenceShop/MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 text = "Price"
 
-[node name="Price" type="Label" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/DamageShop4/MarginContainer/VBoxContainer/GridContainer"]
+[node name="Price" type="Label" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/CadenceShop/MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 text = "000"
 horizontal_alignment = 2
 
-[node name="BonusText" type="Label" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/DamageShop4/MarginContainer/VBoxContainer/GridContainer"]
+[node name="BonusText" type="Label" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/CadenceShop/MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 text = "Bonus"
 
-[node name="Bonus" type="Label" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/DamageShop4/MarginContainer/VBoxContainer/GridContainer"]
+[node name="Bonus" type="Label" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/CadenceShop/MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 text = "000"
 horizontal_alignment = 2
 
-[node name="DamageButton" type="Button" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/DamageShop4/MarginContainer/VBoxContainer"]
+[node name="CadenceButton" type="Button" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/CadenceShop/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Click here"
 
@@ -346,3 +409,14 @@ text = "Regeneration : 000"
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 text = "x0.0"
+
+[node name="Game" type="Node" parent="."]
+script = ExtResource("2_8kjg6")
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/Container/GameContainer/MarginContainer/VBoxContainer/GridContainer/RestartButton" to="MarginContainer/VBoxContainer/GridContainer/Container" method="_on_restart_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/Container/GameContainer/MarginContainer/VBoxContainer/GridContainer/MenuButton" to="MarginContainer/VBoxContainer/GridContainer/Container" method="_on_menu_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/Container/GameContainer/MarginContainer/VBoxContainer/QuitButton" to="MarginContainer/VBoxContainer/GridContainer/Container" method="_on_quit_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/DamageShop/MarginContainer/VBoxContainer/DamageButton" to="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel" method="_on_damage_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/HealthShop/MarginContainer/VBoxContainer/HealthButton" to="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel" method="_on_health_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/RadiusShop/MarginContainer/VBoxContainer/RadiusButton" to="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel" method="_on_radius_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/CadenceShop/MarginContainer/VBoxContainer/CadenceButton" to="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel" method="_on_cadence_button_pressed"]

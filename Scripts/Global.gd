@@ -8,7 +8,7 @@ var bonus_damage : int = 0.0
 var bonus_radius : float = 0.0
 var bonus_health : int = 0.0
 var bonus_cadence : float = 0.0
-var bonus_coin : int = 0
+var bonus_coin : int = 100
 var bonus_bullet : int = 0
 var bonus_regeneration : float = 0.0
 

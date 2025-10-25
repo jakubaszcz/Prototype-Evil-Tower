@@ -12,7 +12,11 @@ extends Control
 @onready var statistic_bullet : Label = $MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainerTwo/BulletLabel
 @onready var statistic_regeneration : Label = $MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainerTwo/RegenerationLabel
 
+# Coins Zone
+@onready var coins_label : Label = $MarginContainer/VBoxContainer/GridContainer/VBoxContainer/CoinsPanel/Label
+
 func _physics_process(delta: float) -> void:
+	load_coins()
 	load_informations()
 	load_statistics()
 	
@@ -27,3 +31,6 @@ func load_statistics():
 	statisitic_cadence.text = "Cadence : " + str(Game.game_cadence)
 	statistic_bullet.text = "Bullet : " + str(Game.game_bullet)
 	statistic_regeneration.text = "Regeneration : " + str(Game.game_regeneration)
+
+func load_coins():
+	coins_label.text = str(Game.game_coin) + " Coins"

@@ -31,11 +31,10 @@ static var game_bullet : int = 1
 static var game_regeneration : float = 3.0
 
 static func _game_over(reason: GameOverReason):
+	Engine.time_scale = Global.gameplay_time
+	
 	if is_game_over:
 		Game.sapphire = (int(survival_time) / 10) + ((killed_enemy + (current_wave + 1)) / 2)
-		print("Survival Time: " + str(int(survival_time)))
-		print("Enemi Killed: " + str(killed_enemy))
-		print("Current Wave: " + str(current_wave))
 		if reason == GameOverReason.ALL_WAVES_COMPLETED:
 			Game.sapphire *= 1.25
 		Global.sapphire += sapphire
@@ -46,7 +45,6 @@ func _add_coins(amount : int):
 	game_coin += amount
 
 func _reset_data():
-	print("lol")
 	
 	is_game_over = false
 	survival_time = 0.0

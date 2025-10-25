@@ -160,5 +160,3 @@ func _on_scale_button_pressed() -> void:
 
 	# met à jour le texte du bouton
 	scale_button.text = "x" + str(Global.gameplay_times_array[current_speed_index])
-
-	print("⏩ Vitesse du jeu :", Engine.time_scale)
