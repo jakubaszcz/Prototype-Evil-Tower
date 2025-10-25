@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://m02mixgtc48i"]
+[gd_scene load_steps=8 format=3 uid="uid://m02mixgtc48i"]
 
 [ext_resource type="PackedScene" uid="uid://cq0st15no33wp" path="res://Components/Entities/Player.tscn" id="1_x0ksp"]
 [ext_resource type="Script" uid="uid://dmeqx8maga4oo" path="res://Scripts/Scenes/TestGame.gd" id="1_xw4yt"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://tpmyxku1ufhx" path="res://Scripts/GameContainerInterface.gd" id="2_ormr1"]
 [ext_resource type="PackedScene" uid="uid://ootpfvisx2mm" path="res://Components/Entities/WaveManager.tscn" id="3_xw4yt"]
 [ext_resource type="Script" uid="uid://ddlwasrvo5lfi" path="res://Scripts/GameShopInterface.gd" id="5_3wt4h"]
+[ext_resource type="Script" uid="uid://dblcar0u4ojce" path="res://Scripts/GameSpeedInterface.gd" id="6_qhxxm"]
 
 [node name="TestGame" type="Control"]
 layout_mode = 3
@@ -354,6 +355,7 @@ text = "Curr. Wave : 0"
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+script = ExtResource("6_qhxxm")
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -405,7 +407,7 @@ text = "Bullet : 000"
 layout_mode = 2
 text = "Regeneration : 000"
 
-[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="SpeedButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 text = "x0.0"
@@ -420,3 +422,4 @@ script = ExtResource("2_8kjg6")
 [connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/HealthShop/MarginContainer/VBoxContainer/HealthButton" to="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel" method="_on_health_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/RadiusShop/MarginContainer/VBoxContainer/RadiusButton" to="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel" method="_on_radius_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/CadenceShop/MarginContainer/VBoxContainer/CadenceButton" to="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel" method="_on_cadence_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/SpeedButton" to="MarginContainer/VBoxContainer/HBoxContainer" method="_on_speed_button_pressed"]
