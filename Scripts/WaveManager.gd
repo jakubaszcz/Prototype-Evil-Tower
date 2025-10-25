@@ -117,7 +117,7 @@ func _on_wave_cleared() -> void:
 		return
 		
 	wave_in_progress = false
-	emit_signal("wave_reward", current_reward)
+	GameSignal.emit_signal("s_wave_completed", current_reward)
 	Game.current_wave += 1
 	if Game.current_wave < waves.size():
 		wave_timer.start(time_between_waves)

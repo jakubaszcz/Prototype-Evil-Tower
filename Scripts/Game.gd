@@ -22,23 +22,13 @@ static var current_wave : int = 0
 
 # Start Coin
 static var game_damage : float = 5.0
-static var game_health : float = 22.0
+static var game_health : float = 26.0
 static var game_current_health : float = game_health
 static var game_radius : float = 1.0
 static var game_cadence : float = 5.0
 static var game_coin : int = 0
 static var game_bullet : int = 1
 static var game_regeneration : float = 3.0
-
-static func _game_over(reason: GameOverReason):
-	Engine.time_scale = Global.gameplay_time
-	
-	if is_game_over:
-		Game.sapphire = (int(survival_time) / 10) + ((killed_enemy + (current_wave + 1)) / 2)
-		if reason == GameOverReason.ALL_WAVES_COMPLETED:
-			Game.sapphire *= 1.25
-		Global.sapphire += sapphire
-		Global.save_progression()
 
 
 func _add_coins(amount : int): 
@@ -54,7 +44,7 @@ func _reset_data():
 	
 	
 	game_coin = 0
-	game_health = 22
+	game_health = 26
 	game_radius = 1.2
 	game_cadence = 3.5
 	game_damage = 5.0
@@ -73,17 +63,23 @@ func _reset_data():
 
 func _ready() -> void:
 	Global.load_progression()
-	game_over.connect(_game_over)
-	var wave_manager = get_node("/root/TestGame/MarginContainer/VBoxContainer/GridContainer/Container/WaveManager")
-	wave_manager.connect("wave_reward", Callable(self, "_on_wave_reward"))
+	GameSignal.connect("s_game_over", Callable(self, "_on_game_over"))
+	GameSignal.connect("s_wave_completed", Callable(self, "_on_wave_completed"))
 	_reset_data()
 	
-func _on_wave_reward(reward):
+func _on_wave_completed(reward):
 	_add_coins(reward)
 
 
-static func end_game(reason: GameOverReason) -> void:
+func _on_game_over(reason) -> void:
+	print("Called")
 	if is_game_over:
-		_game_over(reason)
-		return
-	is_game_over = true
+		print("Game over")
+		Game.sapphire = (int(survival_time) / 10) + ((killed_enemy + (current_wave + 1)) / 2)
+		if reason == "waves_completed":
+			Game.sapphire *= 1.25
+		print("Saphire Game : " + str(Game.sapphire))
+		Global.sapphire += sapphire
+		Global.save_progression()
+	else:
+		print("No game over")

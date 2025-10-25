@@ -64,9 +64,8 @@ func _shoot(body: Node2D) -> void:
 	
 func _take_damage(damage : float):
 	if ((Game.game_current_health - damage) <= 0):
-		GameSignal.emit_signal("s_game_over", "player_died")
 		Game.is_game_over = true
-		Game.end_game(Game.GameOverReason.PLAYER_DEAD)
+		GameSignal.emit_signal("s_game_over", "player_died")
 		queue_free()
 	else:
 		Game.game_current_health -= damage
