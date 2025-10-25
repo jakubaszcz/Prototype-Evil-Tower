@@ -22,8 +22,8 @@ static var current_wave : int = 0
 
 # Start Coin
 static var game_damage : float = 5.0
-static var game_health : float = 22
-static var game_current_health : float = 0
+static var game_health : float = 22.0
+static var game_current_health : float = game_health
 static var game_radius : float = 1.0
 static var game_cadence : float = 5.0
 static var game_coin : int = 0
@@ -46,6 +46,8 @@ func _add_coins(amount : int):
 	game_coin += amount
 
 func _reset_data():
+	print("lol")
+	
 	is_game_over = false
 	survival_time = 0.0
 	killed_enemy = 0
@@ -70,10 +72,11 @@ func _reset_data():
 	game_bullet = game_bullet + Global.bonus_bullet
 	game_regeneration = game_regeneration - Global.bonus_regeneration
 
+
 func _ready() -> void:
 	Global.load_progression()
 	game_over.connect(_game_over)
-	var wave_manager = get_node("/root/Game/Components/Spawn/WaveManager")
+	var wave_manager = get_node("/root/TestGame/MarginContainer/VBoxContainer/GridContainer/Container/WaveManager")
 	wave_manager.connect("wave_reward", Callable(self, "_on_wave_reward"))
 	_reset_data()
 	

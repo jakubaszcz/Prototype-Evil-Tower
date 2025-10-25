@@ -63,6 +63,7 @@ func _shoot(body: Node2D) -> void:
 	get_parent().call_deferred("add_child", projectile)
 	
 func _take_damage(damage : float):
+	print(str(damage))
 	if ((Game.game_current_health - damage) <= 0):
 		Game.is_game_over = true
 		Game.end_game(Game.GameOverReason.PLAYER_DEAD)

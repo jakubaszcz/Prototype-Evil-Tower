@@ -18,7 +18,6 @@ var should_stop: bool = false
 
 
 func _ready() -> void:
-	print("🔁 WaveManager ready, current_wave before reset:", Game.current_wave)
 
 	Game.current_wave = 0
 
@@ -153,7 +152,8 @@ func _cleanup_enemies() -> void:
 
 
 func get_spawn_position() -> Vector2:
-	var rect = get_viewport_rect()
+	var rect = $".."
+	#var rect = $".."
 	var margin = 5
 	var side = randi() % 4
 

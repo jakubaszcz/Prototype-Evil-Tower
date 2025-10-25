@@ -34,6 +34,8 @@ func _physics_process(_delta: float) -> void:
 				cooldown.start()
 				can_attack = false
 				_attack(players, attack)
+		else:
+			print("Caca")
 
 			
 	if player_target and is_instance_valid(player_target):
@@ -43,7 +45,10 @@ func _physics_process(_delta: float) -> void:
 
 func _attack(target : Node2D, damage: float):
 	if target.is_in_group("player"):
+		print("Attacked")
 		target._take_damage(damage)
+	else:
+		print("Dodge")
 
 func _set_target(target: CharacterBody2D) -> void:
 	player_target = target
