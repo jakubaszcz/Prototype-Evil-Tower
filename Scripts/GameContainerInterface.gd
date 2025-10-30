@@ -1,8 +1,8 @@
 extends Control
 
 # Visible
-@onready var player_interface = $Player
-@onready var wave_interface = $WaveManager
+@onready var player_interface = $SubViewportContainer/SubViewport/Player
+@onready var wave_interface = $SubViewportContainer/SubViewport/WaveManager
 @onready var panel_interface = $GameContainer
 
 # Panel
@@ -15,7 +15,7 @@ func _ready() -> void:
 	reset()
 	GameSignal.connect("s_game_over", Callable(self, "_on_game_over"))
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if is_over:
 		reward_label.text = "You won " + str(Game.sapphire) + " Sapphire !"
 
