@@ -1,11 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://ootpfvisx2mm"]
+[gd_scene load_steps=4 format=3 uid="uid://ootpfvisx2mm"]
 
 [ext_resource type="Script" uid="uid://h3a4yjuu0mj0" path="res://Scripts/WaveManager.gd" id="1_w1asb"]
-[ext_resource type="PackedScene" uid="uid://7qrwl6nlntii" path="res://Components/Entities/Enemies/Type-1.tscn" id="2_0nc3a"]
+[ext_resource type="PackedScene" uid="uid://7qrwl6nlntii" path="res://Components/Entities/Enemies/Warrior.tscn" id="2_0nc3a"]
+[ext_resource type="PackedScene" uid="uid://b0ssd5hxoetp1" path="res://Components/Entities/Enemies/Boss/Scarlet.tscn" id="4_0nc3a"]
 
 [node name="WaveManager" type="Node2D"]
 script = ExtResource("1_w1asb")
 enemies = Array[PackedScene]([ExtResource("2_0nc3a")])
+mini_bosses = Array[PackedScene]([ExtResource("4_0nc3a")])
+bosses = Array[PackedScene]([ExtResource("4_0nc3a")])
 
 [node name="WaveTimer" type="Timer" parent="."]
 one_shot = true

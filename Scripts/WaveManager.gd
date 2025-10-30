@@ -7,9 +7,19 @@ signal wave_reward(reward)
 @export var spawn_cadence: float = 0.5                # ⏱ délai entre chaque ennemi
 @export var player: CharacterBody2D
 @export var enemies: Array[PackedScene]
+@export var mini_bosses : Array[PackedScene]
+@export var bosses : Array[PackedScene]
 
 var enemy_map := {
 	"basic": 0
+}
+
+var mini_boss_map := {
+	"golem": 0
+}
+
+var boss_map := {
+	"scarlet": 0
 }
 
 var waves: Array = []
@@ -27,19 +37,17 @@ var enemy_count : int = 0
 var global_seed: int = 2875230357186581542
 var rng := RandomNumberGenerator.new()
 
-# ------------------------------------------------
-#  Génération d'une vague
-# ------------------------------------------------
+var min = 2
+var max = 5
+
 func generate_wave(wave_number:int) -> Array[Enemy]:
 	rng.seed = int(global_seed + wave_number)
-	
-	var min = 1
-	var max = 5
 	
 	if wave_number % 5 == 0:
 		min += 1
 	if wave_number % 10 == 0:
 		max += 3
+		
 	
 	var enemy_count = rng.randi_range(min, max)
 	var wave_data : Array[Enemy] = []
@@ -63,11 +71,29 @@ func generate_wave(wave_number:int) -> Array[Enemy]:
 		
 		wave_data.append(enemy)
 	
+	
+	if wave_number % 10 == 0:
+		var btypes_keys = boss_map.keys()
+		var boss_type = btypes_keys[rng.randi_range(0, btypes_keys.size() - 1)]
+		
+		var boss_scene_index = boss_map[boss_type]
+		var boss_scene = mini_bosses[boss_scene_index]
+		
+		var boss = boss_scene.instantiate() as Enemy
+		var b_scale := 1.0 + (float(wave_number) / 6.0) * 0.1
+		var b_attack_variation := rng.randf_range(0.8, 1.2)
+		var b_health_variation := rng.randf_range(0.8, 1.2)
+		var b_reward_variation := rng.randf_range(1.2, 1.7)
+		
+		boss._set_attack(boss._get_attack() * b_scale * b_attack_variation)
+		boss._set_health(boss._get_health() * b_scale * b_health_variation)
+		boss._set_reward(boss._get_reward() * b_scale * b_reward_variation)
+	
+		wave_data.append(boss)
+	
+	
 	return wave_data
 
-# ------------------------------------------------
-#  Initialisation
-# ------------------------------------------------
 func _ready() -> void:
 	reset()
 	Game.current_wave = 0
@@ -78,6 +104,8 @@ func reset() -> void:
 	is_wave_running = false
 	wave_in_progress = false
 	enemies_alive = 0
+	min = 2
+	max = 5
 
 func create_wave():
 	if is_wave_running: return
