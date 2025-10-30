@@ -1,7 +1,7 @@
 extends Camera2D
 
 @export var zoom_speed := 0.1
-@export var min_zoom := 0.5
+@export var min_zoom := 0.1
 @export var max_zoom := 2.0
 
 @onready var player := get_parent().get_node_or_null("Player")

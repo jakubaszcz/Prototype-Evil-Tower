@@ -154,12 +154,16 @@ func load_radius_shop():
 	default_radius_shop()
 
 	base_radius_price = int(round(base_radius_price * pow(base_radius_multiplier, Global.bonus_radius_level)))
-
-	radius_shop_level_label.text = "Lv." + str(Global.bonus_radius_level)
+	
+	if (Global.bonus_radius_level >= 50):
+		radius_shop_level_label.text = "Lv." + str(Global.bonus_radius_level) + "( Max )"
+	else:
+		radius_shop_level_label.text = "Lv." + str(Global.bonus_radius_level)
 	radius_shop_price_label.text = str(base_radius_price)
 	radius_shop_bonus_label.text = str(Global.bonus_radius)
 
 func _on_radius_button_pressed() -> void:
+	if (Global.bonus_radius_level >= 50): return
 	if Global.sapphire >= base_radius_price:
 		Global.bonus_radius_level += 1
 		Global.bonus_radius += base_radius_reward

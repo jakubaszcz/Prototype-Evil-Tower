@@ -1,10 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://ootpfvisx2mm"]
+[gd_scene load_steps=3 format=3 uid="uid://ootpfvisx2mm"]
 
 [ext_resource type="Script" uid="uid://h3a4yjuu0mj0" path="res://Scripts/WaveManager.gd" id="1_w1asb"]
+[ext_resource type="PackedScene" uid="uid://7qrwl6nlntii" path="res://Components/Entities/Enemies/Type-1.tscn" id="2_0nc3a"]
 
 [node name="WaveManager" type="Node2D"]
 script = ExtResource("1_w1asb")
-wave_file_path = "res://Data/Wave.json"
+enemies = Array[PackedScene]([ExtResource("2_0nc3a")])
 
 [node name="WaveTimer" type="Timer" parent="."]
 one_shot = true

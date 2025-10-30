@@ -48,6 +48,30 @@ func _attack(target : Node2D, damage: float):
 func _set_target(target: CharacterBody2D) -> void:
 	player_target = target
 
+func _set_attack(value: float) -> void:
+	attack = value
+	
+func _get_attack() -> int:
+	return attack
+	
+func _set_speed(value: float) -> void:
+	speed = value
+	
+func _get_speed() -> int:
+	return speed
+
+func _set_health(value: float) -> void:
+	health = value
+	
+func _get_health() -> int:
+	return health
+	
+func _set_reward(value: float) -> void:
+	recompense = value
+	
+func _get_reward() -> int:
+	return recompense
+
 func _take_damage(amount: int) -> void:
 	health -= amount
 	if progress_bar:
