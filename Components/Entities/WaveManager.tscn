@@ -1,13 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://ootpfvisx2mm"]
+[gd_scene load_steps=9 format=3 uid="uid://ootpfvisx2mm"]
 
 [ext_resource type="Script" uid="uid://h3a4yjuu0mj0" path="res://Scripts/WaveManager.gd" id="1_w1asb"]
 [ext_resource type="PackedScene" uid="uid://7qrwl6nlntii" path="res://Components/Entities/Enemies/Warrior.tscn" id="2_0nc3a"]
+[ext_resource type="PackedScene" uid="uid://bdcgo48f1mtjh" path="res://Components/Entities/Enemies/Mini-Boss/Golem.tscn" id="3_0nc3a"]
+[ext_resource type="PackedScene" uid="uid://btpldchpopeg0" path="res://Components/Entities/Enemies/Fool.tscn" id="3_6usn8"]
 [ext_resource type="PackedScene" uid="uid://b0ssd5hxoetp1" path="res://Components/Entities/Enemies/Boss/Scarlet.tscn" id="4_0nc3a"]
+[ext_resource type="PackedScene" uid="uid://g3q6iqd8pl6e" path="res://Components/Entities/Enemies/Nick.tscn" id="4_ynfmn"]
+[ext_resource type="PackedScene" uid="uid://c4uu4hfliyobb" path="res://Components/Entities/Enemies/Ninja.tscn" id="5_wpk1x"]
+[ext_resource type="PackedScene" uid="uid://o2ueehepuarg" path="res://Components/Entities/Enemies/lokhlass.tscn" id="6_ynfmn"]
 
 [node name="WaveManager" type="Node2D"]
 script = ExtResource("1_w1asb")
-enemies = Array[PackedScene]([ExtResource("2_0nc3a")])
-mini_bosses = Array[PackedScene]([ExtResource("4_0nc3a")])
+enemies = Array[PackedScene]([ExtResource("2_0nc3a"), ExtResource("3_6usn8"), ExtResource("4_ynfmn"), ExtResource("5_wpk1x"), ExtResource("6_ynfmn")])
+mini_bosses = Array[PackedScene]([ExtResource("3_0nc3a")])
 bosses = Array[PackedScene]([ExtResource("4_0nc3a")])
 
 [node name="WaveTimer" type="Timer" parent="."]

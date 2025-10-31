@@ -11,7 +11,11 @@ signal wave_reward(reward)
 @export var bosses : Array[PackedScene]
 
 var enemy_map := {
-	"basic": 0
+	"basic": 0,
+	"fool": 1,
+	"nick": 2,
+	"ninja": 3,
+	"lockhlass": 4,
 }
 
 var mini_boss_map := {
@@ -40,21 +44,30 @@ var rng := RandomNumberGenerator.new()
 var min = 2
 var max = 5
 
+var five_wave_count = 0
+var ten_wave_count = 0
+
+var enemy_range = 1
+
 func generate_wave(wave_number:int) -> Array[Enemy]:
 	rng.seed = int(global_seed + wave_number)
 	
 	if wave_number % 5 == 0:
+		five_wave_count += 1
 		min += 1
 	if wave_number % 10 == 0:
+		ten_wave_count += 1
 		max += 3
-		
+	
+	enemy_range = five_wave_count
+	if enemy_range >= enemy_map.size() - 1: enemy_range = enemy_map.size() - 1
 	
 	var enemy_count = rng.randi_range(min, max)
 	var wave_data : Array[Enemy] = []
 	
 	for i in range(enemy_count):
 		var types_keys = enemy_map.keys()
-		var enemy_type = types_keys[rng.randi_range(0, types_keys.size() - 1)]
+		var enemy_type = types_keys[rng.randi_range(0, enemy_range)]
 		
 		var enemy_scene_index = enemy_map[enemy_type]
 		var enemy_scene = enemies[enemy_scene_index]
@@ -70,14 +83,32 @@ func generate_wave(wave_number:int) -> Array[Enemy]:
 		enemy._set_reward(enemy._get_reward() * scale * reward_variation)
 		
 		wave_data.append(enemy)
+
+	if wave_number % 5 == 0:
+		var mbtypes_keys = mini_boss_map.keys()
+		var mini_boss_type = mbtypes_keys[rng.randi_range(0, mbtypes_keys.size() - 1)]
+		
+		var mini_boss_scene_index = mini_boss_map[mini_boss_type]
+		var mini_boss_scene = mini_bosses[mini_boss_scene_index]
+		
+		var mini_boss = mini_boss_scene.instantiate() as Enemy
+		var mb_scale := 1.0 + (float(wave_number) / 6.0) * 0.1
+		var mb_attack_variation := rng.randf_range(0.8, 1.2)
+		var mb_health_variation := rng.randf_range(0.8, 1.2)
+		var mb_reward_variation := rng.randf_range(1.2, 1.7)
+		
+		mini_boss._set_attack(mini_boss._get_attack() * mb_scale * mb_attack_variation)
+		mini_boss._set_health(mini_boss._get_health() * mb_scale * mb_health_variation)
+		mini_boss._set_reward(mini_boss._get_reward() * mb_scale * mb_reward_variation)
 	
+		wave_data.append(mini_boss)	
 	
 	if wave_number % 10 == 0:
 		var btypes_keys = boss_map.keys()
 		var boss_type = btypes_keys[rng.randi_range(0, btypes_keys.size() - 1)]
 		
 		var boss_scene_index = boss_map[boss_type]
-		var boss_scene = mini_bosses[boss_scene_index]
+		var boss_scene = bosses[boss_scene_index]
 		
 		var boss = boss_scene.instantiate() as Enemy
 		var b_scale := 1.0 + (float(wave_number) / 6.0) * 0.1
