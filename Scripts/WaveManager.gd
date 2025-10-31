@@ -45,9 +45,10 @@ var min = 2
 var max = 5
 
 var five_wave_count = 0
-var ten_wave_count = 0
 
 var enemy_range = 1
+
+var reward = 7
 
 func generate_wave(wave_number:int) -> Array[Enemy]:
 	rng.seed = int(global_seed + wave_number)
@@ -56,7 +57,6 @@ func generate_wave(wave_number:int) -> Array[Enemy]:
 		five_wave_count += 1
 		min += 1
 	if wave_number % 10 == 0:
-		ten_wave_count += 1
 		max += 3
 	
 	enemy_range = five_wave_count
@@ -73,14 +73,17 @@ func generate_wave(wave_number:int) -> Array[Enemy]:
 		var enemy_scene = enemies[enemy_scene_index]
 		var enemy = enemy_scene.instantiate() as Enemy
 		
-		var scale := 1.0 + (float(wave_number) / 10.0) * 0.1
-		var attack_variation := rng.randf_range(0.8, 1.2)
-		var health_variation := rng.randf_range(0.8, 1.2)
-		var reward_variation := rng.randf_range(1.2, 1.7)
-		
+		var base_growth := 1.015 + (float(wave_number) / 2000.0)
+		var scale := pow(base_growth, wave_number * 0.9)
+
+# 🎲 Variations aléatoires
+		var attack_variation := rng.randf_range(0.9, 1.1)
+		var health_variation := rng.randf_range(0.9, 1.1)
+		var reward_variation := rng.randf_range(1.1, 1.5)
+
 		enemy._set_attack(enemy._get_attack() * scale * attack_variation)
 		enemy._set_health(enemy._get_health() * scale * health_variation)
-		enemy._set_reward(enemy._get_reward() * scale * reward_variation)
+		enemy._set_reward(enemy._get_reward() * pow(scale, 0.6) * reward_variation)
 		
 		wave_data.append(enemy)
 
@@ -135,6 +138,8 @@ func reset() -> void:
 	is_wave_running = false
 	wave_in_progress = false
 	enemies_alive = 0
+	enemy_range = 1
+	reward = 7
 	min = 2
 	max = 5
 
@@ -171,10 +176,14 @@ func _on_enemy_died(enemy: Enemy) -> void:
 
 	if enemies_alive == 0:
 		print("✅ Wave", Game.current_wave, "cleared! Waiting", time_between_waves, "seconds...")
+		GameSignal.emit_signal("s_wave_completed", calculate_reward())
 		wave_timer.start(time_between_waves)
 		await wave_timer.timeout
 		is_wave_running = false
 		create_wave()
+
+func calculate_reward() -> int:
+	return reward * (1.15 * Game.current_wave)
 
 func get_spawn_position() -> Vector2:
 	var rect = get_viewport_rect()
