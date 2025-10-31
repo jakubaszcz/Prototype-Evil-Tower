@@ -72,12 +72,10 @@ func _on_wave_completed(reward):
 
 
 func _on_game_over(reason) -> void:
-	print("Called")
 	if is_game_over:
-		print("Game over")
 		Game.sapphire = (int(survival_time) / 10) + ((killed_enemy + (current_wave + 1)) / 2)
-		if reason == "waves_completed":
-			Game.sapphire *= 1.25
+		if Game.current_wave >= Global.score_wave:
+			Global.score_wave = Game.current_wave
 		print("Saphire Game : " + str(Game.sapphire))
 		Global.sapphire += sapphire
 		Global.save_progression()

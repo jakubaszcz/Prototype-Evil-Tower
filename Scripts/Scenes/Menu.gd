@@ -38,7 +38,8 @@ extends Node2D
 # 🧾 UI REFERENCES
 # ───────────────────────────────
 
-@onready var gems_label : Label = $CanvasLayer/Gems
+@onready var gems_label : Label = $VBoxContainer/MarginContainerPanel/PanelContainer/MarginContainer/GridContainer/Sapphire
+@onready var score_label : Label = $VBoxContainer/MarginContainerPanel/PanelContainer/MarginContainer/GridContainer/Score
 
 @onready var attack_price_label : Label = $CanvasLayer/Shop/Damage/Price
 @onready var attack_bonus_label : Label = $CanvasLayer/Shop/Damage/Bonus
@@ -79,6 +80,7 @@ func _physics_process(_delta: float) -> void:
 
 func _update_ui():
 	gems_label.text = "Gems : " + str(Global.ressources_gems)
+	score_label.text = "Highest wave : " + str(1)
 
 	attack_price_label.text = "Price : " + str(Global.abilities_damage_price)
 	attack_bonus_label.text = "Bonus Damage : " + str(Global.abilities_damage)

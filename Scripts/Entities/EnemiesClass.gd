@@ -43,7 +43,11 @@ func _physics_process(_delta: float) -> void:
 
 func _attack(target : Node2D, damage: float):
 	if target.is_in_group("player"):
-		target._take_damage(damage)
+		var dodge_probability = randi_range(0, 10000)
+		if dodge_probability <= (Global.bonus_ruse * 100):
+			pass
+		else:
+			target._take_damage(damage)
 
 func _set_target(target: CharacterBody2D) -> void:
 	player_target = target

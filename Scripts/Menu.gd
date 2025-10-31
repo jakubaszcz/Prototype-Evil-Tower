@@ -30,13 +30,19 @@ extends Control
 @onready var base_bullet_multiplier : float = 1.65
 @onready var base_bullet_reward : int = 1
 
-# bonus_regeneration Shop
+# Regeneration Shop
 @onready var base_regeneration_price : int = 24
 @onready var base_regeneration_multiplier : float = 1.60
 @onready var base_regeneration_reward : float = 0.2
 
+# Ruse Shop
+@onready var base_ruse_price : int = 75
+@onready var base_ruse_multiplier : float = 1.60
+@onready var base_ruse_reward : float = 0.25
+
 # Gems Label
-@onready var gems_shop_label : Label = $VBoxContainer/MarginContainerPanel/PanelContainer/MarginContainer/Label
+@onready var gems_shop_label : Label = $VBoxContainer/MarginContainerPanel/PanelContainer/MarginContainer/GridContainer/Sapphire
+@onready var score_wave_label : Label = $VBoxContainer/MarginContainerPanel/PanelContainer/MarginContainer/GridContainer/Score
 
 # Damage Shop Label
 @onready var damage_shop_level_label : Label = $VBoxContainer/ScrollContainer/GridContainer/DamageShop/MarginContainer/VBoxContainer/GridContainer/Level
@@ -68,10 +74,16 @@ extends Control
 @onready var bullet_shop_price_label : Label = $VBoxContainer/ScrollContainer/GridContainer/BulletShop/MarginContainer/VBoxContainer/GridContainer/Price
 @onready var bullet_shop_bonus_label : Label = $VBoxContainer/ScrollContainer/GridContainer/BulletShop/MarginContainer/VBoxContainer/GridContainer/Bonus
 
-# bonus_regeneration Shop Label
+# Regeneration Shop Label
 @onready var regeneration_shop_level_label : Label = $VBoxContainer/ScrollContainer/GridContainer/RegenerationShop/MarginContainer/VBoxContainer/GridContainer/Level
 @onready var regeneration_shop_price_label : Label = $VBoxContainer/ScrollContainer/GridContainer/RegenerationShop/MarginContainer/VBoxContainer/GridContainer/Price
 @onready var regeneration_shop_bonus_label : Label = $VBoxContainer/ScrollContainer/GridContainer/RegenerationShop/MarginContainer/VBoxContainer/GridContainer/Bonus
+
+# Ruse Shop Label
+@onready var ruse_shop_level_label : Label = $VBoxContainer/ScrollContainer/GridContainer/RuseShop/MarginContainer/VBoxContainer/GridContainer/Level
+@onready var ruse_shop_price_label : Label = $VBoxContainer/ScrollContainer/GridContainer/RuseShop/MarginContainer/VBoxContainer/GridContainer/Price
+@onready var ruse_shop_bonus_label : Label = $VBoxContainer/ScrollContainer/GridContainer/RuseShop/MarginContainer/VBoxContainer/GridContainer/Bonus
+
 
 @onready var gameplay_time_button = $VBoxContainer/MarginContainerButton/GridContainer/TimeButton
 
@@ -79,16 +91,18 @@ func _ready() -> void:
 	Global.load_progression()
 	
 	load_gems()
+	load_score()
 	
 	load_time()
 	
 	load_damage_shop()
 	load_health_shop()
-	load_radius_shop()	
+	load_radius_shop()
 	load_cadence_shop()
 	load_coin_shop()
 	load_bullet_shop()
 	load_regeneration_shop()
+	load_ruse_shop()
 
 func save_progression():
 	Global.save_progression()
@@ -98,6 +112,9 @@ func load_time():
 
 func load_gems():
 	gems_shop_label.text = str(Global.sapphire) + " Sapphire"
+
+func load_score():
+	score_wave_label.text = "Highest wave : " + str(Global.score_wave)
 
 func default_damage_shop():
 	base_damage_price = 12
@@ -271,6 +288,18 @@ func _on_regeneration_button_pressed() -> void:
 		
 		save_progression()
 
+func default_ruse_shop():
+	base_ruse_price = 75
+
+func load_ruse_shop():
+	default_ruse_shop()
+	
+	base_ruse_price = int(round(base_ruse_price * pow(base_ruse_multiplier, Global.bonus_ruse_level)))
+
+	ruse_shop_level_label.text = "Lv." + str(Global.bonus_ruse_level)
+	ruse_shop_price_label.text = str(base_ruse_price)
+	ruse_shop_bonus_label.text = str(Global.bonus_ruse)
+
 
 func _on_play_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://Components/Scenes/testGame.tscn")
@@ -285,3 +314,16 @@ func _on_time_button_pressed() -> void:
 	load_time()
 	
 	save_progression()
+
+
+func _on_ruse_button_pressed() -> void:
+	if Global.sapphire >= base_ruse_price:
+		Global.bonus_ruse_level += 1
+		Global.bonus_ruse += base_ruse_reward
+		Global.sapphire -= base_ruse_price
+
+		load_ruse_shop()
+
+		load_gems()
+		
+		save_progression()

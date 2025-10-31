@@ -33,8 +33,6 @@ func _on_game_over(reason):
 	
 	if reason == "player_died":
 		game_over_label.text = "You are dead !"
-	elif reason == "waves_completed":
-		game_over_label.text = "You completed all the waves."
 	reward_label.text = "You won " + str(Game.sapphire) + " Sapphire !"
 
 func _on_quit_button_pressed() -> void:
