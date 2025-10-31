@@ -31,6 +31,21 @@ var cadence_amount : float = 3.5
 var cadence_multiplier: float = 0.98
 var cadence_price_multiplier: float = 1.41
 
+# BULLET
+var bullet_level: int = 1
+var bullet_price: int = 136
+var bullet_bonus: float = 0
+var bullet_amount : float = 1
+var bullet_price_multiplier: float = 1.61
+
+# REGENERATION
+var regeneration_level: int = 1
+var regeneration_price: int = 23
+var regeneration_bonus: float = 0
+var regeneration_amount : float = 1
+var regeneration_multiplier: float = 0.98
+var regeneration_price_multiplier: float = 1.61
+
 
 # DAMAGE
 @onready var damage_level_label: Label = $MarginContainer/ScrollContainer/GridContainer/DamageShop/MarginContainer/VBoxContainer/GridContainer/Level
@@ -52,6 +67,15 @@ var cadence_price_multiplier: float = 1.41
 @onready var cadence_bonus_label: Label = $MarginContainer/ScrollContainer/GridContainer/CadenceShop/MarginContainer/VBoxContainer/GridContainer/Bonus
 @onready var cadence_price_label: Label = $MarginContainer/ScrollContainer/GridContainer/CadenceShop/MarginContainer/VBoxContainer/GridContainer/Price
 
+# Bullet
+@onready var bullet_level_label : Label = $MarginContainer/ScrollContainer/GridContainer/BulletShop/MarginContainer/VBoxContainer/GridContainer/Level
+@onready var bullet_bonus_label : Label = $MarginContainer/ScrollContainer/GridContainer/BulletShop/MarginContainer/VBoxContainer/GridContainer/Bonus
+@onready var bullet_price_label : Label = $MarginContainer/ScrollContainer/GridContainer/BulletShop/MarginContainer/VBoxContainer/GridContainer/Price
+
+# Regeneration
+@onready var regeneration_level_label : Label = $MarginContainer/ScrollContainer/GridContainer/RegenerationShop/MarginContainer/VBoxContainer/GridContainer/Level
+@onready var regeneration_bonus_label : Label = $MarginContainer/ScrollContainer/GridContainer/RegenerationShop/MarginContainer/VBoxContainer/GridContainer/Bonus
+@onready var regeneration_price_label : Label = $MarginContainer/ScrollContainer/GridContainer/RegenerationShop/MarginContainer/VBoxContainer/GridContainer/Price
 
 var shop_map = {}
 
@@ -63,13 +87,17 @@ func _ready() -> void:
 		"shop_damage": Callable(self, "purchase_damage"),
 		"shop_health": Callable(self, "purchase_health"),
 		"shop_radius": Callable(self, "purchase_radius"),
-		"shop_cadence": Callable(self, "purchase_cadence")
+		"shop_cadence": Callable(self, "purchase_cadence"),
+		"shop_bullet": Callable(self, "purchase_bullet"),
+		"shop_regeneration": Callable(self, "purchase_regeneration"),
 	}
 	
 	load_damage()
 	load_health()
 	load_radius()
 	load_cadence()
+	load_bullet()
+	load_regeneration()
 
 func _on_game_shop(item):
 	if shop_map.has(item):
@@ -118,6 +146,26 @@ func purchase_cadence():
 	cadence_price = int(round(cadence_price * cadence_price_multiplier))
 	load_cadence()
 
+func purchase_bullet():
+	if Game.game_coin < cadence_price:
+		return
+	Game.game_coin -= bullet_price
+	Game.game_bullet += 1
+	bullet_bonus += 1
+	bullet_level += 1
+	bullet_price = int(round(bullet_price * bullet_price_multiplier))
+	load_bullet()
+
+func purchase_regeneration():
+	if Game.game_coin < regeneration_price:
+		return
+	Game.game_coin -= regeneration_price
+	Game.game_regeneration *= regeneration_multiplier
+	regeneration_bonus *= regeneration_multiplier
+	regeneration_level += 1
+	regeneration_price = int(round(regeneration_price * regeneration_price_multiplier))
+	load_regeneration()
+
 func load_damage():
 	damage_level_label.text = "Lv." + str(damage_level)
 	damage_bonus_label.text = str(damage_bonus)
@@ -137,6 +185,16 @@ func load_cadence():
 	cadence_level_label.text = "Lv." + str(cadence_level)
 	cadence_bonus_label.text = str(round(cadence_bonus * 100) / 100.0)
 	cadence_price_label.text = str(cadence_price)
+	
+func load_bullet():
+	bullet_level_label.text = "Lv." + str(bullet_level)
+	bullet_bonus_label.text = str(round(bullet_bonus * 100) / 100.0)
+	bullet_price_label.text = str(bullet_price)
+
+func load_regeneration():
+	regeneration_level_label.text = "Lv." + str(regeneration_level)
+	regeneration_bonus_label.text = str(round(regeneration_bonus * 100) / 100.0)
+	regeneration_price_label.text = str(regeneration_price)
 
 func _on_damage_button_pressed() -> void:
 	if Game.game_coin >= damage_price:
@@ -153,3 +211,11 @@ func _on_radius_button_pressed() -> void:
 func _on_cadence_button_pressed() -> void:
 	if Game.game_coin >= cadence_price:
 		GameSignal.emit_signal("s_game_shop", "shop_cadence")
+
+func _on_bullet_button_pressed() -> void:
+	if Game.game_coin >= bullet_price:
+		GameSignal.emit_signal("s_game_shop", "shop_bullet")
+
+func _on_regeneration_button_pressed() -> void:
+	if Game.game_coin >= bullet_price:
+		GameSignal.emit_signal("s_game_shop", "shop_regeneration")

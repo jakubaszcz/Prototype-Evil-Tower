@@ -51,6 +51,8 @@ grow_vertical = 2
 
 [node name="SubViewport" type="SubViewport" parent="MarginContainer/VBoxContainer/GridContainer/Container/SubViewportContainer"]
 transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 4
 
 [node name="Camera2D" type="Camera2D" parent="MarginContainer/VBoxContainer/GridContainer/Container/SubViewportContainer/SubViewport"]
 position = Vector2(10, 10)
@@ -352,6 +354,106 @@ horizontal_alignment = 2
 layout_mode = 2
 text = "Click here"
 
+[node name="BulletShop" type="PanelContainer" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/BulletShop"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/BulletShop/MarginContainer"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/BulletShop/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 75
+columns = 2
+
+[node name="TitleText" type="Label" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/BulletShop/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Bullet"
+
+[node name="Level" type="Label" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/BulletShop/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "LV.0"
+horizontal_alignment = 2
+
+[node name="PriceText" type="Label" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/BulletShop/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Price"
+
+[node name="Price" type="Label" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/BulletShop/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "000"
+horizontal_alignment = 2
+
+[node name="BonusText" type="Label" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/BulletShop/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Bonus"
+
+[node name="Bonus" type="Label" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/BulletShop/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "000"
+horizontal_alignment = 2
+
+[node name="BulletButton" type="Button" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/BulletShop/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Click here"
+
+[node name="RegenerationShop" type="PanelContainer" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/RegenerationShop"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/RegenerationShop/MarginContainer"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/RegenerationShop/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 75
+columns = 2
+
+[node name="TitleText" type="Label" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/RegenerationShop/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Regen.tion"
+
+[node name="Level" type="Label" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/RegenerationShop/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "LV.0"
+horizontal_alignment = 2
+
+[node name="PriceText" type="Label" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/RegenerationShop/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Price"
+
+[node name="Price" type="Label" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/RegenerationShop/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "000"
+horizontal_alignment = 2
+
+[node name="BonusText" type="Label" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/RegenerationShop/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Bonus"
+
+[node name="Bonus" type="Label" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/RegenerationShop/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "000"
+horizontal_alignment = 2
+
+[node name="RegenerationButton" type="Button" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/RegenerationShop/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Click here"
+
 [node name="InfoPanel" type="PanelContainer" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -403,7 +505,7 @@ text = "Damage : 000"
 layout_mode = 2
 text = "Health : 000"
 
-[node name="RadiusLAbel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainerOne"]
+[node name="RadiusLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainerOne"]
 layout_mode = 2
 text = "Radius : 000"
 
@@ -439,4 +541,6 @@ script = ExtResource("2_8kjg6")
 [connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/HealthShop/MarginContainer/VBoxContainer/HealthButton" to="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel" method="_on_health_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/RadiusShop/MarginContainer/VBoxContainer/RadiusButton" to="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel" method="_on_radius_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/CadenceShop/MarginContainer/VBoxContainer/CadenceButton" to="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel" method="_on_cadence_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/BulletShop/MarginContainer/VBoxContainer/BulletButton" to="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel" method="_on_bullet_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/RegenerationShop/MarginContainer/VBoxContainer/RegenerationButton" to="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel" method="_on_regeneration_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/SpeedButton" to="MarginContainer/VBoxContainer/HBoxContainer" method="_on_speed_button_pressed"]

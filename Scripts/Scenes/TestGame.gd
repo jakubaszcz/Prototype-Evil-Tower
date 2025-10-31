@@ -7,7 +7,7 @@ extends Control
 # Statistics zone
 @onready var statistic_damage : Label = $MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainerOne/DamageLabel
 @onready var statistic_health : Label = $MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainerOne/HealthLabel
-@onready var statistic_radius : Label = $MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainerOne/RadiusLAbel
+@onready var statistic_radius : Label = $MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainerOne/RadiusLabel
 @onready var statisitic_cadence : Label = $MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainerOne/CadenceLabel
 @onready var statistic_bullet : Label = $MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainerTwo/BulletLabel
 @onready var statistic_regeneration : Label = $MarginContainer/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainerTwo/RegenerationLabel
