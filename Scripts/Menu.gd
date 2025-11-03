@@ -111,7 +111,7 @@ func load_time():
 	gameplay_time_button.text = "x" + str(Global.gameplay_times_array[Global.gameplay_time])
 
 func load_gems():
-	gems_shop_label.text = str(Global.sapphire) + " Sapphire"
+	gems_shop_label.text = Utils.format_number(Global.sapphire) + " Sapphire"
 
 func load_score():
 	score_wave_label.text = "Highest wave : " + str(Global.score_wave)

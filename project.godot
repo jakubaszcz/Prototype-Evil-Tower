@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Global="*res://Scripts/Global.gd"
 GameSignal="*res://Scripts/GameSignal.gd"
+Utils="*res://Scripts/Utils.gd"
 
 [display]
 
