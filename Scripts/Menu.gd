@@ -31,8 +31,8 @@ extends Control
 @onready var base_bullet_reward : int = 1
 
 # Regeneration Shop
-@onready var base_regeneration_price : int = 24
-@onready var base_regeneration_multiplier : float = 1.60
+@onready var base_regeneration_price : int = 32
+@onready var base_regeneration_multiplier : float = 1.83
 @onready var base_regeneration_reward : float = 0.2
 
 # Ruse Shop
@@ -124,9 +124,9 @@ func load_damage_shop():
 	
 	base_damage_price = int(round(base_damage_price * pow(base_damage_multiplier, Global.bonus_damage_level)))
 
-	damage_shop_level_label.text = "Lv." + str(Global.bonus_damage_level)
-	damage_shop_price_label.text = str(base_damage_price)
-	damage_shop_bonus_label.text = str(Global.bonus_damage)
+	damage_shop_level_label.text = "Lv." + Utils.format_number(Global.bonus_damage_level)
+	damage_shop_price_label.text = Utils.format_number(base_damage_price)
+	damage_shop_bonus_label.text = Utils.format_number(Global.bonus_damage)
 
 func _on_damage_button_pressed() -> void:
 	if Global.sapphire >= base_damage_price:
@@ -148,9 +148,9 @@ func load_health_shop():
 
 	base_health_price = int(round(base_health_price * pow(base_health_multiplier, Global.bonus_health_level)))
 
-	health_shop_level_label.text = "Lv." + str(Global.bonus_health_level)
-	health_shop_price_label.text = str(base_health_price)
-	health_shop_bonus_label.text = str(Global.bonus_health)
+	health_shop_level_label.text = "Lv." + Utils.format_number(Global.bonus_health_level)
+	health_shop_price_label.text = Utils.format_number(base_health_price)
+	health_shop_bonus_label.text = Utils.format_number(Global.bonus_health)
 
 func _on_health_button_pressed() -> void:
 	if Global.sapphire >= base_health_price:
@@ -173,11 +173,11 @@ func load_radius_shop():
 	base_radius_price = int(round(base_radius_price * pow(base_radius_multiplier, Global.bonus_radius_level)))
 	
 	if (Global.bonus_radius_level >= 50):
-		radius_shop_level_label.text = "Lv." + str(Global.bonus_radius_level) + "( Max )"
+		radius_shop_level_label.text = "Lv." + Utils.format_number(Global.bonus_radius_level) + "( Max )"
 	else:
-		radius_shop_level_label.text = "Lv." + str(Global.bonus_radius_level)
-	radius_shop_price_label.text = str(base_radius_price)
-	radius_shop_bonus_label.text = str(Global.bonus_radius)
+		radius_shop_level_label.text = "Lv." + Utils.format_number(Global.bonus_radius_level)
+	radius_shop_price_label.text = Utils.format_number(base_radius_price)
+	radius_shop_bonus_label.text = Utils.format_number(Global.bonus_radius)
 
 func _on_radius_button_pressed() -> void:
 	if (Global.bonus_radius_level >= 50): return
@@ -199,12 +199,16 @@ func load_cadence_shop():
 	default_cadence_shop()
 
 	base_cadence_price = int(round(base_cadence_price * pow(base_cadence_multiplier, Global.bonus_cadence_level)))
-
-	cadence_shop_level_label.text = "Lv." + str(Global.bonus_cadence_level)
-	cadence_shop_price_label.text = str(base_cadence_price)
-	cadence_shop_bonus_label.text = str(Global.bonus_cadence)
+	
+	if (Global.bonus_cadence_level >= 15):
+		cadence_shop_level_label.text = "Lv." + Utils.format_number(Global.bonus_cadence_level) + "( Max )"
+	else:
+		cadence_shop_level_label.text = "Lv." + Utils.format_number(Global.bonus_cadence_level)
+	cadence_shop_price_label.text = Utils.format_number(base_cadence_price)
+	cadence_shop_bonus_label.text = Utils.format_number(Global.bonus_cadence)
 
 func _on_cadence_button_pressed() -> void:
+	if (Global.bonus_cadence_level >= 15): return
 	if Global.sapphire >= base_cadence_price:
 		Global.bonus_cadence_level += 1
 		Global.bonus_cadence += base_cadence_reward
@@ -224,9 +228,9 @@ func load_coin_shop():
 
 	base_coin_price = int(round(base_coin_price * pow(base_coin_multiplier, Global.bonus_coin)))
 
-	coin_shop_level_label.text = "Lv." + str(Global.bonus_coin_level)
-	coin_shop_price_label.text = str(base_coin_price)
-	coin_shop_bonus_label.text = str(Global.bonus_coin)
+	coin_shop_level_label.text = "Lv." + Utils.format_number(Global.bonus_coin_level)
+	coin_shop_price_label.text = Utils.format_number(base_coin_price)
+	coin_shop_bonus_label.text = Utils.format_number(Global.bonus_coin)
 
 func _on_coin_button_pressed() -> void:
 	if Global.sapphire >= base_coin_price:
@@ -248,9 +252,9 @@ func load_bullet_shop():
 
 	base_bullet_price = int(round(base_bullet_price * pow(base_bullet_multiplier, Global.bonus_bullet_level)))
 
-	bullet_shop_level_label.text = "Lv." + str(Global.bonus_bullet_level)
-	bullet_shop_price_label.text = str(base_bullet_price)
-	bullet_shop_bonus_label.text = str(Global.bonus_bullet)
+	bullet_shop_level_label.text = "Lv." + Utils.format_number(Global.bonus_bullet_level)
+	bullet_shop_price_label.text = Utils.format_number(base_bullet_price)
+	bullet_shop_bonus_label.text = Utils.format_number(Global.bonus_bullet)
 
 func _on_bullet_button_pressed() -> void:
 	if Global.sapphire >= base_bullet_price:
@@ -272,11 +276,15 @@ func load_regeneration_shop():
 
 	base_regeneration_price = int(round(base_regeneration_price * pow(base_regeneration_multiplier, Global.bonus_regeneration_level)))
 
-	regeneration_shop_level_label.text = "Lv." + str(Global.bonus_regeneration_level)
-	regeneration_shop_price_label.text = str(base_regeneration_price)
-	regeneration_shop_bonus_label.text = str(Global.bonus_regeneration)
+	if (Global.bonus_regeneration_level >= 15):
+		regeneration_shop_level_label.text = "Lv." + Utils.format_number(Global.bonus_regeneration_level) + "( Max )"
+	else:
+		regeneration_shop_level_label.text = "Lv." + Utils.format_number(Global.bonus_regeneration_level)
+	regeneration_shop_price_label.text = Utils.format_number(base_regeneration_price)
+	regeneration_shop_bonus_label.text = Utils.format_number(Global.bonus_regeneration)
 
 func _on_regeneration_button_pressed() -> void:
+	if Global.bonus_regeneration_level >= 15: return
 	if Global.sapphire >= base_regeneration_price:
 		Global.bonus_regeneration_level += 1
 		Global.bonus_regeneration += base_regeneration_reward
@@ -296,9 +304,12 @@ func load_ruse_shop():
 	
 	base_ruse_price = int(round(base_ruse_price * pow(base_ruse_multiplier, Global.bonus_ruse_level)))
 
-	ruse_shop_level_label.text = "Lv." + str(Global.bonus_ruse_level)
-	ruse_shop_price_label.text = str(base_ruse_price)
-	ruse_shop_bonus_label.text = str(Global.bonus_ruse)
+	if (Global.bonus_ruse_level >= 100):
+		ruse_shop_level_label.text = "Lv." + Utils.format_number(Global.bonus_ruse_level) + "( Max )"
+	else:
+		ruse_shop_level_label.text = "Lv." + Utils.format_number(Global.bonus_ruse_level)
+	ruse_shop_price_label.text = Utils.format_number(base_ruse_price)
+	ruse_shop_bonus_label.text = Utils.format_number(Global.bonus_ruse)
 
 
 func _on_play_button_pressed() -> void:
@@ -317,6 +328,7 @@ func _on_time_button_pressed() -> void:
 
 
 func _on_ruse_button_pressed() -> void:
+	if Global.bonus_ruse_level >= 100: return
 	if Global.sapphire >= base_ruse_price:
 		Global.bonus_ruse_level += 1
 		Global.bonus_ruse += base_ruse_reward

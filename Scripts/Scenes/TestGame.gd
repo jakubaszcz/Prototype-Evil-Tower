@@ -21,16 +21,16 @@ func _physics_process(delta: float) -> void:
 	load_statistics()
 	
 func load_informations():
-	information_health.text = "Curr. Wave : " + str(Game.current_wave + 1)
-	information_wave.text = "Health : " + str(Game.game_current_health) + "/" + str(Game.game_health)
+	information_health.text = "Curr. Wave : " + Utils.format_number(Game.current_wave)
+	information_wave.text = "Health : " + Utils.format_number(Game.game_current_health) + "/" + Utils.format_number(Game.game_health)
 
 func load_statistics():
-	statistic_damage.text = "Damage : " + str(Game.game_damage)
-	statistic_health.text = "Health : " + str(Game.game_health)
-	statistic_radius.text = "Radius : " + str(Game.game_radius)
-	statisitic_cadence.text = "Cadence : " + str(Game.game_cadence)
-	statistic_bullet.text = "Bullet : " + str(Game.game_bullet)
-	statistic_regeneration.text = "Regeneration : " + str(Game.game_regeneration)
+	statistic_damage.text = "Damage : " + Utils.format_number(Game.game_damage)
+	statistic_health.text = "Health : " + Utils.format_number(Game.game_health)
+	statistic_radius.text = "Radius : " + Utils.format_number(Game.game_radius)
+	statisitic_cadence.text = "Cadence : " + Utils.format_number(Game.game_cadence)
+	statistic_bullet.text = "Bullet : " + Utils.format_number(Game.game_bullet)
+	statistic_regeneration.text = "Regeneration : " + Utils.format_number(Game.game_regeneration)
 
 func load_coins():
-	coins_label.text = str(Game.game_coin) + " Coins"
+	coins_label.text = Utils.format_number(Game.game_coin) + " Coins"

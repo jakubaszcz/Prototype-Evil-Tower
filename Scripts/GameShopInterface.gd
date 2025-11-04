@@ -167,34 +167,34 @@ func purchase_regeneration():
 	load_regeneration()
 
 func load_damage():
-	damage_level_label.text = "Lv." + str(damage_level)
-	damage_bonus_label.text = str(damage_bonus)
-	damage_price_label.text = str(damage_price)
+	damage_level_label.text = "Lv." + Utils.format_number(damage_level)
+	damage_bonus_label.text = Utils.format_number(damage_bonus)
+	damage_price_label.text = Utils.format_number(damage_price)
 
 func load_health():
-	health_level_label.text = "Lv." + str(health_level)
-	health_bonus_label.text = str(round(health_bonus * 100) / 100.0)
-	health_price_label.text = str(health_price)
+	health_level_label.text = "Lv." + Utils.format_number(health_level)
+	health_bonus_label.text = Utils.format_number(round(health_bonus * 100) / 100.0)
+	health_price_label.text = Utils.format_number(health_price)
 
 func load_radius():
-	radius_level_label.text = "Lv." + str(radius_level)
-	radius_bonus_label.text = str(round(radius_bonus * 100) / 100.0)
-	radius_price_label.text = str(radius_price)
+	radius_level_label.text = "Lv." + Utils.format_number(radius_level)
+	radius_bonus_label.text = Utils.format_number(round(radius_bonus * 100) / 100.0)
+	radius_price_label.text = Utils.format_number(radius_price)
 
 func load_cadence():
-	cadence_level_label.text = "Lv." + str(cadence_level)
-	cadence_bonus_label.text = str(round(cadence_bonus * 100) / 100.0)
-	cadence_price_label.text = str(cadence_price)
+	cadence_level_label.text = "Lv." + Utils.format_number(cadence_level)
+	cadence_bonus_label.text = Utils.format_number(round(cadence_bonus * 100) / 100.0)
+	cadence_price_label.text = Utils.format_number(cadence_price)
 	
 func load_bullet():
-	bullet_level_label.text = "Lv." + str(bullet_level)
-	bullet_bonus_label.text = str(round(bullet_bonus * 100) / 100.0)
-	bullet_price_label.text = str(bullet_price)
+	bullet_level_label.text = "Lv." + Utils.format_number(bullet_level)
+	bullet_bonus_label.text = Utils.format_number(round(bullet_bonus * 100) / 100.0)
+	bullet_price_label.text = Utils.format_number(bullet_price)
 
 func load_regeneration():
-	regeneration_level_label.text = "Lv." + str(regeneration_level)
-	regeneration_bonus_label.text = str(round(regeneration_bonus * 100) / 100.0)
-	regeneration_price_label.text = str(regeneration_price)
+	regeneration_level_label.text = "Lv." + Utils.format_number(regeneration_level)
+	regeneration_bonus_label.text = Utils.format_number(round(regeneration_bonus * 100) / 100.0)
+	regeneration_price_label.text = Utils.format_number(regeneration_price)
 
 func _on_damage_button_pressed() -> void:
 	if Game.game_coin >= damage_price:
