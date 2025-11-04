@@ -40,6 +40,11 @@ extends Control
 @onready var base_ruse_multiplier : float = 1.60
 @onready var base_ruse_reward : float = 0.25
 
+# Sapphire Bonus Shop
+@onready var base_sapphire_price : int = 173
+@onready var base_sapphire_multiplier : float = 1.62
+@onready var base_sapphire_reward : int = 1
+
 # Gems Label
 @onready var gems_shop_label : Label = $VBoxContainer/MarginContainerPanel/PanelContainer/MarginContainer/GridContainer/Sapphire
 @onready var score_wave_label : Label = $VBoxContainer/MarginContainerPanel/PanelContainer/MarginContainer/GridContainer/Score
@@ -84,6 +89,11 @@ extends Control
 @onready var ruse_shop_price_label : Label = $VBoxContainer/ScrollContainer/GridContainer/RuseShop/MarginContainer/VBoxContainer/GridContainer/Price
 @onready var ruse_shop_bonus_label : Label = $VBoxContainer/ScrollContainer/GridContainer/RuseShop/MarginContainer/VBoxContainer/GridContainer/Bonus
 
+# Sapphire Bonus Shop Label
+@onready var sapphire_shop_level_label : Label = $VBoxContainer/ScrollContainer/GridContainer/SapphireShop/MarginContainer/VBoxContainer/GridContainer/Level
+@onready var sapphire_shop_price_label : Label = $VBoxContainer/ScrollContainer/GridContainer/SapphireShop/MarginContainer/VBoxContainer/GridContainer/Price
+@onready var sapphire_shop_bonus_label : Label = $VBoxContainer/ScrollContainer/GridContainer/SapphireShop/MarginContainer/VBoxContainer/GridContainer/Bonus
+
 
 @onready var gameplay_time_button = $VBoxContainer/MarginContainerButton/GridContainer/TimeButton
 
@@ -103,6 +113,7 @@ func _ready() -> void:
 	load_bullet_shop()
 	load_regeneration_shop()
 	load_ruse_shop()
+	load_sapphire_shop()
 
 func save_progression():
 	Global.save_progression()
@@ -133,11 +144,11 @@ func _on_damage_button_pressed() -> void:
 		Global.bonus_damage_level += 1
 		Global.bonus_damage += base_damage_reward
 		Global.sapphire -= base_damage_price
-		
+
 		load_damage_shop()
-		
+
 		load_gems()
-		
+
 		save_progression()
 
 func default_health_shop():
@@ -311,6 +322,42 @@ func load_ruse_shop():
 	ruse_shop_price_label.text = Utils.format_number(base_ruse_price)
 	ruse_shop_bonus_label.text = Utils.format_number(Global.bonus_ruse)
 
+func _on_ruse_button_pressed() -> void:
+	if Global.bonus_ruse_level >= 100: return
+	if Global.sapphire >= base_ruse_price:
+		Global.bonus_ruse_level += 1
+		Global.bonus_ruse += base_ruse_reward
+		Global.sapphire -= base_ruse_price
+
+		load_ruse_shop()
+
+		load_gems()
+
+		save_progression()
+
+func load_sapphire_shop():
+	default_sapphire_shop()
+
+	base_sapphire_price = int(round(base_sapphire_price * pow(base_sapphire_multiplier, Global.bonus_sapphire_level)))
+
+	sapphire_shop_level_label.text = "Lv." + Utils.format_number(Global.bonus_sapphire_level)
+	sapphire_shop_price_label.text = Utils.format_number(base_sapphire_price)
+	sapphire_shop_bonus_label.text = Utils.format_number(Global.bonus_sapphire)
+
+func _on_sapphire_button_pressed() -> void:
+	if Global.sapphire >= base_sapphire_price:
+		Global.bonus_sapphire_level += 1
+		Global.bonus_sapphire += base_sapphire_reward
+		Global.sapphire -= base_sapphire_price
+		
+		load_sapphire_shop()
+
+		load_gems()
+
+		save_progression()
+
+func default_sapphire_shop():
+	base_health_price = 173
 
 func _on_play_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://Components/Scenes/testGame.tscn")
@@ -325,17 +372,3 @@ func _on_time_button_pressed() -> void:
 	load_time()
 	
 	save_progression()
-
-
-func _on_ruse_button_pressed() -> void:
-	if Global.bonus_ruse_level >= 100: return
-	if Global.sapphire >= base_ruse_price:
-		Global.bonus_ruse_level += 1
-		Global.bonus_ruse += base_ruse_reward
-		Global.sapphire -= base_ruse_price
-
-		load_ruse_shop()
-
-		load_gems()
-		
-		save_progression()

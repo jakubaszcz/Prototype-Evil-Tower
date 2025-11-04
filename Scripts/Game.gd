@@ -44,7 +44,7 @@ func _reset_data():
 	
 	
 	game_coin = 0
-	game_health = 26
+	game_health = 2
 	game_radius = 1.2
 	game_cadence = 3.5
 	game_damage = 5.0
@@ -73,9 +73,12 @@ func _on_wave_completed(reward):
 
 func _on_game_over(reason) -> void:
 	if is_game_over:
-		Game.sapphire = (int(survival_time) / 10) + ((killed_enemy + (current_wave + 1)) / 2)
+		sapphire = (int(survival_time) / 10) + ((killed_enemy + (current_wave + 1)) / 2)
 		if Game.current_wave >= Global.score_wave:
 			Global.score_wave = Game.current_wave
+		if Global.bonus_sapphire > 0:
+			sapphire *= (1 + (Global.bonus_sapphire / 100)) 
+			floor(sapphire)
 		print("Saphire Game : " + str(Game.sapphire))
 		Global.sapphire += sapphire
 		Global.save_progression()

@@ -31,10 +31,9 @@ func _on_game_over(reason):
 	wave_interface.visible = false
 	panel_interface.visible = true
 	
-	if reason == "player_died":
-		game_over_label.text = "You are dead !"
+	game_over_label.text = "You are dead !"
 	reward_label.text = "You won " + str(Game.sapphire) + " Sapphire !"
-
+		
 func _on_quit_button_pressed() -> void:
 	Global.save_progression()
 	get_tree().quit()

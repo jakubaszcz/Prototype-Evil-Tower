@@ -467,6 +467,56 @@ horizontal_alignment = 2
 layout_mode = 2
 text = "Click here"
 
+[node name="SapphireShop" type="PanelContainer" parent="VBoxContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/ScrollContainer/GridContainer/SapphireShop"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/GridContainer/SapphireShop/MarginContainer"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/ScrollContainer/GridContainer/SapphireShop/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 100
+columns = 2
+
+[node name="TitleText" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/SapphireShop/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Sapphire"
+
+[node name="Level" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/SapphireShop/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "LV.0"
+horizontal_alignment = 2
+
+[node name="PriceText" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/SapphireShop/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Price"
+
+[node name="Price" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/SapphireShop/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "000"
+horizontal_alignment = 2
+
+[node name="BonusText" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/SapphireShop/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Bonus"
+
+[node name="Bonus" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/SapphireShop/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "000"
+horizontal_alignment = 2
+
+[node name="SapphireButton" type="Button" parent="VBoxContainer/ScrollContainer/GridContainer/SapphireShop/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Click here"
+
 [node name="MarginContainerButton" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -497,5 +547,6 @@ text = "Play"
 [connection signal="pressed" from="VBoxContainer/ScrollContainer/GridContainer/BulletShop/MarginContainer/VBoxContainer/BulletButton" to="." method="_on_bullet_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/ScrollContainer/GridContainer/RegenerationShop/MarginContainer/VBoxContainer/RegenerationButton" to="." method="_on_regeneration_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/ScrollContainer/GridContainer/RuseShop/MarginContainer/VBoxContainer/RuseButton" to="." method="_on_ruse_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/ScrollContainer/GridContainer/SapphireShop/MarginContainer/VBoxContainer/SapphireButton" to="." method="_on_sapphire_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/MarginContainerButton/GridContainer/TimeButton" to="." method="_on_time_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/MarginContainerButton/GridContainer/PlayButton" to="." method="_on_play_button_pressed"]

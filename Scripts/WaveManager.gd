@@ -161,7 +161,9 @@ func deploy_enemies(data: Array[Enemy]):
 		await get_tree().create_timer(spawn_cadence).timeout
 
 func create_enemy(enemy: Enemy):
-	enemy._set_target(player)
+	if is_instance_valid(player):
+		enemy._set_target(player)
+
 	enemy.position = get_spawn_position()
 	call_deferred("add_child", enemy)
 	
@@ -179,17 +181,14 @@ func _on_enemy_died(enemy: Enemy) -> void:
 	if enemies_alive == 0:
 		print("✅ Wave", Game.current_wave, "cleared! Waiting", time_between_waves, "seconds...")
 		
-		# Empêche qu’une autre vague soit créée pendant l’attente
 		if wave_in_progress:
 			return
 		wave_in_progress = true
 		
 		GameSignal.emit_signal("s_wave_completed", calculate_reward())
 		
-		# Attente avant la vague suivante
 		await get_tree().create_timer(time_between_waves).timeout
 		
-		# Fin de l’attente, on prépare la prochaine vague
 		wave_in_progress = false
 		is_wave_running = false
 		create_wave()
