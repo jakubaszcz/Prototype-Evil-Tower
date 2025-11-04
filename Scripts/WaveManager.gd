@@ -131,8 +131,10 @@ func generate_wave(wave_number:int) -> Array[Enemy]:
 func _ready() -> void:
 	reset()
 	Game.current_wave = 0
+	await get_tree().create_timer(0.1).timeout
 	if not is_wave_running:
 		create_wave()
+
 
 func reset() -> void:
 	is_wave_running = false
@@ -176,11 +178,23 @@ func _on_enemy_died(enemy: Enemy) -> void:
 
 	if enemies_alive == 0:
 		print("✅ Wave", Game.current_wave, "cleared! Waiting", time_between_waves, "seconds...")
+		
+		# Empêche qu’une autre vague soit créée pendant l’attente
+		if wave_in_progress:
+			return
+		wave_in_progress = true
+		
 		GameSignal.emit_signal("s_wave_completed", calculate_reward())
-		wave_timer.start(time_between_waves)
-		await wave_timer.timeout
+		
+		# Attente avant la vague suivante
+		await get_tree().create_timer(time_between_waves).timeout
+		
+		# Fin de l’attente, on prépare la prochaine vague
+		wave_in_progress = false
 		is_wave_running = false
 		create_wave()
+
+
 
 func calculate_reward() -> int:
 	return reward * (1.15 * Game.current_wave)
