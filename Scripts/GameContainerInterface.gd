@@ -17,7 +17,11 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 	if is_over:
-		reward_label.text = "You won " + str(Game.sapphire) + " Sapphire !"
+		game_over_label.text = "You are dead !"
+		if Global.bonus_sapphire > 0:
+			reward_label.text = "You won " + Utils.format_number(Game.sapphire) + " + " + Utils.format_number(Global.bonus_sapphire) + "% Sapphire !"
+		else:
+			reward_label.text = "You won " + Utils.format_number(Game.sapphire) + " Sapphire !"
 
 func reset():
 	is_over = false
@@ -30,9 +34,6 @@ func _on_game_over(reason):
 	player_interface.visible = false
 	wave_interface.visible = false
 	panel_interface.visible = true
-	
-	game_over_label.text = "You are dead !"
-	reward_label.text = "You won " + str(Game.sapphire) + " Sapphire !"
 		
 func _on_quit_button_pressed() -> void:
 	Global.save_progression()

@@ -73,13 +73,10 @@ func generate_wave(wave_number:int) -> Array[Enemy]:
 		var enemy_scene = enemies[enemy_scene_index]
 		var enemy = enemy_scene.instantiate() as Enemy
 		
-		var base_growth := 1.015 + (float(wave_number) / 2000.0)
-		var scale := pow(base_growth, wave_number * 0.9)
-
-# 🎲 Variations aléatoires
-		var attack_variation := rng.randf_range(0.9, 1.1)
-		var health_variation := rng.randf_range(0.9, 1.1)
-		var reward_variation := rng.randf_range(1.1, 1.5)
+		var scale := 1.0 + (float(wave_number) / 10.0) * 0.1
+		var attack_variation := rng.randf_range(0.8, 1.2)
+		var health_variation := rng.randf_range(0.8, 1.2)
+		var reward_variation := rng.randf_range(1.2, 1.7)
 
 		enemy._set_attack(enemy._get_attack() * scale * attack_variation)
 		enemy._set_health(enemy._get_health() * scale * health_variation)
@@ -95,7 +92,7 @@ func generate_wave(wave_number:int) -> Array[Enemy]:
 		var mini_boss_scene = mini_bosses[mini_boss_scene_index]
 		
 		var mini_boss = mini_boss_scene.instantiate() as Enemy
-		var mb_scale := 1.0 + (float(wave_number) / 6.0) * 0.1
+		var mb_scale := 1.0 + (float(wave_number) / 9.0) * 0.1
 		var mb_attack_variation := rng.randf_range(0.8, 1.2)
 		var mb_health_variation := rng.randf_range(0.8, 1.2)
 		var mb_reward_variation := rng.randf_range(1.2, 1.7)
@@ -114,7 +111,7 @@ func generate_wave(wave_number:int) -> Array[Enemy]:
 		var boss_scene = bosses[boss_scene_index]
 		
 		var boss = boss_scene.instantiate() as Enemy
-		var b_scale := 1.0 + (float(wave_number) / 6.0) * 0.1
+		var b_scale := 1.0 + (float(wave_number) / 9.0) * 0.1
 		var b_attack_variation := rng.randf_range(0.8, 1.2)
 		var b_health_variation := rng.randf_range(0.8, 1.2)
 		var b_reward_variation := rng.randf_range(1.2, 1.7)

@@ -61,7 +61,7 @@ horizontal_scroll_mode = 0
 
 [node name="GridContainer" type="GridContainer" parent="VBoxContainer/ScrollContainer"]
 layout_mode = 2
-size_flags_horizontal = 0
+size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/h_separation = 5
 theme_override_constants/v_separation = 5
@@ -71,6 +71,7 @@ columns = 3
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/ScrollContainer/GridContainer/DamageShop"]
+custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
@@ -118,6 +119,7 @@ layout_mode = 2
 text = "Click here"
 
 [node name="HealthShop" type="PanelContainer" parent="VBoxContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/ScrollContainer/GridContainer/HealthShop"]
@@ -168,6 +170,7 @@ layout_mode = 2
 text = "Click here"
 
 [node name="RadiusShop" type="PanelContainer" parent="VBoxContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/ScrollContainer/GridContainer/RadiusShop"]
@@ -218,6 +221,7 @@ layout_mode = 2
 text = "Click here"
 
 [node name="CadenceShop" type="PanelContainer" parent="VBoxContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/ScrollContainer/GridContainer/CadenceShop"]
@@ -268,6 +272,7 @@ layout_mode = 2
 text = "Click here"
 
 [node name="CoinShop" type="PanelContainer" parent="VBoxContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/ScrollContainer/GridContainer/CoinShop"]
@@ -318,6 +323,7 @@ layout_mode = 2
 text = "Click here"
 
 [node name="BulletShop" type="PanelContainer" parent="VBoxContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/ScrollContainer/GridContainer/BulletShop"]
@@ -368,6 +374,7 @@ layout_mode = 2
 text = "Click here"
 
 [node name="RegenerationShop" type="PanelContainer" parent="VBoxContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/ScrollContainer/GridContainer/RegenerationShop"]
@@ -418,6 +425,7 @@ layout_mode = 2
 text = "Click here"
 
 [node name="RuseShop" type="PanelContainer" parent="VBoxContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/ScrollContainer/GridContainer/RuseShop"]
@@ -468,6 +476,7 @@ layout_mode = 2
 text = "Click here"
 
 [node name="SapphireShop" type="PanelContainer" parent="VBoxContainer/ScrollContainer/GridContainer"]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/ScrollContainer/GridContainer/SapphireShop"]
