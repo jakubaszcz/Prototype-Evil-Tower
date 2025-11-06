@@ -44,12 +44,12 @@ func _reset_data():
 	
 	
 	game_coin = 0
-	game_health = 2
-	game_radius = 1.2
-	game_cadence = 3.5
-	game_damage = 5.0
+	game_health = 12
+	game_radius = 1.8
+	game_cadence = 2.0
+	game_damage = 2
 	game_bullet = 1
-	game_regeneration = 5.0
+	game_regeneration = 3.0
 	
 	game_damage = game_damage + Global.bonus_damage
 	game_health = game_health + Global.bonus_health

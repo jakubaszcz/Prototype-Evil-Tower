@@ -4,10 +4,13 @@ class_name Enemy
 signal enemy_died
 
 @export var health: int = 100
+var base_health : int
 @export var speed: float = 50.0
 @export var attack: float = 1.0
+var base_attack : float
 @export var attack_speed : float = 3.0
-@export var recompense: int = 1
+@export var recompense: int
+var base_recompense : int = recompense
 var is_dead: bool = false
 var can_attack : bool = true
 
@@ -18,6 +21,10 @@ var can_attack : bool = true
 var player_target: CharacterBody2D = null
 @onready var detection_area: Area2D = $Area2D
 
+func init_base():
+	base_health = health
+	base_attack = attack
+	base_recompense = recompense
 
 func _ready() -> void:
 	if cooldown:
@@ -26,8 +33,12 @@ func _ready() -> void:
 	if progress_bar:
 		progress_bar.max_value = health
 		progress_bar.value = health
+	print("Base " + str(base_health))
+	print(str(base_attack))
+	print(str(base_recompense))
 
 func _physics_process(_delta: float) -> void:
+	
 	for players in detection_area.get_overlapping_bodies():
 		if players.is_in_group("player") and can_attack:
 			if cooldown:
@@ -93,3 +104,10 @@ func get_health() -> int:
 	
 func _on_cooldown_timeout() -> void:
 	can_attack = true
+	
+func get_base_health():
+	return base_health
+func get_base_attack():
+	return base_attack
+func get_base_recompense():
+	return base_recompense

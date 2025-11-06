@@ -424,7 +424,7 @@ columns = 2
 
 [node name="TitleText" type="Label" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/RegenerationShop/MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
-text = "Regen.tion"
+text = "Regen"
 
 [node name="Level" type="Label" parent="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/RegenerationShop/MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2

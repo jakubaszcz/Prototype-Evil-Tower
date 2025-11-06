@@ -4,7 +4,7 @@ extends Node
 var progression_path := "user://progression.cfg"
 
 var sapphire : int = 0
-var bonus_damage : int = 0.0
+var bonus_damage : float = 0.0
 var bonus_radius : float = 0.0
 var bonus_health : int = 0.0
 var bonus_cadence : float = 0.0
@@ -26,15 +26,15 @@ var gameplay_time : int = 0
 ]
 
 
-var bonus_damage_level : int = 1
-var bonus_health_level : int = 1
-var bonus_radius_level : int = 1
-var bonus_cadence_level : int = 1
-var bonus_coin_level : int = 1
-var bonus_bullet_level : int = 1
-var bonus_regeneration_level : int = 1
-var bonus_ruse_level : int = 1
-var bonus_sapphire_level : int = 1
+var bonus_damage_level : int = 0
+var bonus_health_level : int = 0
+var bonus_radius_level : int = 0
+var bonus_cadence_level : int = 0
+var bonus_coin_level : int = 0
+var bonus_bullet_level : int = 0
+var bonus_regeneration_level : int = 0
+var bonus_ruse_level : int = 0
+var bonus_sapphire_level : int = 0
 
 func load_progression():
 	var config = ConfigFile.new()
@@ -51,15 +51,15 @@ func load_progression():
 		bonus_sapphire = config.get_value("bonus", "sapphire", 0)
 		
 		sapphire   = config.get_value("shop", "sapphire", 0)
-		bonus_damage_level = config.get_value("shop", "damage_level", 1)
-		bonus_health_level = config.get_value("shop", "health_level", 1)
-		bonus_radius_level = config.get_value("shop", "radius_level", 1)
-		bonus_cadence_level = config.get_value("shop", "cadence_level", 1)
-		bonus_coin_level = config.get_value("shop", "coin_level", 1)
-		bonus_bullet_level = config.get_value("shop", "bullet_level", 1)
-		bonus_regeneration_level = config.get_value("shop", "regeneration_level", 1)
-		bonus_ruse_level = config.get_value("shop" ,"ruse_level", 1)
-		bonus_sapphire_level = config.get_value("shop", "sapphire_level", 1)
+		bonus_damage_level = config.get_value("shop", "damage_level", 0)
+		bonus_health_level = config.get_value("shop", "health_level", 0)
+		bonus_radius_level = config.get_value("shop", "radius_level", 0)
+		bonus_cadence_level = config.get_value("shop", "cadence_level", 0)
+		bonus_coin_level = config.get_value("shop", "coin_level", 0)
+		bonus_bullet_level = config.get_value("shop", "bullet_level", 0)
+		bonus_regeneration_level = config.get_value("shop", "regeneration_level", 0)
+		bonus_ruse_level = config.get_value("shop" ,"ruse_level", 0)
+		bonus_sapphire_level = config.get_value("shop", "sapphire_level", 0)
 		
 		# Score
 		score_wave = config.get_value("score", "wave", 0)
