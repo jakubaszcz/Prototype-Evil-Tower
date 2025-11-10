@@ -14,6 +14,7 @@ var bonus_regeneration : float = 0.0
 var bonus_ruse : float = 0.0
 var bonus_sapphire : int = 0
 var bonus_sapphire_wave : int = 0
+var bonus_critical : float = 0.0
 
 var score_wave : int = 0
 
@@ -37,6 +38,7 @@ var bonus_regeneration_level : int = 0
 var bonus_ruse_level : int = 0
 var bonus_sapphire_level : int = 0
 var bonus_sapphire_wave_level : int = 0
+var bonus_critical_level : int = 0
 
 
 func load_progression():
@@ -53,6 +55,7 @@ func load_progression():
 		bonus_ruse = config.get_value("bonus", "ruse", 0)
 		bonus_sapphire = config.get_value("bonus", "sapphire", 0)
 		bonus_sapphire_wave = config.get_value("bonus", "sapphire_wave", 0)
+		bonus_critical = config.get_value("bonus", "critical", 0.0)
 		
 		sapphire   = config.get_value("shop", "sapphire", 0)
 		bonus_damage_level = config.get_value("shop", "damage_level", 0)
@@ -65,6 +68,7 @@ func load_progression():
 		bonus_ruse_level = config.get_value("shop" ,"ruse_level", 0)
 		bonus_sapphire_level = config.get_value("shop", "sapphire_level", 0)
 		bonus_sapphire_wave_level = config.get_value("shop", "sapphire_wave_level", 0)
+		bonus_critical_level = config.get_value("shop", "critical_level", 0)
 		
 		# Score
 		score_wave = config.get_value("score", "wave", 0)
@@ -83,6 +87,7 @@ func save_progression():
 	config.set_value("bonus", "ruse", bonus_ruse)
 	config.set_value("bonus", "sapphire", bonus_sapphire)
 	config.set_value("bonus", "sapphire_wave", bonus_sapphire_wave)
+	config.set_value("bonus", "critical", bonus_critical)
 	
 	config.set_value("shop", "sapphire", sapphire)
 	config.set_value("shop", "damage_level", bonus_damage_level)
@@ -95,6 +100,7 @@ func save_progression():
 	config.set_value("shop" ,"ruse_level", bonus_ruse_level)
 	config.set_value("shop", "sapphire_level", bonus_sapphire_level)
 	config.set_value("shop", "sapphire_wave_level", bonus_sapphire_wave_level)
+	config.set_value("shop", "critical_level", bonus_critical_level)
 	
 	
 	config.set_value("score", "wave", score_wave)

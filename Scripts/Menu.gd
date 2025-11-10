@@ -54,15 +54,21 @@ extends Control
 
 # Sapphire Bonus Shop
 @onready var base_sapphire_price : int = 27
-@onready var base_sapphire_multiplier : float = 1.28 
+@onready var base_sapphire_multiplier : float = 1.17
 @onready var base_sapphire_reward : float = 0.5
 @onready var base_sapphire_max_level : int = 100
 
 # Sapphire by Wave Shop
 @onready var base_sapphire_wave_price : int = 27
-@onready var base_sapphire_wave_multiplier : float = 1.15 
+@onready var base_sapphire_wave_multiplier : float = 1.21
 @onready var base_sapphire_wave_reward : float = 1
 @onready var base_sapphire_wave_max_level : int = 100
+
+# Critical Shop
+@onready var base_critical_price : int = 17
+@onready var base_critical_multiplier : float = 1.21
+@onready var base_critical_reward : float = 0.5
+@onready var base_critical_max_level : int = 100
 
 # Gems Label
 @onready var gems_shop_label : Label = $VBoxContainer/MarginContainerPanel/PanelContainer/MarginContainer/GridContainer/Sapphire
@@ -118,6 +124,12 @@ extends Control
 @onready var sapphire_wave_shop_price_label : Label = $VBoxContainer/ScrollContainer/GridContainer/SapphireWaveShop/MarginContainer/VBoxContainer/GridContainer/Price
 @onready var sapphire_wave_shop_bonus_label : Label = $VBoxContainer/ScrollContainer/GridContainer/SapphireWaveShop/MarginContainer/VBoxContainer/GridContainer/Bonus
 
+# Critcal Label
+@onready var critical_shop_level_label : Label = $VBoxContainer/ScrollContainer/GridContainer/CriticalShop/MarginContainer/VBoxContainer/GridContainer/Level
+@onready var critical_shop_price_label : Label = $VBoxContainer/ScrollContainer/GridContainer/CriticalShop/MarginContainer/VBoxContainer/GridContainer/Price
+@onready var critical_shop_bonus_label : Label = $VBoxContainer/ScrollContainer/GridContainer/CriticalShop/MarginContainer/VBoxContainer/GridContainer/Bonus
+
+
 @onready var gameplay_time_button = $VBoxContainer/MarginContainerButton/GridContainer/TimeButton
 
 func anti_cheat():
@@ -139,6 +151,9 @@ func anti_cheat():
 		Global.bonus_ruse_level = base_ruse_max_level
 	if Global.bonus_sapphire_wave_level > base_sapphire_wave_max_level:
 		Global.bonus_sapphire_wave_level = base_sapphire_wave_max_level
+	if Global.bonus_critical_level > base_critical_max_level:
+		Global.bonus_critical_level = base_critical_max_level
+
 
 	Global.bonus_damage = base_damage_reward * Global.bonus_damage_level
 	Global.bonus_health = base_health_reward * Global.bonus_health_level
@@ -150,6 +165,7 @@ func anti_cheat():
 	Global.bonus_ruse = base_ruse_reward * Global.bonus_ruse_level
 	Global.bonus_sapphire = base_sapphire_reward * Global.bonus_sapphire_level
 	Global.bonus_sapphire_wave = base_sapphire_wave_reward * Global.bonus_sapphire_wave_level
+	Global.bonus_critical = base_critical_reward * Global.bonus_critical_level
 	
 	Global.save_progression()
 
@@ -172,6 +188,7 @@ func _ready() -> void:
 	load_ruse_shop()
 	load_sapphire_shop()
 	load_sapphire_wave_shop()
+	load_critical_shop()
 	
 func save_progression():
 	Global.save_progression()
@@ -468,7 +485,36 @@ func _on_sapphire_wave_button_pressed() -> void:
 		save_progression()
 
 func default_sapphire_wave_shop():
-	base_sapphire_wave_reward = 67
+	base_sapphire_wave_price = 45
+
+func load_critical_shop():
+	default_critical_shop()
+
+	base_critical_price = int(round(base_critical_price * pow(base_critical_multiplier, Global.bonus_critical_level)))
+
+	if (Global.bonus_critical_level >= base_critical_max_level):
+		critical_shop_level_label.text = "Lv." + Utils.format_number(Global.bonus_critical_level) + " (Max)"
+	else:
+		critical_shop_level_label.text = "Lv." + Utils.format_number(Global.bonus_critical_level)
+
+	critical_shop_price_label.text = Utils.format_number(base_critical_price)
+	critical_shop_bonus_label.text = Utils.format_number(Global.bonus_critical) + "%"
+
+func _on_critical_button_pressed() -> void:
+	if Global.bonus_critical_level >= base_critical_max_level:
+		return
+	if Global.sapphire >= base_critical_price:
+		Global.bonus_critical_level += 1
+		Global.bonus_critical += base_critical_reward
+		Global.sapphire -= base_critical_price
+
+		load_critical_shop()
+		load_gems()
+		save_progression()
+
+func default_critical_shop():
+	base_critical_price = 17
+
 
 func _on_play_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://Components/Scenes/testGame.tscn")

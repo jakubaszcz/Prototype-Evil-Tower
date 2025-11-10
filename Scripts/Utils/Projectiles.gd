@@ -37,5 +37,10 @@ func _physics_process(delta: float) -> void:
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemy"):
+		var critical_probability = randi_range(0, 10000)
+		if critical_probability <= (Global.bonus_ruse * 100):
+			_projectile_attack *= 2
+		
 		body._take_damage(_projectile_attack)
+		
 		queue_free()
