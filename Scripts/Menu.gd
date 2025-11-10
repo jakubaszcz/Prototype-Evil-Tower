@@ -58,6 +58,12 @@ extends Control
 @onready var base_sapphire_reward : float = 0.5
 @onready var base_sapphire_max_level : int = 100
 
+# Sapphire by Wave Shop
+@onready var base_sapphire_wave_price : int = 27
+@onready var base_sapphire_wave_multiplier : float = 1.28 
+@onready var base_sapphire_wave_reward : float = 1
+@onready var base_sapphire_wave_max_level : int = 25
+
 # Gems Label
 @onready var gems_shop_label : Label = $VBoxContainer/MarginContainerPanel/PanelContainer/MarginContainer/GridContainer/Sapphire
 @onready var score_wave_label : Label = $VBoxContainer/MarginContainerPanel/PanelContainer/MarginContainer/GridContainer/Score
@@ -107,6 +113,10 @@ extends Control
 @onready var sapphire_shop_price_label : Label = $VBoxContainer/ScrollContainer/GridContainer/SapphireShop/MarginContainer/VBoxContainer/GridContainer/Price
 @onready var sapphire_shop_bonus_label : Label = $VBoxContainer/ScrollContainer/GridContainer/SapphireShop/MarginContainer/VBoxContainer/GridContainer/Bonus
 
+# Sapphire Wave Bonus Shop Label
+@onready var sapphire_wave_shop_level_label : Label = $VBoxContainer/ScrollContainer/GridContainer/SapphireWaveShop/MarginContainer/VBoxContainer/GridContainer/Level
+@onready var sapphire_wave_shop_price_label : Label = $VBoxContainer/ScrollContainer/GridContainer/SapphireWaveShop/MarginContainer/VBoxContainer/GridContainer/Price
+@onready var sapphire_wave_shop_bonus_label : Label = $VBoxContainer/ScrollContainer/GridContainer/SapphireWaveShop/MarginContainer/VBoxContainer/GridContainer/Bonus
 
 @onready var gameplay_time_button = $VBoxContainer/MarginContainerButton/GridContainer/TimeButton
 
@@ -127,8 +137,8 @@ func anti_cheat():
 		Global.bonus_regeneration_level = base_regeneration_max_level
 	if Global.bonus_ruse_level > base_ruse_max_level:
 		Global.bonus_ruse_level = base_ruse_max_level
-	if Global.bonus_sapphire_level > base_sapphire_max_level:
-		Global.bonus_sapphire_level = base_sapphire_max_level
+	if Global.bonus_sapphire_wave_level > base_sapphire_wave_max_level:
+		Global.bonus_sapphire_wave_level = base_sapphire_wave_max_level
 
 	Global.bonus_damage = base_damage_reward * Global.bonus_damage_level
 	Global.bonus_health = base_health_reward * Global.bonus_health_level
@@ -137,8 +147,9 @@ func anti_cheat():
 	Global.bonus_coin = base_coin_reward * Global.bonus_coin_level
 	Global.bonus_bullet = base_bullet_reward * Global.bonus_bullet_level
 	Global.bonus_regeneration = base_regeneration_reward * Global.bonus_regeneration_level
-	Global.bonus_sapphire = base_sapphire_reward * Global.bonus_sapphire_level
 	Global.bonus_ruse = base_ruse_reward * Global.bonus_ruse_level
+	Global.bonus_sapphire = base_sapphire_reward * Global.bonus_sapphire_level
+	Global.bonus_sapphire_wave = base_sapphire_wave_reward * Global.bonus_sapphire_wave_level
 	
 	Global.save_progression()
 
@@ -160,7 +171,8 @@ func _ready() -> void:
 	load_regeneration_shop()
 	load_ruse_shop()
 	load_sapphire_shop()
-
+	load_sapphire_wave_shop()
+	
 func save_progression():
 	Global.save_progression()
 
@@ -428,6 +440,35 @@ func _on_sapphire_button_pressed() -> void:
 
 func default_sapphire_shop():
 	base_sapphire_price = 27
+
+func load_sapphire_wave_shop():
+	default_sapphire_shop()
+
+	base_sapphire_wave_price = int(round(base_sapphire_wave_price * pow(base_sapphire_wave_multiplier, Global.bonus_sapphire_wave_level)))
+
+	if (Global.bonus_sapphire_wave_level >= base_sapphire_wave_max_level):
+		sapphire_wave_shop_level_label.text = "Lv." + Utils.format_number(Global.bonus_sapphire_wave_level) + " (Max)"
+	else:
+		sapphire_wave_shop_level_label.text = "Lv." + Utils.format_number(Global.bonus_sapphire_wave_level)
+
+	sapphire_wave_shop_price_label.text = Utils.format_number(base_sapphire_wave_price)
+	sapphire_wave_shop_bonus_label.text = Utils.format_number(Global.bonus_sapphire_wave) + " sapphire(s)"
+
+func _on_sapphire_wave_button_pressed() -> void:
+	if Global.bonus_sapphire_wave_level >= base_sapphire_wave_max_level: return
+	if Global.sapphire >= base_sapphire_wave_price:
+		Global.bonus_sapphire_wave_level += 1
+		Global.bonus_sapphire_wave += base_sapphire_wave_reward
+		Global.sapphire -= base_sapphire_wave_price
+		
+		load_sapphire_wave_shop()
+
+		load_gems()
+
+		save_progression()
+
+func default_sapphire_wave_shop():
+	base_sapphire_wave_reward = 67
 
 func _on_play_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://Components/Scenes/testGame.tscn")

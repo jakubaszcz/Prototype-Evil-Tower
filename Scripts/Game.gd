@@ -68,6 +68,7 @@ func _ready() -> void:
 	_reset_data()
 	
 func _on_wave_completed(reward):
+	sapphire += Global.bonus_sapphire_wave
 	_add_coins(reward)
 
 
