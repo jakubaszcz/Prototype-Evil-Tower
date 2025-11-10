@@ -9,7 +9,7 @@ var base_health : int
 @export var attack: float = 1.0
 var base_attack : float
 @export var attack_speed : float = 3.0
-@export var recompense: int
+@export var recompense: int = 81789683
 var base_recompense : int = recompense
 var is_dead: bool = false
 var can_attack : bool = true
@@ -33,9 +33,6 @@ func _ready() -> void:
 	if progress_bar:
 		progress_bar.max_value = health
 		progress_bar.value = health
-	print("Base " + str(base_health))
-	print(str(base_attack))
-	print(str(base_recompense))
 
 func _physics_process(_delta: float) -> void:
 	

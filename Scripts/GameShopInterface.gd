@@ -1,49 +1,50 @@
 extends PanelContainer
 
-var damage_level: int = 1
-var damage_price: int = 9
+var damage_level: int = 0
+var damage_price: int = 5
 var damage_bonus: float = 0.0
 var damage_amount : int = 5
-var damage_multiplier: float = 1.23
-var damage_price_multiplier: float = 1.35
+var damage_multiplier: float = 0.22
+var damage_price_multiplier: float = 1.13
+var damage_max_level : int = 100
 
 # HEALTH
-var health_level: int = 1
-var health_price: int = 11
+var health_level: int = 0
+var health_price: int = 5
 var health_bonus: float = 0
 var health_amount : int = 22
-var health_multiplier: float = 1.17
+var health_multiplier: float = 6
 var health_price_multiplier: float = 1.36
 
 # RADIUS
-var radius_level: int = 1
-var radius_price: int = 12
+var radius_level: int = 0
+var radius_price: int = 6
 var radius_bonus: float = 0
 var radius_amount : float = 1.2
-var radius_multiplier: float = 1.02
-var radius_price_multiplier: float = 1.49
+var radius_multiplier: float = 0.01
+var radius_price_multiplier: float = 1.13
 
 # CADENCE
-var cadence_level: int = 1
-var cadence_price: int = 15
+var cadence_level: int = 0
+var cadence_price: int = 8
 var cadence_bonus: float = 0
 var cadence_amount : float = 3.5
-var cadence_multiplier: float = 0.98
-var cadence_price_multiplier: float = 1.41
+var cadence_multiplier: float = 0.01
+var cadence_price_multiplier: float = 1.17
 
 # BULLET
-var bullet_level: int = 1
-var bullet_price: int = 136
+var bullet_level: int = 0
+var bullet_price: int = 26
 var bullet_bonus: float = 0
 var bullet_amount : float = 1
 var bullet_price_multiplier: float = 1.61
 
 # REGENERATION
-var regeneration_level: int = 1
-var regeneration_price: int = 23
+var regeneration_level: int = 0
+var regeneration_price: int = 9
 var regeneration_bonus: float = 0
 var regeneration_amount : float = 1
-var regeneration_multiplier: float = 0.98
+var regeneration_multiplier: float = 0.01
 var regeneration_price_multiplier: float = 1.61
 
 
@@ -107,10 +108,9 @@ func purchase_damage():
 	if Game.game_coin < damage_price:
 		return
 	Game.game_coin -= damage_price
-	var add_value = (damage_amount * damage_multiplier) - damage_amount
 
-	Game.game_damage += add_value
-	damage_bonus += add_value
+	Game.game_damage += damage_multiplier
+	damage_bonus += damage_multiplier
 	damage_level += 1
 	damage_price = int(round(damage_price * damage_price_multiplier))
 	load_damage()
@@ -119,9 +119,8 @@ func purchase_health():
 	if Game.game_coin < health_price:
 		return
 	Game.game_coin -= health_price
-	var add_value = (health_amount * health_multiplier) - health_amount
-	Game.game_health += add_value
-	health_bonus += add_value
+	Game.game_health += health_multiplier
+	health_bonus += health_multiplier
 	health_level += 1
 	health_price = int(round(health_price * health_price_multiplier))
 	load_health()
@@ -130,8 +129,8 @@ func purchase_radius():
 	if Game.game_coin < radius_price:
 		return
 	Game.game_coin -= radius_price
-	Game.game_radius *= radius_multiplier
-	radius_bonus *= radius_multiplier
+	Game.game_radius += radius_multiplier
+	radius_bonus += radius_multiplier
 	radius_level += 1
 	radius_price = int(round(radius_price * radius_price_multiplier))
 	load_radius()
@@ -140,8 +139,8 @@ func purchase_cadence():
 	if Game.game_coin < cadence_price:
 		return
 	Game.game_coin -= cadence_price
-	Game.game_cadence *= cadence_multiplier
-	cadence_bonus *= cadence_multiplier
+	Game.game_cadence -= cadence_multiplier
+	cadence_bonus += cadence_multiplier
 	cadence_level += 1
 	cadence_price = int(round(cadence_price * cadence_price_multiplier))
 	load_cadence()
@@ -160,14 +159,18 @@ func purchase_regeneration():
 	if Game.game_coin < regeneration_price:
 		return
 	Game.game_coin -= regeneration_price
-	Game.game_regeneration *= regeneration_multiplier
-	regeneration_bonus *= regeneration_multiplier
+	Game.game_regeneration -= regeneration_multiplier
+	regeneration_bonus += regeneration_multiplier
 	regeneration_level += 1
 	regeneration_price = int(round(regeneration_price * regeneration_price_multiplier))
 	load_regeneration()
 
 func load_damage():
-	damage_level_label.text = "Lv." + Utils.format_number(damage_level)
+	if damage_level >= damage_max_level:
+		damage_level_label.text = "Maxxed"
+	else:
+		damage_level_label.text = "Lv." + Utils.format_number(damage_level)
+
 	damage_bonus_label.text = Utils.format_number(damage_bonus)
 	damage_price_label.text = Utils.format_number(damage_price)
 
@@ -197,6 +200,7 @@ func load_regeneration():
 	regeneration_price_label.text = Utils.format_number(regeneration_price)
 
 func _on_damage_button_pressed() -> void:
+	if damage_level >= damage_max_level: return
 	if Game.game_coin >= damage_price:
 		GameSignal.emit_signal("s_game_shop", "shop_damage")
 

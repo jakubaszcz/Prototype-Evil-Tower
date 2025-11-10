@@ -75,10 +75,13 @@ func generate_wave(wave_number:int) -> Array[Enemy]:
 		
 		enemy.init_base()
 		
-		enemy._set_attack(floor(enemy.get_base_attack() + ((1 + Game.current_wave) / 6)))
-		enemy._set_health(floor(enemy.get_base_health() + ((1 + Game.current_wave) / 10)))
-		enemy._set_reward(floor(enemy.get_base_recompense() + ((1 + Game.current_wave) / 8)))
+		enemy._set_attack((enemy.get_base_attack() + ((1 + Game.current_wave) / 6)))
+		enemy._set_health((enemy.get_base_health() + ((1 + Game.current_wave) / 10)))
+		enemy._set_reward((enemy.get_base_recompense() + ((1 + Game.current_wave) / 8)))
 		
+		print(str(enemy.get_base_attack()))
+		print(str(enemy.get_base_health()))
+		print(str(enemy._get_reward()))
 		
 		wave_data.append(enemy)
 

@@ -2,13 +2,13 @@ extends Control
 
 # Damage Shop
 @onready var base_damage_price : int = 3
-@onready var base_damage_multiplier : float = 1.08
+@onready var base_damage_multiplier : float = 1.15
 @onready var base_damage_reward : float = .20
 @onready var base_damage_max_level : int = 100
 
 # Health Shop
 @onready var base_health_price : int = 4
-@onready var base_health_multiplier : float = 1.09
+@onready var base_health_multiplier : float = 1.15
 @onready var base_health_reward : int = 10
 @onready var base_health_max_level : int = 100
 
@@ -29,14 +29,14 @@ extends Control
 
 # Coin Shop
 @onready var base_coin_price : int = 4
-@onready var base_coin_multiplier : float = 1.13
+@onready var base_coin_multiplier : float = 1.14
 @onready var base_coin_reward : int = 12
 @onready var base_coin_max_level : int = 200
 
 
 # Bullet Shop
-@onready var base_bullet_price : int = 23
-@onready var base_bullet_multiplier : float = 1.23
+@onready var base_bullet_price : int = 87
+@onready var base_bullet_multiplier : float = 1.96
 @onready var base_bullet_reward : int = 1
 @onready var base_bullet_max_level : int = 10
 
@@ -54,7 +54,7 @@ extends Control
 
 # Sapphire Bonus Shop
 @onready var base_sapphire_price : int = 27
-@onready var base_sapphire_multiplier : float = 1.18
+@onready var base_sapphire_multiplier : float = 1.28 
 @onready var base_sapphire_reward : float = 0.5
 @onready var base_sapphire_max_level : int = 100
 
@@ -111,6 +111,25 @@ extends Control
 @onready var gameplay_time_button = $VBoxContainer/MarginContainerButton/GridContainer/TimeButton
 
 func anti_cheat():
+	if Global.bonus_damage_level > base_damage_max_level:
+		Global.bonus_damage_level = base_damage_max_level
+	if Global.bonus_health_level > base_health_max_level:
+		Global.bonus_health_level = base_health_max_level
+	if Global.bonus_radius_level > base_radius_max_level:
+		Global.bonus_radius_level = base_radius_max_level
+	if Global.bonus_cadence_level > base_cadence_max_level:
+		Global.bonus_cadence_level = base_cadence_max_level
+	if Global.bonus_coin_level > base_coin_max_level:
+		Global.bonus_coin_level = base_coin_max_level
+	if Global.bonus_bullet_level > base_bullet_max_level:
+		Global.bonus_bullet_level = base_bullet_max_level
+	if Global.bonus_regeneration_level > base_regeneration_max_level:
+		Global.bonus_regeneration_level = base_regeneration_max_level
+	if Global.bonus_ruse_level > base_ruse_max_level:
+		Global.bonus_ruse_level = base_ruse_max_level
+	if Global.bonus_sapphire_level > base_sapphire_max_level:
+		Global.bonus_sapphire_level = base_sapphire_max_level
+
 	Global.bonus_damage = base_damage_reward * Global.bonus_damage_level
 	Global.bonus_health = base_health_reward * Global.bonus_health_level
 	Global.bonus_radius = base_radius_reward * Global.bonus_radius_level
@@ -149,7 +168,7 @@ func load_time():
 	gameplay_time_button.text = "x" + str(Global.gameplay_times_array[Global.gameplay_time])
 
 func load_gems():
-	gems_shop_label.text = Utils.format_number(Global.sapphire) + " Sapphire"
+	gems_shop_label.text = Utils.format_number(Global.sapphire) + " Sapphires"
 
 func load_score():
 	score_wave_label.text = "Highest wave : " + str(Global.score_wave)
@@ -245,7 +264,7 @@ func default_cadence_shop():
 func load_cadence_shop():
 	default_cadence_shop()
 
-	base_cadence_price = int(round(base_cadence_price * pow(base_coin_multiplier, Global.bonus_coin_level)))
+	base_cadence_price = int(round(base_cadence_price * pow(base_cadence_multiplier, Global.bonus_cadence_level)))
 	
 	if (Global.bonus_cadence_level >= base_cadence_max_level):
 		cadence_shop_level_label.text = "Lv." + Utils.format_number(Global.bonus_cadence_level) + " (Max)"
@@ -297,7 +316,7 @@ func _on_coin_button_pressed() -> void:
 		save_progression()
 
 func default_bullet_shop():
-	base_bullet_price = 24
+	base_bullet_price = 76
 
 func load_bullet_shop():
 	default_bullet_shop()
@@ -408,7 +427,7 @@ func _on_sapphire_button_pressed() -> void:
 		save_progression()
 
 func default_sapphire_shop():
-	base_health_price = 56
+	base_sapphire_price = 27
 
 func _on_play_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://Components/Scenes/testGame.tscn")
