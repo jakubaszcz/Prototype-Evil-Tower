@@ -74,10 +74,10 @@ func _on_wave_completed(reward):
 
 func _on_game_over(reason) -> void:
 	if is_game_over:
-		sapphire = (int(survival_time) / 10) + ((killed_enemy + (current_wave + 1)) / 2)
+		sapphire += (int(survival_time) / 10) + ((killed_enemy + (current_wave + 1)) / 2)
 		if Game.current_wave >= Global.score_wave:
 			Global.score_wave = Game.current_wave
-		if Global.bonus_sapphire > 0:
+		if Global.bonus_sapphire_level > 0:
 			sapphire *= (1 + (Global.bonus_sapphire / 100)) 
 			floor(sapphire)
 		print("Saphire Game : " + str(Game.sapphire))

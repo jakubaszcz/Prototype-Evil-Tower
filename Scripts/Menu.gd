@@ -60,9 +60,9 @@ extends Control
 
 # Sapphire by Wave Shop
 @onready var base_sapphire_wave_price : int = 27
-@onready var base_sapphire_wave_multiplier : float = 1.28 
+@onready var base_sapphire_wave_multiplier : float = 1.15 
 @onready var base_sapphire_wave_reward : float = 1
-@onready var base_sapphire_wave_max_level : int = 25
+@onready var base_sapphire_wave_max_level : int = 100
 
 # Gems Label
 @onready var gems_shop_label : Label = $VBoxContainer/MarginContainerPanel/PanelContainer/MarginContainer/GridContainer/Sapphire
@@ -442,7 +442,7 @@ func default_sapphire_shop():
 	base_sapphire_price = 27
 
 func load_sapphire_wave_shop():
-	default_sapphire_shop()
+	default_sapphire_wave_shop()
 
 	base_sapphire_wave_price = int(round(base_sapphire_wave_price * pow(base_sapphire_wave_multiplier, Global.bonus_sapphire_wave_level)))
 
