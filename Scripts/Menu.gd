@@ -70,6 +70,12 @@ extends Control
 @onready var base_critical_reward : float = 0.5
 @onready var base_critical_max_level : int = 100
 
+# Health Point Shop
+@onready var base_health_point_price : int = 14
+@onready var base_health_point_multiplier : float = 1.18
+@onready var base_health_point_reward : float = 1
+@onready var base_health_point_max_level : int = 100
+
 # Gems Label
 @onready var gems_shop_label : Label = $VBoxContainer/MarginContainerPanel/PanelContainer/MarginContainer/GridContainer/Sapphire
 @onready var score_wave_label : Label = $VBoxContainer/MarginContainerPanel/PanelContainer/MarginContainer/GridContainer/Score
@@ -129,6 +135,11 @@ extends Control
 @onready var critical_shop_price_label : Label = $VBoxContainer/ScrollContainer/GridContainer/CriticalShop/MarginContainer/VBoxContainer/GridContainer/Price
 @onready var critical_shop_bonus_label : Label = $VBoxContainer/ScrollContainer/GridContainer/CriticalShop/MarginContainer/VBoxContainer/GridContainer/Bonus
 
+# Health Point Label
+@onready var health_point_shop_level_label : Label = $VBoxContainer/ScrollContainer/GridContainer/HealthPointShop/MarginContainer/VBoxContainer/GridContainer/Level
+@onready var health_point_shop_price_label : Label = $VBoxContainer/ScrollContainer/GridContainer/HealthPointShop/MarginContainer/VBoxContainer/GridContainer/Price
+@onready var health_point_shop_bonus_label : Label = $VBoxContainer/ScrollContainer/GridContainer/HealthPointShop/MarginContainer/VBoxContainer/GridContainer/Bonus
+
 
 @onready var gameplay_time_button = $VBoxContainer/MarginContainerButton/GridContainer/TimeButton
 
@@ -153,7 +164,8 @@ func anti_cheat():
 		Global.bonus_sapphire_wave_level = base_sapphire_wave_max_level
 	if Global.bonus_critical_level > base_critical_max_level:
 		Global.bonus_critical_level = base_critical_max_level
-
+	if Global.bonus_health_point_level > base_health_point_max_level:
+		Global.bonus_health_point_level = base_health_point_max_level
 
 	Global.bonus_damage = base_damage_reward * Global.bonus_damage_level
 	Global.bonus_health = base_health_reward * Global.bonus_health_level
@@ -166,6 +178,7 @@ func anti_cheat():
 	Global.bonus_sapphire = base_sapphire_reward * Global.bonus_sapphire_level
 	Global.bonus_sapphire_wave = base_sapphire_wave_reward * Global.bonus_sapphire_wave_level
 	Global.bonus_critical = base_critical_reward * Global.bonus_critical_level
+	Global.bonus_health_point = base_health_point_reward * Global.bonus_health_point_level
 	
 	Global.save_progression()
 
@@ -189,6 +202,7 @@ func _ready() -> void:
 	load_sapphire_shop()
 	load_sapphire_wave_shop()
 	load_critical_shop()
+	load_health_point_shop()
 	
 func save_progression():
 	Global.save_progression()
@@ -514,6 +528,34 @@ func _on_critical_button_pressed() -> void:
 
 func default_critical_shop():
 	base_critical_price = 17
+
+func load_health_point_shop():
+	default_health_point_shop()
+
+	base_health_point_price = int(round(base_health_point_price * pow(base_health_point_multiplier, Global.bonus_health_point_level)))
+
+	if (Global.bonus_health_point_level >= base_health_point_max_level):
+		health_point_shop_level_label.text = "Lv." + Utils.format_number(Global.bonus_health_point_level) + " (Max)"
+	else:
+		health_point_shop_level_label.text = "Lv." + Utils.format_number(Global.bonus_health_point_level)
+
+	health_point_shop_price_label.text = Utils.format_number(base_health_point_price)
+	health_point_shop_bonus_label.text = Utils.format_number(Global.bonus_health_point) + " HP"
+
+func _on_health_point_button_pressed() -> void:
+	if Global.bonus_health_point_level >= base_health_point_max_level:
+		return
+	if Global.sapphire >= base_health_point_price:
+		Global.bonus_health_point_level += 1
+		Global.bonus_health_point += base_health_point_reward
+		Global.sapphire -= base_health_point_price
+
+		load_health_point_shop()
+		load_gems()
+		save_progression()
+
+func default_health_point_shop():
+	base_health_point_price = 35
 
 
 func _on_play_button_pressed() -> void:

@@ -79,9 +79,6 @@ func generate_wave(wave_number:int) -> Array[Enemy]:
 		enemy._set_health((enemy.get_base_health() + ((1 + Game.current_wave) / 10)))
 		enemy._set_reward((enemy.get_base_recompense() + ((1 + Game.current_wave) / 8)))
 		
-		print(str(enemy.get_base_attack()))
-		print(str(enemy.get_base_health()))
-		print(str(enemy._get_reward()))
 		
 		wave_data.append(enemy)
 
@@ -145,7 +142,6 @@ func create_wave():
 	
 	is_wave_running = true
 	Game.current_wave += 1
-	print("🌀 Create wave number:", Game.current_wave)
 	
 	var wave : Array[Enemy] = generate_wave(Game.current_wave)
 	await deploy_enemies(wave)
@@ -174,7 +170,6 @@ func _on_enemy_died(enemy: Enemy) -> void:
 	enemies_alive = max(enemies_alive - 1, 0)
 
 	if enemies_alive == 0:
-		print("✅ Wave", Game.current_wave, "cleared! Waiting", time_between_waves, "seconds...")
 		
 		if wave_in_progress:
 			return

@@ -38,7 +38,12 @@ func _physics_process(delta: float) -> void:
 		regen_time += delta
 		if regen_time >= Game.game_regeneration:
 			regen_time = 0.0
-			Game.game_current_health += 1
+			if Global.bonus_health_point_level == 0:
+				print("1")
+				Game.game_current_health += 1
+			else:
+				print("caca :" + str(Global.bonus_health_point_level))
+				Game.game_current_health += Global.bonus_health_point_level
 
 	shoot_cooldown.wait_time = Game.game_cadence
 	trigger_collider.scale = Vector2(Game.game_radius, Game.game_radius)

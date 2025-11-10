@@ -6,7 +6,7 @@ var damage_bonus: float = 0.0
 var damage_amount : int = 5
 var damage_multiplier: float = 0.22
 var damage_price_multiplier: float = 1.13
-var damage_max_level : int = 100
+var damage_max_level : int = 150
 
 # HEALTH
 var health_level: int = 0
@@ -14,7 +14,7 @@ var health_price: int = 5
 var health_bonus: float = 0
 var health_amount : int = 22
 var health_multiplier: float = 6
-var health_price_multiplier: float = 1.36
+var health_price_multiplier: float = 1.16
 
 # RADIUS
 var radius_level: int = 0
@@ -23,6 +23,7 @@ var radius_bonus: float = 0
 var radius_amount : float = 1.2
 var radius_multiplier: float = 0.01
 var radius_price_multiplier: float = 1.13
+var radius_max_level : int = 150
 
 # CADENCE
 var cadence_level: int = 0
@@ -180,7 +181,11 @@ func load_health():
 	health_price_label.text = Utils.format_number(health_price)
 
 func load_radius():
-	radius_level_label.text = "Lv." + Utils.format_number(radius_level)
+	if radius_level >= radius_max_level:
+		radius_level_label.text = "Maxxed"
+	else:
+		radius_level_label.text = "Lv." + Utils.format_number(damage_level)
+	
 	radius_bonus_label.text = Utils.format_number(round(radius_bonus * 100) / 100.0)
 	radius_price_label.text = Utils.format_number(radius_price)
 
