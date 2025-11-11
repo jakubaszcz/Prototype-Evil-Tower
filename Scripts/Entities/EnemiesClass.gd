@@ -13,10 +13,13 @@ var base_attack : float
 var base_recompense : int = recompense
 var is_dead: bool = false
 var can_attack : bool = true
+@export var long_distance : bool = false
 
 @export var progress_bar: ProgressBar
 @export var cooldown: Timer
 @export var hitbox: Area2D
+
+@export var critical_proof : bool = false
 
 var player_target: CharacterBody2D = null
 @onready var detection_area: Area2D = $Area2D
@@ -33,6 +36,25 @@ func _ready() -> void:
 	if progress_bar:
 		progress_bar.max_value = health
 		progress_bar.value = health
+
+func _draw() -> void:
+	if not long_distance: return
+	if not detection_area:
+		return
+	
+	var collision_shape = detection_area.get_node_or_null("CollisionShape2D")
+	if not collision_shape or not collision_shape.shape:
+		return
+	
+	var color := Color(1, 0, 0, 0.1)
+	
+	if collision_shape.shape is CircleShape2D:
+		var radius = collision_shape.shape.radius * collision_shape.scale.x
+		draw_circle(Vector2.ZERO, radius, color)
+	elif collision_shape.shape is RectangleShape2D:
+		var extents = collision_shape.shape.extents * collision_shape.scale
+		draw_rect(Rect2(-extents, extents * 2.0), color, true)
+
 
 func _physics_process(_delta: float) -> void:
 	
@@ -51,6 +73,7 @@ func _physics_process(_delta: float) -> void:
 
 func _attack(target : Node2D, damage: float):
 	if target.is_in_group("player"):
+		print("hit")
 		var dodge_probability = randi_range(0, 10000)
 		if dodge_probability <= (Global.bonus_ruse * 100):
 			pass
@@ -108,3 +131,5 @@ func get_base_attack():
 	return base_attack
 func get_base_recompense():
 	return base_recompense
+func get_critical():
+	return critical_proof

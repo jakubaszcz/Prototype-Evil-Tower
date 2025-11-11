@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://o2ueehepuarg"]
+
+[ext_resource type="Texture2D" uid="uid://cuya6wyn445x7" path="res://Assets/Enemies/Type-3.png" id="2_2rbyw"]
+[ext_resource type="Script" uid="uid://8p33dw64exbw" path="res://Scripts/Entities/EnemiesClass.gd" id="2_75cuc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ayoq3"]
+size = Vector2(35, 37)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ayoq3"]
+radius = 1.7652817
+
+[node name="ennemies_class" type="CharacterBody2D" node_paths=PackedStringArray("cooldown", "hitbox") groups=["enemy"]]
+script = ExtResource("2_75cuc")
+health = 7
+speed = 25.0
+recompense = 2
+cooldown = NodePath("AttackCooldown")
+hitbox = NodePath("Area2D")
+metadata/_custom_type_script = "uid://8p33dw64exbw"
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_ayoq3")
+
+[node name="AttackCooldown" type="Timer" parent="."]
+
+[node name="Sprite" type="Sprite2D" parent="."]
+modulate = Color(0.6509766, 0.54793704, 0.37025347, 1)
+scale = Vector2(0.02, 0.02)
+texture = ExtResource("2_2rbyw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(6.2566514, 6.2991443)
+shape = SubResource("CircleShape2D_ayoq3")

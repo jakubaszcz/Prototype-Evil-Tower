@@ -16,6 +16,8 @@ var enemy_map := {
 	"nick": 2,
 	"ninja": 3,
 	"lockhlass": 4,
+	"giant": 5,
+	"archer": 6
 }
 
 var mini_boss_map := {

@@ -42,7 +42,6 @@ func _physics_process(delta: float) -> void:
 				print("1")
 				Game.game_current_health += 1
 			else:
-				print("caca :" + str(Global.bonus_health_point_level))
 				Game.game_current_health += Global.bonus_health_point_level
 
 	shoot_cooldown.wait_time = Game.game_cadence
