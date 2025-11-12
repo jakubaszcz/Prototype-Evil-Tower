@@ -76,6 +76,12 @@ extends Control
 @onready var base_health_point_reward : float = 1
 @onready var base_health_point_max_level : int = 100
 
+# Sapphire Enemy Shop
+@onready var base_sapphire_enemy_price : int = 14
+@onready var base_sapphire_enemy_multiplier : float = 1.18
+@onready var base_sapphire_enemy_reward : float = 1
+@onready var base_sapphire_enemy_max_level : int = 100
+
 # Gems Label
 @onready var gems_shop_label : Label = $VBoxContainer/MarginContainerPanel/PanelContainer/MarginContainer/GridContainer/Sapphire
 @onready var score_wave_label : Label = $VBoxContainer/MarginContainerPanel/PanelContainer/MarginContainer/GridContainer/Score
@@ -140,6 +146,11 @@ extends Control
 @onready var health_point_shop_price_label : Label = $VBoxContainer/ScrollContainer/GridContainer/HealthPointShop/MarginContainer/VBoxContainer/GridContainer/Price
 @onready var health_point_shop_bonus_label : Label = $VBoxContainer/ScrollContainer/GridContainer/HealthPointShop/MarginContainer/VBoxContainer/GridContainer/Bonus
 
+# Sapphire Enemy Label
+@onready var sapphire_enemy_shop_level_label : Label = $VBoxContainer/ScrollContainer/GridContainer/SapphireEnemyShop/MarginContainer/VBoxContainer/GridContainer/Level
+@onready var sapphire_enemy_shop_price_label : Label = $VBoxContainer/ScrollContainer/GridContainer/SapphireEnemyShop/MarginContainer/VBoxContainer/GridContainer/Price
+@onready var sapphire_enemy_shop_bonus_label : Label = $VBoxContainer/ScrollContainer/GridContainer/SapphireEnemyShop/MarginContainer/VBoxContainer/GridContainer/Bonus
+
 
 @onready var gameplay_time_button = $VBoxContainer/MarginContainerButton/GridContainer/TimeButton
 
@@ -166,6 +177,8 @@ func anti_cheat():
 		Global.bonus_critical_level = base_critical_max_level
 	if Global.bonus_health_point_level > base_health_point_max_level:
 		Global.bonus_health_point_level = base_health_point_max_level
+	if Global.bonus_sapphire_enemy_level > base_sapphire_enemy_max_level:
+		Global.bonus_sapphire_enemy_level = base_sapphire_enemy_max_level
 
 	Global.bonus_damage = base_damage_reward * Global.bonus_damage_level
 	Global.bonus_health = base_health_reward * Global.bonus_health_level
@@ -179,6 +192,7 @@ func anti_cheat():
 	Global.bonus_sapphire_wave = base_sapphire_wave_reward * Global.bonus_sapphire_wave_level
 	Global.bonus_critical = base_critical_reward * Global.bonus_critical_level
 	Global.bonus_health_point = base_health_point_reward * Global.bonus_health_point_level
+	Global.bonus_sapphire_enemy = base_sapphire_enemy_reward * Global.bonus_sapphire_enemy_level
 	
 	Global.save_progression()
 
@@ -203,6 +217,7 @@ func _ready() -> void:
 	load_sapphire_wave_shop()
 	load_critical_shop()
 	load_health_point_shop()
+	load_sapphire_enemy_shop()
 	
 func save_progression():
 	Global.save_progression()
@@ -556,6 +571,35 @@ func _on_health_point_button_pressed() -> void:
 
 func default_health_point_shop():
 	base_health_point_price = 35
+
+func load_sapphire_enemy_shop():
+	default_sapphire_enemy_shop()
+
+	base_sapphire_enemy_price = int(round(base_sapphire_enemy_price * pow(base_sapphire_enemy_multiplier, Global.bonus_sapphire_enemy_level)))
+
+	if (Global.bonus_sapphire_enemy_level >= base_sapphire_enemy_max_level):
+		sapphire_enemy_shop_level_label.text = "Lv." + Utils.format_number(Global.bonus_sapphire_enemy_level) + " (Max)"
+	else:
+		sapphire_enemy_shop_level_label.text = "Lv." + Utils.format_number(Global.bonus_sapphire_enemy_level)
+
+	sapphire_enemy_shop_price_label.text = Utils.format_number(base_sapphire_enemy_price)
+	sapphire_enemy_shop_bonus_label.text = Utils.format_number(Global.bonus_sapphire_enemy) + " sapphire(s)"
+
+func _on_sapphire_enemy_button_pressed() -> void:
+	if Global.bonus_sapphire_enemy_level >= base_sapphire_enemy_max_level:
+		return
+	if Global.sapphire >= base_sapphire_enemy_price:
+		Global.bonus_sapphire_enemy_level += 1
+		Global.bonus_sapphire_enemy += base_sapphire_enemy_reward
+		Global.sapphire -= base_sapphire_enemy_price
+
+		load_sapphire_enemy_shop()
+		load_gems()
+		save_progression()
+
+func default_sapphire_enemy_shop():
+	base_sapphire_enemy_price = 35
+
 
 
 func _on_play_button_pressed() -> void:

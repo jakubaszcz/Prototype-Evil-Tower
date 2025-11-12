@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://ootpfvisx2mm"]
+[gd_scene load_steps=12 format=3 uid="uid://ootpfvisx2mm"]
 
 [ext_resource type="Script" uid="uid://h3a4yjuu0mj0" path="res://Scripts/WaveManager.gd" id="1_w1asb"]
 [ext_resource type="PackedScene" uid="uid://7qrwl6nlntii" path="res://Components/Entities/Enemies/Warrior.tscn" id="2_0nc3a"]
@@ -10,12 +10,14 @@
 [ext_resource type="PackedScene" uid="uid://o2ueehepuarg" path="res://Components/Entities/Enemies/lokhlass.tscn" id="6_ynfmn"]
 [ext_resource type="PackedScene" uid="uid://d1fq6cnxd7xd3" path="res://Components/Entities/Enemies/Giant.tscn" id="7_wpk1x"]
 [ext_resource type="PackedScene" uid="uid://bpuwrig13h4v" path="res://Components/Entities/Enemies/Archer.tscn" id="8_mprld"]
+[ext_resource type="PackedScene" uid="uid://b23ymt7kxgf1w" path="res://Components/Entities/Enemies/Gods/Anubis.tscn" id="11_ejg1r"]
 
 [node name="WaveManager" type="Node2D"]
 script = ExtResource("1_w1asb")
 enemies = Array[PackedScene]([ExtResource("2_0nc3a"), ExtResource("3_6usn8"), ExtResource("4_ynfmn"), ExtResource("5_wpk1x"), ExtResource("6_ynfmn"), ExtResource("7_wpk1x"), ExtResource("8_mprld")])
 mini_bosses = Array[PackedScene]([ExtResource("3_0nc3a")])
 bosses = Array[PackedScene]([ExtResource("4_0nc3a")])
+gods = Array[PackedScene]([ExtResource("11_ejg1r")])
 
 [node name="WaveTimer" type="Timer" parent="."]
 one_shot = true

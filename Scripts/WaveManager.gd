@@ -9,6 +9,11 @@ signal wave_reward(reward)
 @export var enemies: Array[PackedScene]
 @export var mini_bosses : Array[PackedScene]
 @export var bosses : Array[PackedScene]
+@export var gods : Array[PackedScene]
+
+var active_god: Enemy = null
+var active_god_name: String = ""
+var god_curse_active: bool = false
 
 var enemy_map := {
 	"basic": 0,
@@ -26,6 +31,10 @@ var mini_boss_map := {
 
 var boss_map := {
 	"scarlet": 0
+}
+
+var gods_map := {
+	"anubis": 0
 }
 
 var waves: Array = []
@@ -66,6 +75,31 @@ func generate_wave(wave_number:int) -> Array[Enemy]:
 	
 	var enemy_count = rng.randi_range(min, max)
 	var wave_data : Array[Enemy] = []
+	
+	if wave_number % 100 == 0:
+		var gtypes_keys = gods_map.keys()
+		var god_type = gtypes_keys[rng.randi_range(0, gtypes_keys.size() - 1)]
+		
+		var god_scene_index = gods_map[god_type]
+		var god_scene = gods[god_scene_index]
+		
+		var god = god_scene.instantiate() as Enemy
+		
+		god.init_base()
+		god._set_attack(god.get_base_attack() + ((1 + Game.current_wave) / 6))
+		god._set_health(god.get_base_health() + ((1 + Game.current_wave) / 10))
+		god._set_reward(god.get_base_recompense() + ((1 + Game.current_wave) / 8))
+
+		# Stocke les infos du dieu
+		active_god = god
+		active_god_name = god_type
+
+		# Applique la malédiction au moment où il spawn
+		apply_god_curse(god_type)
+		god_curse_active = true
+	
+		wave_data.append(god)
+
 	
 	for i in range(enemy_count):
 		var types_keys = enemy_map.keys()
@@ -169,6 +203,12 @@ func _on_enemy_died(enemy: Enemy) -> void:
 	if enemy and enemy.has_signal("enemy_died") and enemy.is_connected("enemy_died", Callable(self, "_on_enemy_died").bind(enemy)):
 		enemy.disconnect("enemy_died", Callable(self, "_on_enemy_died").bind(enemy))
 
+		if enemy == active_god:
+			clear_god_curses()
+			active_god = null
+			active_god_name = ""
+			god_curse_active = false
+
 	enemies_alive = max(enemies_alive - 1, 0)
 
 	if enemies_alive == 0:
@@ -189,6 +229,15 @@ func _on_enemy_died(enemy: Enemy) -> void:
 
 func calculate_reward() -> int:
 	return floor(2 * pow(1.05, float(Game.current_wave)))
+
+func apply_god_curse(god_name: String) -> void:
+	match god_name:
+		"anubis":
+			Game.anubis_curse = true
+
+func clear_god_curses() -> void:
+	Game.anubis_curse = false
+
 
 func get_spawn_position() -> Vector2:
 	var rect = get_viewport_rect()

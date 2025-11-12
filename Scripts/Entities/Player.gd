@@ -30,19 +30,19 @@ func _draw() -> void:
 
 func _physics_process(delta: float) -> void:
 	queue_redraw() # redraw the collision _draw
-	if is_regen:
-		if Game.game_current_health >= Game.game_health:
-			Game.game_current_health = Game.game_health
-			is_regen = false
-			return
-		regen_time += delta
-		if regen_time >= Game.game_regeneration:
-			regen_time = 0.0
-			if Global.bonus_health_point_level == 0:
-				print("1")
-				Game.game_current_health += 1
-			else:
-				Game.game_current_health += Global.bonus_health_point_level
+	if not Game.anubis_curse:
+		if is_regen:
+			if Game.game_current_health >= Game.game_health:
+				Game.game_current_health = Game.game_health
+				is_regen = false
+				return
+			regen_time += delta
+			if regen_time >= Game.game_regeneration:
+				regen_time = 0.0
+				if Global.bonus_health_point_level == 0:
+					Game.game_current_health += 1
+				else:
+					Game.game_current_health += Global.bonus_health_point_level
 
 	shoot_cooldown.wait_time = Game.game_cadence
 	trigger_collider.scale = Vector2(Game.game_radius, Game.game_radius)

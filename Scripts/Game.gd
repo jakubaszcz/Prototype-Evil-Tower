@@ -11,6 +11,8 @@ enum GameOverReason {
 	MANUAL_EXIT
 }
 
+static var anubis_curse : bool = false
+
 static var speed_multiplier : float = 1.0
 
 # Game stats

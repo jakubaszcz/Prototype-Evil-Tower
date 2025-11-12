@@ -20,6 +20,7 @@ var can_attack : bool = true
 @export var hitbox: Area2D
 
 @export var critical_proof : bool = false
+@export var ruse_proof : bool = false
 
 var player_target: CharacterBody2D = null
 @onready var detection_area: Area2D = $Area2D
@@ -73,7 +74,9 @@ func _physics_process(_delta: float) -> void:
 
 func _attack(target : Node2D, damage: float):
 	if target.is_in_group("player"):
-		print("hit")
+		if ruse_proof:
+			target._take_damage(damage)
+			pass
 		var dodge_probability = randi_range(0, 10000)
 		if dodge_probability <= (Global.bonus_ruse * 100):
 			pass
@@ -116,6 +119,7 @@ func _take_damage(amount: int) -> void:
 		Game.game_coin += recompense
 		is_dead = true
 		emit_signal("enemy_died")
+		Game.sapphire += Global.bonus_sapphire_enemy
 		Game.killed_enemy += 1
 		queue_free()
 
