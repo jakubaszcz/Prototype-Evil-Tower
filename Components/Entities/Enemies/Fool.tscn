@@ -10,6 +10,7 @@ size = Vector2(35, 37)
 radius = 1.7652817
 
 [node name="Fool" type="CharacterBody2D" node_paths=PackedStringArray("cooldown", "hitbox") groups=["enemy"]]
+process_mode = 1
 script = ExtResource("1_emawa")
 health = 9
 speed = 20.0

@@ -78,9 +78,9 @@ extends Control
 
 # Sapphire Enemy Shop
 @onready var base_sapphire_enemy_price : int = 14
-@onready var base_sapphire_enemy_multiplier : float = 1.18
+@onready var base_sapphire_enemy_multiplier : float = 1.68
 @onready var base_sapphire_enemy_reward : float = 1
-@onready var base_sapphire_enemy_max_level : int = 100
+@onready var base_sapphire_enemy_max_level : int = 50
 
 # Gems Label
 @onready var gems_shop_label : Label = $VBoxContainer/MarginContainerPanel/PanelContainer/MarginContainer/GridContainer/Sapphire
@@ -197,6 +197,7 @@ func anti_cheat():
 	Global.save_progression()
 
 func _ready() -> void:
+	get_tree().paused = false
 	Global.load_progression()
 	anti_cheat()
 	
@@ -598,7 +599,7 @@ func _on_sapphire_enemy_button_pressed() -> void:
 		save_progression()
 
 func default_sapphire_enemy_shop():
-	base_sapphire_enemy_price = 35
+	base_sapphire_enemy_price = 666
 
 
 

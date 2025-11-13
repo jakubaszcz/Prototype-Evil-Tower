@@ -11,6 +11,7 @@ radius = 98.4124
 radius = 54.451813
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("trigger_collider")]
+process_mode = 1
 script = ExtResource("1_gieyj")
 trigger_collider = NodePath("RadiusArea/CollisonArea")
 

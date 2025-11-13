@@ -22,7 +22,8 @@ var enemy_map := {
 	"ninja": 3,
 	"lockhlass": 4,
 	"giant": 5,
-	"archer": 6
+	"archer": 6,
+	"barbarian": 7
 }
 
 var mini_boss_map := {
@@ -30,7 +31,8 @@ var mini_boss_map := {
 }
 
 var boss_map := {
-	"scarlet": 0
+	"scarlet": 0,
+	"withch": 1
 }
 
 var gods_map := {

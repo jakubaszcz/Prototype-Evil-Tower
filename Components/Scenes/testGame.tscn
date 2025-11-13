@@ -66,6 +66,7 @@ position = Vector2(10, 10)
 player = NodePath("../Player")
 
 [node name="GameContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/GridContainer/Container"]
+process_mode = 3
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -113,6 +114,36 @@ text = "Menu"
 [node name="QuitButton" type="Button" parent="MarginContainer/VBoxContainer/GridContainer/Container/GameContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Quit"
+
+[node name="PauseContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/GridContainer/Container"]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/GridContainer/Container/PauseContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/GridContainer/Container/PauseContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/GridContainer/Container/PauseContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Pause Menu"
+horizontal_alignment = 1
+
+[node name="StopButton" type="Button" parent="MarginContainer/VBoxContainer/GridContainer/Container/PauseContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Abandon ?"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
@@ -537,6 +568,7 @@ script = ExtResource("2_8kjg6")
 [connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/Container/GameContainer/MarginContainer/VBoxContainer/GridContainer/RestartButton" to="MarginContainer/VBoxContainer/GridContainer/Container" method="_on_restart_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/Container/GameContainer/MarginContainer/VBoxContainer/GridContainer/MenuButton" to="MarginContainer/VBoxContainer/GridContainer/Container" method="_on_menu_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/Container/GameContainer/MarginContainer/VBoxContainer/QuitButton" to="MarginContainer/VBoxContainer/GridContainer/Container" method="_on_quit_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/Container/PauseContainer/MarginContainer/VBoxContainer/StopButton" to="MarginContainer/VBoxContainer/GridContainer/Container" method="_on_stop_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/DamageShop/MarginContainer/VBoxContainer/DamageButton" to="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel" method="_on_damage_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/HealthShop/MarginContainer/VBoxContainer/HealthButton" to="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel" method="_on_health_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel/MarginContainer/ScrollContainer/GridContainer/RadiusShop/MarginContainer/VBoxContainer/RadiusButton" to="MarginContainer/VBoxContainer/GridContainer/VBoxContainer/ShopPanel" method="_on_radius_button_pressed"]

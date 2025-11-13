@@ -700,7 +700,7 @@ columns = 2
 
 [node name="TitleText" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/SapphireEnemyShop/MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
-text = "Damage"
+text = "Sapphire Enemy"
 
 [node name="Level" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer/SapphireEnemyShop/MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2

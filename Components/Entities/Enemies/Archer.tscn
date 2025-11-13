@@ -10,6 +10,7 @@ radius = 252.0
 radius = 3.839201
 
 [node name="Archer" type="CharacterBody2D" node_paths=PackedStringArray("cooldown", "hitbox") groups=["enemy"]]
+process_mode = 1
 script = ExtResource("1_w705r")
 health = 7
 speed = 24.0
